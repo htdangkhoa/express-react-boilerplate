@@ -1,0 +1,15 @@
+{
+  "presets": ["@babel/env", "@babel/react", "@babel/flow"],
+  "plugins": [
+    "@babel/syntax-dynamic-import",
+    "@babel/transform-runtime",
+    [
+      "@babel/transform-spread",
+      {
+        "loose": true
+      }
+    ],
+    "@babel/plugin-proposal-optional-chaining",
+    "react-hot-loader/babel"
+  ]
+}

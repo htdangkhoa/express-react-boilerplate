@@ -1,0 +1,71 @@
+{
+  "name": "erb",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "NODE_ENV=production node -r dotenv-flow/config dist/index.js",
+    "dev": "NODE_ENV=development nodemon src/index.js --exec \"node -r dotenv-flow/config ./node_modules/.bin/babel-node\"",
+    "predev": "flow",
+    "build": "BABEL_ENV=production babel --minified --no-comments src -D -d dist && npm run wp",
+    "wp": "NODE_ENV=production node -r dotenv-flow/config ./node_modules/.bin/webpack --progress --colors --config src/tools/webpack.config.js --bail"
+  },
+  "nodemonConfig": {
+    "ignore": [
+      "dist",
+      "src/client"
+    ]
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.6.4",
+    "@babel/core": "^7.2.2",
+    "@babel/node": "^7.6.3",
+    "@babel/plugin-proposal-optional-chaining": "^7.6.0",
+    "@babel/plugin-syntax-dynamic-import": "^7.2.0",
+    "@babel/plugin-transform-runtime": "^7.6.2",
+    "@babel/plugin-transform-spread": "^7.6.2",
+    "@babel/polyfill": "^7.6.0",
+    "@babel/preset-env": "^7.3.1",
+    "@babel/preset-flow": "^7.0.0",
+    "@babel/preset-react": "^7.6.3",
+    "babel-loader": "^8.0.6",
+    "eslint": "^6.5.1",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-config-prettier": "^6.4.0",
+    "eslint-plugin-flowtype": "^4.3.0",
+    "eslint-plugin-prettier": "^3.1.1",
+    "eslint-plugin-react": "^7.16.0",
+    "flow-bin": "^0.109.0",
+    "nodemon": "^1.19.4",
+    "prettier": "^1.18.2",
+    "webpack": "^4.29.0",
+    "webpack-bundle-analyzer": "^3.6.0",
+    "webpack-cli": "^3.2.1",
+    "webpack-dev-middleware": "^3.7.2",
+    "webpack-hot-middleware": "^2.25.0"
+  },
+  "dependencies": {
+    "@hot-loader/react-dom": "^16.10.2",
+    "axios": "^0.19.0",
+    "body-parser": "^1.19.0",
+    "compression": "^1.7.4",
+    "connected-react-router": "^6.5.2",
+    "cors": "^2.8.5",
+    "dotenv-flow": "^3.1.0",
+    "express": "^4.17.1",
+    "helmet": "^3.21.1",
+    "history": "^4.10.1",
+    "react": "^16.10.2",
+    "react-dom": "npm:@hot-loader/react-dom",
+    "react-hot-loader": "^4.12.15",
+    "react-redux": "^7.1.1",
+    "react-router": "^5.1.2",
+    "react-router-config": "^5.1.1",
+    "react-router-dom": "^5.1.2",
+    "redux": "^4.0.4",
+    "redux-devtools-extension": "^2.13.8",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.3.0",
+    "serialize-javascript": "^2.1.0"
+  }
+}

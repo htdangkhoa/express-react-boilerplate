@@ -1,0 +1,81 @@
+// @flow
+import { resolve } from 'path';
+import Express, { Router, type Request, type Response } from 'express';
+import React from 'react';
+import { renderToString } from 'react-dom/server';
+import { StaticRouter } from 'react-router';
+import { renderRoutes, matchRoutes } from 'react-router-config';
+import { Provider } from 'react-redux';
+import renderHtml from './utils/render-html';
+import routes from './routes';
+import { webpackMiddleware } from './middlewares';
+import { isDev } from './config';
+import configureStore from './utils/configure-store';
+import { resultModel } from './models/result.model';
+
+const app = Express();
+app.use(Express.static(resolve(__dirname, 'public')));
+
+if (isDev) {
+  app.use(webpackMiddleware());
+}
+
+app.get('/api', (req, res) => {
+  res.json(resultModel({}));
+});
+
+app.get('*', async (req: Request, res: Response) => {
+  const { store } = configureStore({ url: req.url });
+
+  const loadBranchData = (): Promise<any> => {
+    const branches = matchRoutes(routes, req.path);
+
+    const promises = branches.map(({ route, match }) => {
+      if (route.loadData) {
+        return Promise.all(
+          route
+            .loadData({ params: match.params, getState: store.getState })
+            .map((action) => store.dispatch(action)),
+        );
+      }
+
+      return Promise.resolve(null);
+    });
+
+    return Promise.all(promises);
+  };
+
+  try {
+    await loadBranchData();
+
+    const context = {};
+
+    const App = (
+      <Provider store={store}>
+        <StaticRouter location={req.path} context={context}>
+          {renderRoutes(routes)}
+        </StaticRouter>
+      </Provider>
+    );
+
+    const htmlContent = renderToString(App);
+
+    if (context.url) {
+      res.status(301).setHeader('location', context.url);
+
+      return res.end();
+    }
+
+    const status = context.status === '404' ? 404 : 200;
+
+    return res
+      .status(status)
+      .send(renderHtml({ htmlContent, initialState: store.getState() }));
+  } catch (error) {
+    console.error(`==> 😭  Rendering routes error: ${error}`);
+
+    return res.status(404).send('Not Found :(');
+  }
+});
+
+export default app;
