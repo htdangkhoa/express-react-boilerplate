@@ -1,0 +1,14 @@
+name: Client Reminders Build
+on: [push]
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: "10.x"
+      - run: yarn install
+      - run: yarn build
