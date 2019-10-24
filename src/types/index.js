@@ -11,10 +11,12 @@ export type RouteType = {
 
 export type ConfigureStoreType = {
   initialState?: Object,
+
   url?: string,
 };
 
 export type ActionType = {
   type: string,
+
   payload: any,
 };

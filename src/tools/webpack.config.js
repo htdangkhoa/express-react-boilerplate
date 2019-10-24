@@ -29,7 +29,44 @@ module.exports = {
         test: /\.(t|j)s?$/,
         exclude: /node_modules/,
         loader: 'babel',
-        options: { cacheDirectory: isDev },
+        // options: { cacheDirectory: isDev },
+      },
+      {
+        test: /\.css$/,
+        use: [
+          { loader: 'style' },
+          {
+            loader: 'css',
+            options: {
+              modules: true,
+              sourceMap: isDev,
+            },
+          },
+        ],
+      },
+      {
+        test: /\.(scss|sass)$/,
+        use: [
+          { loader: 'style' },
+          {
+            loader: 'css',
+            options: {
+              modules: true,
+              sourceMap: isDev,
+            },
+          },
+          {
+            loader: 'sass',
+            options: {
+              sourceMap: isDev,
+            },
+          },
+        ],
+      },
+      {
+        test: /\.(gif|png|jpe?g|webp|svg)$/i,
+        loader: 'url',
+        options: { limit: 10240, name: '[name].[hash:8].[ext]' },
       },
     ],
   },

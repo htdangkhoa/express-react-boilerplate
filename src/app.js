@@ -60,11 +60,11 @@ app.get('*', async (req: Request, res: Response) => {
 
     const htmlContent = renderToString(App);
 
-    if (context.url) {
-      res.status(301).setHeader('location', context.url);
+    // if (context.url) {
+    //   res.status(301).setHeader('location', context.url);
 
-      return res.end();
-    }
+    //   return res.end();
+    // }
 
     const status = context.status === '404' ? 404 : 200;
 
