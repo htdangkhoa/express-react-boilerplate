@@ -2,7 +2,7 @@
 import { resolve } from 'path';
 import Express, { Router, type Request, type Response } from 'express';
 import React from 'react';
-import { renderToString } from 'react-dom/server';
+import { renderToStaticMarkupAsync } from 'react-async-ssr';
 import { StaticRouter } from 'react-router';
 import { renderRoutes, matchRoutes } from 'react-router-config';
 import { Provider } from 'react-redux';
@@ -14,6 +14,7 @@ import configureStore from './utils/configure-store';
 import { resultModel } from './models/result.model';
 
 const app = Express();
+
 app.use(Express.static(resolve(__dirname, 'public')));
 
 if (isDev) {
@@ -58,7 +59,7 @@ app.get('*', async (req: Request, res: Response) => {
       </Provider>
     );
 
-    const htmlContent = renderToString(App);
+    const htmlContent = renderToStaticMarkupAsync(App);
 
     // if (context.url) {
     //   res.status(301).setHeader('location', context.url);

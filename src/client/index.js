@@ -1,5 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import React from 'react';
+import React, { Suspense } from 'react';
 import { render, hydrate } from 'react-dom';
 import { renderRoutes } from 'react-router-config';
 import { BrowserRouter } from 'react-router-dom';
@@ -7,6 +7,7 @@ import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'connected-react-router';
 import configureStore from '../utils/configure-store';
 import routes from '../routes';
+import '../i18n';
 
 const initialState = window.__INITIAL_STATE__;
 
@@ -14,15 +15,19 @@ delete window.__INITIAL_STATE__;
 
 const { store, history } = configureStore({ initialState });
 
+const Loading = () => <div>Loading...</div>;
+
 const bootstrap = (routes: Array<Object>) => {
   const renderMethod = !!module.hot ? render : hydrate;
 
   renderMethod(
-    <Provider store={store}>
-      <ConnectedRouter history={history}>
-        {renderRoutes(routes)}
-      </ConnectedRouter>
-    </Provider>,
+    <Suspense fallback={<Loading />}>
+      <Provider store={store}>
+        <ConnectedRouter history={history}>
+          {renderRoutes(routes)}
+        </ConnectedRouter>
+      </Provider>
+    </Suspense>,
     document.getElementById('react-view'),
   );
 };

@@ -1,5 +1,6 @@
 const { join, resolve } = require('path');
 const webpack = require('webpack');
+const TerserWebpackPlugin = require('terser-webpack-plugin');
 const { NODE_ENV, isDev } = require('../config');
 
 const getEntries = () => {
@@ -14,6 +15,7 @@ const getEntries = () => {
 
 module.exports = {
   mode: NODE_ENV,
+  devtool: isDev ? 'source-map' : 'hidden-source-map',
   entry: getEntries(),
   output: {
     path: resolve(__dirname, '..', '..', 'dist/public'),
@@ -79,5 +81,25 @@ module.exports = {
       'react-dom': '@hot-loader/react-dom',
     },
   },
-  devtool: isDev ? 'source-map' : 'hidden-source-map',
+  optimization: isDev
+    ? {}
+    : {
+        minimizer: [
+          new TerserWebpackPlugin({
+            cache: true,
+            parallel: true,
+            sourceMap: false,
+            extractComments: false,
+            terserOptions: {
+              compress: {
+                booleans: true,
+                drop_console: true,
+              },
+              warnings: false,
+              mangle: true,
+            },
+          }),
+        ],
+      },
+  performance: { hints: false },
 };
