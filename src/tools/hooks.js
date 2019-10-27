@@ -4,8 +4,8 @@ import sass from 'node-sass';
 import assetRequireHook from 'asset-require-hook';
 import { isDev } from '../config';
 
-const hooks = async () => {
-  await cssModuleRequireHook({
+const hooks = () => {
+  cssModuleRequireHook({
     extensions: ['.css', '.scss', '.sass'],
     preprocessCss: (data, file) => {
       return sass.renderSync({ data, file }).css;
@@ -15,6 +15,13 @@ const hooks = async () => {
 
   assetRequireHook({
     extensions: ['gif', 'jpg', 'jpeg', 'png', 'webp'],
+    publicPath: resolve(__dirname, '..', 'client/assets'),
+    limit: 10240,
+    name: '[name].[hash:8].[ext]',
+  });
+
+  assetRequireHook({
+    extensions: ['woff', 'woff2', 'ttf', 'eot', 'svg'],
     publicPath: resolve(__dirname, '..', 'client/assets'),
     limit: 10240,
     name: '[name].[hash:8].[ext]',

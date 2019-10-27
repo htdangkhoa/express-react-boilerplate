@@ -66,7 +66,12 @@ module.exports = {
         ],
       },
       {
-        test: /\.(gif|png|jpe?g|webp|svg)$/i,
+        test: /\.(woff2?|ttf|eot|svg)$/,
+        loader: 'url',
+        options: { limit: 10240, name: '[name].[hash:8].[ext]' },
+      },
+      {
+        test: /\.(gif|png|jpe?g|webp)$/,
         loader: 'url',
         options: { limit: 10240, name: '[name].[hash:8].[ext]' },
       },
