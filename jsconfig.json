@@ -1,14 +1,13 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
+    "baseUrl": "src",
     "paths": {
-      "*": ["src/*"],
-      "components/*": ["src/client/components/*"],
-      "components": ["src/client/components"],
-      "utils/*": ["src/utils/*"],
-      "utils": ["src/utils"],
-      "types/*": ["src/types/*"],
-      "types": ["src/types"]
+      "components/*": ["client/components/*"],
+      "components": ["client/components"],
+      "utils/*": ["utils/*"],
+      "utils": ["utils"],
+      "types/*": ["types/*"],
+      "types": ["types"]
     }
   }
 }
