@@ -1,5 +1,9 @@
 // @flow
+import { type HelmetData } from 'react-helmet';
+
 export type RenderHtmlType = {
+  head: HelmetData,
+
   htmlContent: string,
 
   initialState?: Object,

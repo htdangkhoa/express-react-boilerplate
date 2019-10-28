@@ -6,6 +6,7 @@ import { renderToStaticMarkupAsync } from 'react-async-ssr';
 import { StaticRouter } from 'react-router';
 import { renderRoutes, matchRoutes } from 'react-router-config';
 import { Provider } from 'react-redux';
+import { Helmet } from 'react-helmet';
 import renderHtml from './utils/render-html';
 import routes from './routes';
 import { webpackMiddleware } from './middlewares';
@@ -59,7 +60,9 @@ app.get('*', async (req: Request, res: Response) => {
       </Provider>
     );
 
-    const htmlContent = renderToStaticMarkupAsync(App);
+    const htmlContent = await renderToStaticMarkupAsync(App);
+
+    const head = Helmet.renderStatic();
 
     // if (context.url) {
     //   res.status(301).setHeader('location', context.url);
@@ -71,7 +74,7 @@ app.get('*', async (req: Request, res: Response) => {
 
     return res
       .status(status)
-      .send(renderHtml({ htmlContent, initialState: store.getState() }));
+      .send(renderHtml({ head, htmlContent, initialState: store.getState() }));
   } catch (error) {
     console.error(`==> 😭  Rendering routes error: ${error}`);
 

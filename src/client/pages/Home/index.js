@@ -1,11 +1,12 @@
 import React, { useEffect, Suspense } from 'react';
 import { connect } from 'react-redux';
 import { useTranslation } from 'react-i18next';
+import Layout from 'components/Layout';
 import * as action from './action';
 import image from '../../assets/image.png';
 import styles from './styles.scss';
 
-const Home = ({ users }) => {
+const Home = ({ users, route: { title } }) => {
   // useEffect(() => {
   //   props.fetchUserAction();
   // }, []);
@@ -13,8 +14,7 @@ const Home = ({ users }) => {
   const [t, i18n] = useTranslation();
 
   return (
-    <>
-      {/* <img src={require('../../assets/image.png')} /> */}
+    <Layout title={title}>
       <img src={image} />
       <div className={styles.Home}>Home</div>
 
@@ -33,7 +33,7 @@ const Home = ({ users }) => {
       {users.map((user, i) => {
         return <p key={i}>{user.name.first}</p>;
       })}
-    </>
+    </Layout>
   );
 };
 
