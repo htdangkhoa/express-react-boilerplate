@@ -1,5 +1,10 @@
 import React from 'react';
+import Layout from 'components/Layout';
 
-const NotFound = () => <div>NotFound</div>;
+const NotFound = ({ route: { title } }) => (
+  <Layout title={title}>
+    <div>NotFound</div>
+  </Layout>
+);
 
 export default NotFound;

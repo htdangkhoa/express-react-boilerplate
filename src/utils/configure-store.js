@@ -5,6 +5,7 @@ import { composeWithDevTools } from 'redux-devtools-extension/developmentOnly';
 import { createLogger } from 'redux-logger';
 import thunk from 'redux-thunk';
 import { isDev } from '../config';
+import { requestMiddleware } from './request';
 import createReducers from '../reducers';
 import { type ConfigureStoreType } from '../types';
 
@@ -17,7 +18,12 @@ const configureStore = ({ initialState, url }: ConfigureStoreType) => {
     ? createMemoryHistory({ initialEntries: [url || '/'] })
     : createBrowserHistory();
 
-  const middlewares = [routerMiddleware(history), thunk, logger];
+  const middlewares = [
+    routerMiddleware(history),
+    thunk,
+    requestMiddleware,
+    logger,
+  ];
 
   const enhancers = composeWithDevTools(applyMiddleware(...middlewares));
 

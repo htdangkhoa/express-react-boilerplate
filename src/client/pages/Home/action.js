@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { apiActionGenerator } from 'utils';
 
 export const FETCH_USER = '@@FETCH_USER';
 export const fetchUserAction = () => async (dispatch) => {
@@ -20,3 +21,7 @@ export const fetchUserAction = () => async (dispatch) => {
     });
   }
 };
+
+export const FETCH_API_ACTION = '@@FETCH_API_ACTION';
+export const fetchApiAction = () => async (dispatch) =>
+  dispatch(apiActionGenerator({ label: FETCH_API_ACTION }));

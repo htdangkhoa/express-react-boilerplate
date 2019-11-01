@@ -1,5 +1,10 @@
 import React from 'react';
+import Layout from 'components/Layout';
 
-const About = () => <div>About</div>;
+const About = ({ route: { title } }) => (
+  <Layout title={title}>
+    <div>About</div>
+  </Layout>
+);
 
 export default About;

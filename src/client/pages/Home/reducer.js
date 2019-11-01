@@ -9,7 +9,7 @@ const initialState = {
 export default (state: any = initialState, action: ActionType) => {
   switch (action.type) {
     case FETCH_USER:
-      return { ...state, users: [...action.payload] };
+      return { ...state, users: [...state.users, ...action.payload] };
     default:
       return { ...state };
   }

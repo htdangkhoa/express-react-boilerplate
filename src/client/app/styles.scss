@@ -1,0 +1,15 @@
+@import '../themes/variables';
+
+.App {
+  &.dark {
+    background: black;
+    color: white;
+    transition: 0.3s all;
+  }
+
+  &.light {
+    background: white;
+    color: black;
+    transition: 0.3s all;
+  }
+}

@@ -1,6 +1,12 @@
 import { createServer } from 'http';
-import app from './app';
+import hooks from './tools/hooks';
 
-createServer(app).listen(8080, () => {
-  console.log('Server is listening on port 8080...');
-});
+(async () => {
+  hooks();
+
+  const server = await import('./server');
+
+  createServer(server.default).listen(8888, () => {
+    console.log('Server is listening on port 8888...');
+  });
+})();

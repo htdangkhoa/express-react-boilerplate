@@ -1,5 +1,6 @@
 const { join, resolve } = require('path');
 const webpack = require('webpack');
+const TerserWebpackPlugin = require('terser-webpack-plugin');
 const { NODE_ENV, isDev } = require('../config');
 
 const getEntries = () => {
@@ -14,6 +15,7 @@ const getEntries = () => {
 
 module.exports = {
   mode: NODE_ENV,
+  devtool: isDev ? 'source-map' : 'hidden-source-map',
   entry: getEntries(),
   output: {
     path: resolve(__dirname, '..', '..', 'dist/public'),
@@ -29,7 +31,49 @@ module.exports = {
         test: /\.(t|j)s?$/,
         exclude: /node_modules/,
         loader: 'babel',
-        options: { cacheDirectory: isDev },
+        // options: { cacheDirectory: isDev },
+      },
+      {
+        test: /\.css$/,
+        use: [
+          { loader: 'style' },
+          {
+            loader: 'css',
+            options: {
+              modules: true,
+              sourceMap: isDev,
+            },
+          },
+        ],
+      },
+      {
+        test: /\.(scss|sass)$/,
+        use: [
+          { loader: 'style' },
+          {
+            loader: 'css',
+            options: {
+              modules: true,
+              sourceMap: isDev,
+            },
+          },
+          {
+            loader: 'sass',
+            options: {
+              sourceMap: isDev,
+            },
+          },
+        ],
+      },
+      {
+        test: /\.(woff2?|ttf|eot|svg)$/,
+        loader: 'url',
+        options: { limit: 10240, name: '[name].[hash:8].[ext]' },
+      },
+      {
+        test: /\.(gif|png|jpe?g|webp)$/,
+        loader: 'url',
+        options: { limit: 10240, name: '[name].[hash:8].[ext]' },
       },
     ],
   },
@@ -42,5 +86,25 @@ module.exports = {
       'react-dom': '@hot-loader/react-dom',
     },
   },
-  devtool: isDev ? 'source-map' : 'hidden-source-map',
+  optimization: isDev
+    ? {}
+    : {
+        minimizer: [
+          new TerserWebpackPlugin({
+            cache: true,
+            parallel: true,
+            sourceMap: false,
+            extractComments: false,
+            terserOptions: {
+              compress: {
+                booleans: true,
+                drop_console: true,
+              },
+              warnings: false,
+              mangle: true,
+            },
+          }),
+        ],
+      },
+  performance: { hints: false },
 };
