@@ -75,10 +75,15 @@
     "i18next": "^18.0.1",
     "i18next-browser-languagedetector": "^4.0.0",
     "i18next-xhr-backend": "^3.2.0",
+    "jsonwebtoken": "^8.5.1",
+    "lodash": "^4.17.15",
+    "passport": "^0.4.0",
+    "passport-jwt": "^4.0.0",
     "prop-types": "^15.7.2",
     "react": "^16.10.2",
     "react-async-ssr": "^0.5.2",
-    "react-dom": "npm:@hot-loader/react-dom",
+    "react-cookie": "^4.0.1",
+    "react-dom": "^16.11.0",
     "react-helmet": "^5.2.1",
     "react-hot-loader": "^4.12.15",
     "react-i18next": "^11.0.0",
@@ -90,6 +95,7 @@
     "redux-devtools-extension": "^2.13.8",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
-    "serialize-javascript": "^2.1.0"
+    "serialize-javascript": "^2.1.0",
+    "universal-cookie": "^4.0.2"
   }
 }

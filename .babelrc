@@ -18,7 +18,8 @@
         "alias": {
           "components": "./src/client/components",
           "utils": "./src/utils",
-          "types": "./src/types"
+          "types": "./src/types",
+          "models": "./src/models"
         }
       }
     ]

@@ -7,7 +7,9 @@
       "utils/*": ["utils/*"],
       "utils": ["utils"],
       "types/*": ["types/*"],
-      "types": ["types"]
+      "types": ["types"],
+      "models/*": ["models/*"],
+      "models": ["models"]
     }
   }
 }

@@ -6,10 +6,10 @@ import * as action from './action';
 import image from '../../assets/image.png';
 import styles from './styles.scss';
 
-const Home = ({ users, route: { title } }) => {
-  // useEffect(() => {
-  //   props.fetchUserAction();
-  // }, []);
+const Home = ({ users, route: { title }, fetchApi, fetchUserAction }) => {
+  useEffect(() => {
+    fetchUserAction();
+  }, []);
 
   const [t, i18n] = useTranslation();
 
@@ -30,6 +30,13 @@ const Home = ({ users, route: { title } }) => {
         {' Change lang'}
       </p>
 
+      <button
+        onClick={() => {
+          fetchApi();
+        }}>
+        Fetch
+      </button>
+
       {users.map((user, i) => {
         return <p key={i}>{user.name.first}</p>;
       })}
@@ -43,6 +50,7 @@ const mapStateToProps = ({ home: { users } }) => ({
 
 const mapDispatchToProps = {
   fetchUserAction: action.fetchUserAction,
+  fetchApi: action.fetchApiAction,
 };
 
 export default connect(

@@ -1,4 +1,4 @@
-name: Client Reminders Build
+name: Github Actions
 on:
   push:
     branches:

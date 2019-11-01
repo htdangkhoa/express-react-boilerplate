@@ -1,6 +1,8 @@
 // @flow
 import { resolve } from 'path';
 import Express, { Router, type Request, type Response } from 'express';
+import bodyParser from 'body-parser';
+import cors from 'cors';
 import React from 'react';
 import { renderToStaticMarkupAsync } from 'react-async-ssr';
 import { StaticRouter } from 'react-router';
@@ -10,6 +12,7 @@ import { Helmet } from 'react-helmet';
 import renderHtml from './utils/render-html';
 import routes from './routes';
 import { webpackMiddleware } from './middlewares';
+import api from './api';
 import { isDev } from './config';
 import configureStore from './utils/configure-store';
 import { resultModel } from './models/result.model';
@@ -22,9 +25,13 @@ if (isDev) {
   app.use(webpackMiddleware());
 }
 
-app.get('/api', (req, res) => {
-  res.json(resultModel({}));
-});
+app.use([
+  cors({ origin: true }),
+  bodyParser.json(),
+  bodyParser.urlencoded({ extended: true }),
+]);
+
+app.use('/api', api);
 
 app.get('*', async (req: Request, res: Response) => {
   const { store } = configureStore({ url: req.url });
