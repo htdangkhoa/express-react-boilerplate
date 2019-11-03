@@ -1,8 +1,11 @@
 import { Router } from 'express';
-import authApi from './auth';
+import auth from './auth';
+import generic from './generic';
 
 const router = Router();
 
-router.use('/auth', authApi());
+router.use('/auth', auth);
+
+router.use('/', generic);
 
 export default router;

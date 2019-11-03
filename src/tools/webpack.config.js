@@ -24,6 +24,9 @@ module.exports = {
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin(),
+    new webpack.DefinePlugin({
+      __DEV__: isDev,
+    }),
   ],
   module: {
     rules: [

@@ -1,4 +1,4 @@
-// @flow
+/* @flow */
 import serialize from 'serialize-javascript';
 import { Helmet } from 'react-helmet';
 import { minify } from 'html-minifier';

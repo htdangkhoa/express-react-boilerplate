@@ -1,5 +1,5 @@
 import App from './client/app';
-import { Home, About, NotFound } from './client/pages';
+import { Login, Home, About, NotFound } from './client/pages';
 import { fetchUserAction } from './client/pages/Home/action';
 
 export default [
@@ -12,6 +12,11 @@ export default [
         component: Home,
         title: 'Home',
         loadData: ({ params }) => [fetchUserAction()],
+      },
+      {
+        path: '/login',
+        component: Login,
+        title: 'Login',
       },
       {
         path: '/about',

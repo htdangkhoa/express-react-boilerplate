@@ -1,4 +1,4 @@
-// @flow
+/* @flow */
 import { type RequestType, type ApiActionType } from 'types';
 
 export const actionGenerator = (actionName: string) => ({

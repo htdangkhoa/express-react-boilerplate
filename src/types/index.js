@@ -1,12 +1,38 @@
-// @flow
+/* @flow */
+import { type Express } from 'express';
+import { type MongoClient, type Db, type Collection } from 'mongodb';
 import { type HelmetData } from 'react-helmet';
+
+export type MongoConnectionType = {
+  host: string,
+
+  database: string,
+
+  user?: string,
+
+  password?: string,
+
+  app?: Express,
+};
+
+export type MongoResultType = {
+  client: MongoClient,
+
+  db: Db,
+};
+
+export type ResultModelErrorType = {
+  message?: string,
+
+  extras?: Object,
+};
 
 export type ResultModelType = {
   code?: number,
 
   data?: any,
 
-  error?: { message?: string },
+  error?: ResultModelErrorType,
 };
 
 export type RenderHtmlType = {

@@ -1,4 +1,4 @@
-// @flow
+/* @flow */
 import { resolve } from 'path';
 import Express, { Router, type Request, type Response } from 'express';
 import bodyParser from 'body-parser';
@@ -11,7 +11,7 @@ import { Provider } from 'react-redux';
 import { Helmet } from 'react-helmet';
 import renderHtml from './utils/render-html';
 import routes from './routes';
-import { webpackMiddleware } from './middlewares';
+import { webpackMiddleware, passportMiddleware } from './middlewares';
 import api from './api';
 import { isDev } from './config';
 import configureStore from './utils/configure-store';
@@ -30,6 +30,13 @@ app.use([
   bodyParser.json(),
   bodyParser.urlencoded({ extended: true }),
 ]);
+
+app.use(
+  passportMiddleware([
+    /^(?!.*api).*/g,
+    /^(?!.*^\/api\/auth\/logout)(\/api\/auth)/,
+  ]),
+);
 
 app.use('/api', api);
 

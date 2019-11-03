@@ -1,3 +1,4 @@
 import webpackMiddleware from './webpack.middleware';
+import passportMiddleware from './passport.middleware';
 
-export { webpackMiddleware };
+export { webpackMiddleware, passportMiddleware };

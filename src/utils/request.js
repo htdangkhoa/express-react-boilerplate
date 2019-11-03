@@ -1,4 +1,4 @@
-// @flow
+/* @flow */
 import axios from 'axios';
 import { omit } from 'lodash';
 import { type MiddlewareAPI, type Dispatch, type Action } from 'redux';

@@ -2,7 +2,6 @@ import { resolve, join } from 'path';
 import cssModuleRequireHook from 'css-modules-require-hook';
 import sass from 'node-sass';
 import assetRequireHook from 'asset-require-hook';
-import { isDev } from '../config';
 
 const hooks = () => {
   cssModuleRequireHook({
@@ -10,7 +9,7 @@ const hooks = () => {
     preprocessCss: (data, file) => {
       return sass.renderSync({ data, file }).css;
     },
-    devMode: isDev,
+    devMode: __DEV__,
   });
 
   assetRequireHook({

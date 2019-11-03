@@ -1,4 +1,4 @@
-// @flow
+/* @flow */
 import { combineReducers } from 'redux';
 import { type History } from 'history';
 import { connectRouter } from 'connected-react-router';
