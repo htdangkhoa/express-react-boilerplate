@@ -9,7 +9,9 @@
       "types/*": ["types/*"],
       "types": ["types"],
       "models/*": ["models/*"],
-      "models": ["models"]
+      "models": ["models"],
+      "store/*": ["store/*"],
+      "store": ["store"]
     }
   }
 }

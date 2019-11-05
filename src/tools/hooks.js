@@ -5,6 +5,7 @@ import assetRequireHook from 'asset-require-hook';
 
 const hooks = () => {
   cssModuleRequireHook({
+    generateScopedName: __DEV__ ? '[local]' : '[hash:base64:5]',
     extensions: ['.css', '.scss', '.sass'],
     preprocessCss: (data, file) => {
       return sass.renderSync({ data, file }).css;

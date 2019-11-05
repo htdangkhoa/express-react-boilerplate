@@ -1,5 +1,6 @@
 import { createServer } from 'http';
 import {
+  NODE_ENV,
   DB_HOST as host,
   DB_NAME as database,
   DB_USER as user,
@@ -23,7 +24,7 @@ import useMongo from './mongo';
     });
 
     createServer(server).listen(8888, () => {
-      console.log('Server is listening on port 8888...');
+      console.log(`Starting the ${NODE_ENV} server...`);
     });
   } catch (error) {
     console.error(error);

@@ -43,10 +43,6 @@ export type RenderHtmlType = {
   initialState?: Object,
 };
 
-export type RouteType = {
-  route: { routes: Array<Object> },
-};
-
 export type ConfigureStoreType = {
   initialState?: Object,
 
@@ -90,3 +86,9 @@ export type ApiActionType = {
 
   onError?: (data?: ApiDataType) => void,
 } & RequestType;
+
+export type GlobalStateType = {
+  loading?: boolean,
+  accessToken: ?string,
+  refreshToken: ?string,
+};

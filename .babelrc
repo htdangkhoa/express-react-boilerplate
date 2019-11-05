@@ -19,7 +19,8 @@
           "components": "./src/client/components",
           "utils": "./src/utils",
           "types": "./src/types",
-          "models": "./src/models"
+          "models": "./src/models",
+          "store": "./src/store"
         }
       }
     ]

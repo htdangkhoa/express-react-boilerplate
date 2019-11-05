@@ -4,9 +4,9 @@ import { routerMiddleware } from 'connected-react-router';
 import { composeWithDevTools } from 'redux-devtools-extension/developmentOnly';
 import { createLogger } from 'redux-logger';
 import thunk from 'redux-thunk';
-import { requestMiddleware } from './request';
-import createReducers from '../reducers';
-import { type ConfigureStoreType } from '../types';
+import { requestMiddleware } from 'utils/request';
+import createReducers from './reducer';
+import { type ConfigureStoreType } from 'types';
 
 const logger = createLogger({ predicate: (getState, action) => __DEV__ });
 

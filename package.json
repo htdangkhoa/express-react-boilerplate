@@ -11,7 +11,8 @@
     "wp": "NODE_ENV=production node -r dotenv-flow/config ./node_modules/.bin/webpack --progress --colors --config src/tools/webpack.config.js --bail",
     "stats": "NODE_ENV=production node -r dotenv-flow/config ./node_modules/.bin/webpack --config src/tools/webpack.config.js --progress --profile --json > stats.json --bail",
     "analyze": "webpack-bundle-analyzer stats.json",
-    "preanalyze": "npm run stats"
+    "preanalyze": "npm run stats",
+    "storybook": "start-storybook"
   },
   "nodemonConfig": {
     "ignore": [
@@ -32,6 +33,7 @@
     "@babel/preset-flow": "^7.0.0",
     "@babel/preset-react": "^7.6.3",
     "@babel/runtime": "^7.6.3",
+    "@storybook/react": "^5.2.5",
     "babel-loader": "^8.0.6",
     "babel-plugin-module-resolver": "^3.2.0",
     "css-loader": "^3.2.0",
@@ -44,6 +46,7 @@
     "eslint-plugin-prettier": "^3.1.1",
     "eslint-plugin-react": "^7.16.0",
     "flow-bin": "^0.109.0",
+    "friendly-errors-webpack-plugin": "^1.7.0",
     "node-sass": "^4.12.0",
     "nodemon": "^1.19.4",
     "prettier": "^1.18.2",
@@ -88,17 +91,22 @@
     "react-cookie": "^4.0.1",
     "react-dom": "^16.11.0",
     "react-helmet": "^5.2.1",
+    "react-hook-form": "^3.26.4",
     "react-hot-loader": "^4.12.15",
     "react-i18next": "^11.0.0",
     "react-redux": "^7.1.1",
     "react-router": "^5.1.2",
     "react-router-config": "^5.1.1",
     "react-router-dom": "^5.1.2",
+    "react-spinners": "^0.6.1",
+    "react-toastify": "^5.4.0",
     "redux": "^4.0.4",
     "redux-devtools-extension": "^2.13.8",
+    "redux-form": "^8.2.6",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
     "serialize-javascript": "^2.1.0",
-    "universal-cookie": "^4.0.2"
+    "universal-cookie": "^4.0.2",
+    "validator": "^12.0.0"
   }
 }

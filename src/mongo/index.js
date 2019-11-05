@@ -8,29 +8,32 @@ const useMongo = ({
   user,
   password,
   app,
-}: MongoConnectionType): Promise<MongoResultType> => {
-  return MongoClient.connect(host, {
+}: MongoConnectionType): Promise<MongoResultType> =>
+  MongoClient.connect(host, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     auth: !user || !password ? null : { user, password },
-  }).then((client) => {
-    const db = client.db(database);
+  })
+    .then((client) => {
+      const db = client.db(database);
 
-    const usersCollection = db.collection('users');
+      const usersCollection = db.collection('users');
 
-    const result: MongoResultType = {
-      client,
-      db,
-    };
+      const result: MongoResultType = {
+        client,
+        db,
+      };
 
-    if (app) {
-      const { request } = app;
+      if (app) {
+        const { request } = app;
 
-      Object.assign(request, { ...result, usersCollection });
-    }
+        Object.assign(request, { ...result, usersCollection });
+      }
 
-    return result;
-  });
-};
+      return result;
+    })
+    .catch((error) => {
+      throw error;
+    });
 
 export default useMongo;

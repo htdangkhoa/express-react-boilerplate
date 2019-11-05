@@ -2,6 +2,7 @@ import React, { useEffect, Suspense } from 'react';
 import { connect } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import Layout from 'components/Layout';
+import cookies from 'utils/cookies';
 import * as action from './action';
 import image from '../../assets/image.png';
 import styles from './styles.scss';
@@ -14,7 +15,7 @@ const Home = ({ users, route: { title }, fetchApi, fetchUserAction }) => {
   const [t, i18n] = useTranslation();
 
   return (
-    <Layout title={title}>
+    <Layout title={title} needLogin>
       <img src={image} />
       <div className={styles.Home}>Home</div>
 
@@ -44,8 +45,8 @@ const Home = ({ users, route: { title }, fetchApi, fetchUserAction }) => {
   );
 };
 
-const mapStateToProps = ({ home: { users } }) => ({
-  users: users,
+const mapStateToProps = ({ home }) => ({
+  ...home,
 });
 
 const mapDispatchToProps = {

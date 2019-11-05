@@ -14,7 +14,7 @@ import routes from './routes';
 import { webpackMiddleware, passportMiddleware } from './middlewares';
 import api from './api';
 import { isDev } from './config';
-import configureStore from './utils/configure-store';
+import configureStore from './store';
 import { resultModel } from './models/result.model';
 
 const app = Express();

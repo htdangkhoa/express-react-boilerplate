@@ -5,6 +5,7 @@ import { type MiddlewareAPI, type Dispatch, type Action } from 'redux';
 import { type RequestType, type ApiActionType, type ApiDataType } from 'types';
 import cookies from './cookies';
 import { actionGenerator } from './';
+import { updateLoadingAction } from 'store/action';
 
 const baseUrl = 'http://localhost:8888/api';
 
@@ -20,8 +21,9 @@ export const request = async ({
   const authorization = token || cookies.get('token');
 
   let config = {
-    data,
+    method,
     params,
+    data,
     headers: {
       'Access-Control-Allow-Origin': '*',
       'Content-Type': 'application/json',
@@ -57,13 +59,12 @@ export const requestMiddleware = ({ dispatch, getState }: MiddlewareAPI) => (
 
   let requestOptions = omit({ ...apiAction }, ['onSuccess', 'onError']);
 
-  dispatch({
-    type: ACTION.PENDING,
-    payload: apiAction.url || '',
-  });
+  updateLoadingAction(true)(dispatch);
 
   request({ ...requestOptions })
     .then((res) => {
+      updateLoadingAction(false)(dispatch);
+
       const result: ApiDataType = (res.data: ApiDataType);
 
       const { code = 200, data, error } = result;
@@ -92,6 +93,8 @@ export const requestMiddleware = ({ dispatch, getState }: MiddlewareAPI) => (
       }
     })
     .catch((err) => {
+      updateLoadingAction(false)(dispatch);
+
       const result: ApiDataType = (err.response.data: ApiDataType);
 
       const { code = 200, data, error } = result;
