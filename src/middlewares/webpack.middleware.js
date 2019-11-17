@@ -5,8 +5,6 @@ import webpackConfig from '../tools/webpack.config';
 
 const compiler = webpack(webpackConfig);
 
-compiler.apply(new webpack.ProgressPlugin());
-
 const webpackMiddleware = () => [
   webpackDevMiddleware(compiler, {
     headers: { 'Access-Control-Allow-Origin': '*' },

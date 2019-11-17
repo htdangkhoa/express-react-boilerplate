@@ -1,8 +1,10 @@
 /* @flow */
 import { resolve } from 'path';
-import Express, { Router, type Request, type Response } from 'express';
+import Express, { type Request, type Response } from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
+import compression from 'compression';
+import helmet from 'helmet';
 import React from 'react';
 import { renderToStaticMarkupAsync } from 'react-async-ssr';
 import { StaticRouter } from 'react-router';
@@ -15,7 +17,6 @@ import { webpackMiddleware, passportMiddleware } from './middlewares';
 import api from './api';
 import { isDev } from './config';
 import configureStore from './store';
-import { resultModel } from './models/result.model';
 
 const app = Express();
 
@@ -29,6 +30,8 @@ app.use([
   cors({ origin: true }),
   bodyParser.json(),
   bodyParser.urlencoded({ extended: true }),
+  compression(),
+  helmet(),
 ]);
 
 app.use(

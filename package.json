@@ -12,12 +12,13 @@
     "stats": "NODE_ENV=production node -r dotenv-flow/config ./node_modules/.bin/webpack --config src/tools/webpack.config.js --progress --profile --json > stats.json --bail",
     "analyze": "webpack-bundle-analyzer stats.json",
     "preanalyze": "npm run stats",
-    "storybook": "start-storybook"
+    "storybook": "start-storybook --ci"
   },
   "nodemonConfig": {
     "ignore": [
       "dist",
-      "src/client"
+      "src/client",
+      "src/store"
     ]
   },
   "devDependencies": {
@@ -34,12 +35,14 @@
     "@babel/preset-react": "^7.6.3",
     "@babel/runtime": "^7.6.3",
     "@storybook/react": "^5.2.5",
+    "babel-eslint": "^10.0.3",
     "babel-loader": "^8.0.6",
     "babel-plugin-module-resolver": "^3.2.0",
+    "compression-webpack-plugin": "^3.0.0",
     "css-loader": "^3.2.0",
     "eslint": "^6.5.1",
     "eslint-config-airbnb-base": "^14.0.0",
-    "eslint-config-prettier": "^6.4.0",
+    "eslint-config-prettier": "^6.5.0",
     "eslint-import-resolver-babel-module": "^5.1.0",
     "eslint-plugin-flowtype": "^4.3.0",
     "eslint-plugin-import": "^2.18.2",
@@ -47,7 +50,6 @@
     "eslint-plugin-react": "^7.16.0",
     "flow-bin": "^0.109.0",
     "friendly-errors-webpack-plugin": "^1.7.0",
-    "node-sass": "^4.12.0",
     "nodemon": "^1.19.4",
     "prettier": "^1.18.2",
     "sass-loader": "^8.0.0",
@@ -61,6 +63,7 @@
     "webpack-hot-middleware": "^2.25.0"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.11.2",
     "@hot-loader/react-dom": "^16.10.2",
     "asset-require-hook": "^1.2.0",
     "axios": "^0.19.0",
@@ -83,12 +86,14 @@
     "lodash": "^4.17.15",
     "mongodb": "^3.3.3",
     "mongoose": "^5.7.7",
+    "node-sass": "^4.13.0",
     "passport": "^0.4.0",
     "passport-jwt": "^4.0.0",
     "prop-types": "^15.7.2",
     "react": "^16.10.2",
     "react-async-ssr": "^0.5.2",
     "react-cookie": "^4.0.1",
+    "react-dev-utils": "^9.1.0",
     "react-dom": "^16.11.0",
     "react-helmet": "^5.2.1",
     "react-hook-form": "^3.26.4",
@@ -98,14 +103,18 @@
     "react-router": "^5.1.2",
     "react-router-config": "^5.1.1",
     "react-router-dom": "^5.1.2",
+    "react-slick": "^0.25.2",
     "react-spinners": "^0.6.1",
+    "react-switch": "^5.0.1",
     "react-toastify": "^5.4.0",
+    "reactstrap": "^8.1.1",
     "redux": "^4.0.4",
     "redux-devtools-extension": "^2.13.8",
     "redux-form": "^8.2.6",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
     "serialize-javascript": "^2.1.0",
+    "slick-carousel": "^1.8.1",
     "universal-cookie": "^4.0.2",
     "validator": "^12.0.0"
   }

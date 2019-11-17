@@ -1,7 +1,7 @@
 /* @flow */
 import { type Request, type Response, type NextFunction } from 'express';
-import passport from '../secure/passport';
 import { unauthorized } from 'models/result.model';
+import passport from '../secure/passport';
 
 const passportMiddleware = (whiteList: string[] = []) => async (
   req: Request,

@@ -1,6 +1,6 @@
 /* @flow */
 import { type Express } from 'express';
-import { type MongoClient, type Db, type Collection } from 'mongodb';
+import { type MongoClient, type Db } from 'mongodb';
 import { type HelmetData } from 'react-helmet';
 
 export type MongoConnectionType = {
@@ -82,13 +82,17 @@ export type ApiDataType = {
 export type ApiActionType = {
   label?: string,
 
-  onSuccess?: (data?: ApiDataType) => void,
+  onSuccess?: (data: ApiDataType) => void,
 
-  onError?: (data?: ApiDataType) => void,
+  onError?: (data: ApiDataType) => void,
 } & RequestType;
+
+export type ThemeType = 'light' | 'dark';
 
 export type GlobalStateType = {
   loading?: boolean,
   accessToken: ?string,
   refreshToken: ?string,
+  user?: Object,
+  theme?: ThemeType,
 };

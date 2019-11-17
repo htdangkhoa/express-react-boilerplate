@@ -1,3 +1,5 @@
 {
-  "hello": "Xin chào"
+  "language": "Ngôn ngữ",
+  "lang_en": "Tiếng anh",
+  "lang_vi": "Tiếng việt"
 }

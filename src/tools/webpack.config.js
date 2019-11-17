@@ -1,6 +1,7 @@
-const { join, resolve } = require('path');
+const { resolve } = require('path');
 const webpack = require('webpack');
 const TerserWebpackPlugin = require('terser-webpack-plugin');
+const CompressionWebpackPlugin = require('compression-webpack-plugin');
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 const { NODE_ENV, isDev } = require('../config');
 
@@ -24,11 +25,16 @@ const getPlugins = () => {
     new webpack.DefinePlugin({
       __DEV__: isDev,
     }),
+    new CompressionWebpackPlugin({
+      algorithm: 'gzip',
+      test: /\.js(\?.*)?$/i,
+    }),
   ];
 
   if (isDev) {
     plugins = [
       ...plugins,
+      new webpack.ProgressPlugin(),
       new webpack.HotModuleReplacementPlugin(),
       new FriendlyErrorsWebpackPlugin({
         compilationSuccessInfo: {
@@ -67,7 +73,7 @@ module.exports = {
             options: {
               importLoaders: 1,
               modules: {
-                localIdentName: isDev ? '[local]' : '[hash:base64:5]',
+                localIdentName: '[local]',
                 context: resolve(process.cwd(), 'src'),
               },
               sourceMap: isDev,
@@ -84,7 +90,7 @@ module.exports = {
             options: {
               importLoaders: 2,
               modules: {
-                localIdentName: isDev ? '[local]' : '[hash:base64:5]',
+                localIdentName: '[local]',
                 context: resolve(process.cwd(), 'src'),
               },
               sourceMap: isDev,
@@ -94,6 +100,9 @@ module.exports = {
             loader: 'sass',
             options: {
               sourceMap: isDev,
+              sassOptions: {
+                includePaths: [resolve(process.cwd(), 'src/client')],
+              },
             },
           },
         ],

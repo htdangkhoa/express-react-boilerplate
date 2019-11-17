@@ -3,9 +3,9 @@ import axios from 'axios';
 import { omit } from 'lodash';
 import { type MiddlewareAPI, type Dispatch, type Action } from 'redux';
 import { type RequestType, type ApiActionType, type ApiDataType } from 'types';
+import { updateLoadingAction } from 'store/action';
 import cookies from './cookies';
 import { actionGenerator } from './';
-import { updateLoadingAction } from 'store/action';
 
 const baseUrl = 'http://localhost:8888/api';
 
@@ -18,7 +18,7 @@ export const request = async ({
   headers = {},
   token,
 }: RequestType) => {
-  const authorization = token || cookies.get('token');
+  const authorization = token || cookies.get('accessToken');
 
   let config = {
     method,
@@ -44,7 +44,7 @@ export const request = async ({
   return result;
 };
 
-export const requestMiddleware = ({ dispatch, getState }: MiddlewareAPI) => (
+export const requestMiddleware = ({ dispatch }: MiddlewareAPI) => (
   next: Dispatch,
 ) => (action: Action) => {
   next(action);
@@ -57,7 +57,7 @@ export const requestMiddleware = ({ dispatch, getState }: MiddlewareAPI) => (
 
   const ACTION = actionGenerator(`${apiAction.label || 'REQUEST_API_ACTION'}`);
 
-  let requestOptions = omit({ ...apiAction }, ['onSuccess', 'onError']);
+  const requestOptions = omit({ ...apiAction }, ['onSuccess', 'onError']);
 
   updateLoadingAction(true)(dispatch);
 
@@ -77,7 +77,9 @@ export const requestMiddleware = ({ dispatch, getState }: MiddlewareAPI) => (
 
           dispatch(resultAction);
 
-          apiAction.onSuccess && apiAction.onSuccess(result);
+          if (apiAction.onSuccess) {
+            apiAction.onSuccess(result);
+          }
 
           break;
         }
@@ -86,7 +88,9 @@ export const requestMiddleware = ({ dispatch, getState }: MiddlewareAPI) => (
 
           dispatch(resultAction);
 
-          apiAction.onError && apiAction.onError(result);
+          if (apiAction.onError) {
+            apiAction.onError(result);
+          }
 
           break;
         }
@@ -95,10 +99,16 @@ export const requestMiddleware = ({ dispatch, getState }: MiddlewareAPI) => (
     .catch((err) => {
       updateLoadingAction(false)(dispatch);
 
-      const result: ApiDataType = (err.response.data: ApiDataType);
+      const { status, data: res } = err.response;
+
+      const result: ApiDataType = (res: ApiDataType);
 
       const { code = 200, data, error } = result;
 
       dispatch({ type: ACTION.ERROR, payload: { ...result } });
+
+      if (apiAction.onError) {
+        apiAction.onError(result);
+      }
     });
 };

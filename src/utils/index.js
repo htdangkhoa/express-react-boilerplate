@@ -1,5 +1,5 @@
 /* @flow */
-import { type RequestType, type ApiActionType } from 'types';
+import { type ApiActionType } from 'types';
 
 export const actionGenerator = (actionName: string) => ({
   NAME: actionName,
@@ -13,3 +13,11 @@ export const apiActionGenerator = (options: ApiActionType) => ({
     ...options,
   },
 });
+
+export const paging = (skip?: number = 0, limit?: number = 20) => {
+  const l = Math.abs(Math.floor(limit));
+
+  const s = Math.abs(Math.floor(skip)) * l;
+
+  return { s, l };
+};

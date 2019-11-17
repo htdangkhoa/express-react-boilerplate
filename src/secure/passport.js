@@ -7,8 +7,8 @@ import {
   ExtractJwt,
   type VerifiedCallback,
 } from 'passport-jwt';
-import { PUBLIC_KEY, TYPE_ACCESS } from './jwt';
 import { unauthorized, resultModel } from 'models/result.model';
+import { PUBLIC_KEY, TYPE_ACCESS } from './jwt';
 
 const jwtStrategy = new JWTStrategy(
   {

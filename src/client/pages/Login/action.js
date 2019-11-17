@@ -1,3 +1,4 @@
+import { toast } from 'react-toastify';
 import { apiActionGenerator, actionGenerator } from 'utils';
 import { updateTokenAction } from 'store/action';
 
@@ -9,8 +10,11 @@ export const loginAction = (data) => (dispatch) =>
       url: '/auth/login',
       method: 'POST',
       data,
-      onSuccess: (res) => {
-        updateTokenAction({ ...res.data })(dispatch);
+      onSuccess: ({ data: res }) => {
+        dispatch(updateTokenAction({ ...res }));
+      },
+      onError: ({ error }) => {
+        toast.error(error.message);
       },
     }),
   );

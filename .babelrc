@@ -16,6 +16,7 @@
       {
         "root": ["./src"],
         "alias": {
+          "pages": "./src/client/pages",
           "components": "./src/client/components",
           "utils": "./src/utils",
           "types": "./src/types",

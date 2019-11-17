@@ -1,3 +1,9 @@
+@import 'themes/global';
+
 .Home {
   color: red;
+
+  .bannerImg {
+    width: 100%;
+  }
 }

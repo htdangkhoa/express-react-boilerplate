@@ -1,6 +1,10 @@
+import Login from 'pages/Login';
+import Register from 'pages/Register';
+import Home from 'pages/Home';
+import { fetchUserAction } from 'pages/Home/action';
+import About from 'pages/About';
+import NotFound from 'pages/NotFound';
 import App from './client/app';
-import { Login, Home, About, NotFound } from './client/pages';
-import { fetchUserAction } from './client/pages/Home/action';
 
 export default [
   {
@@ -11,12 +15,17 @@ export default [
         exact: true,
         component: Home,
         title: 'Home',
-        loadData: ({ params }) => [fetchUserAction()],
+        loadData: ({ _params }) => [fetchUserAction()],
       },
       {
         path: '/login',
         component: Login,
         title: 'Login',
+      },
+      {
+        path: '/register',
+        component: Register,
+        title: 'Register',
       },
       {
         path: '/about',

@@ -1,6 +1,8 @@
 import { createServer } from 'http';
+import openBrowser from 'react-dev-utils/openBrowser';
 import {
   NODE_ENV,
+  isDev,
   DB_HOST as host,
   DB_NAME as database,
   DB_USER as user,
@@ -15,7 +17,7 @@ import useMongo from './mongo';
   try {
     const { default: server } = await import('./server');
 
-    const { client, db } = await useMongo({
+    await useMongo({
       host,
       database,
       user,
@@ -24,7 +26,13 @@ import useMongo from './mongo';
     });
 
     createServer(server).listen(8888, () => {
+      console.clear();
+
       console.log(`Starting the ${NODE_ENV} server...`);
+
+      if (isDev) {
+        openBrowser('http://localhost:8888/');
+      }
     });
   } catch (error) {
     console.error(error);

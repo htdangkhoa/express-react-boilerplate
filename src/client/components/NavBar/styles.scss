@@ -1,0 +1,24 @@
+.navSwitch {
+  display: flex;
+  align-items: center;
+}
+
+.switchIcon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  padding-right: 2px;
+
+  .fa-sun {
+    color: orange;
+  }
+
+  .fa-moon {
+    color: yellow;
+  }
+}
+
+.dropDownMenuI18n {
+  min-width: auto;
+}

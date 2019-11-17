@@ -1,8 +1,6 @@
 /* @flow */
-import { LOGIN_ACTION } from './action';
 import { type ActionType } from 'types';
-import cookies from 'utils/cookies';
-import { toast } from 'react-toastify';
+import { LOGIN_ACTION } from './action';
 
 const initialState = {
   data: null,
@@ -18,8 +16,6 @@ export default (state: any = initialState, action: ActionType) => {
     }
     case LOGIN_ACTION.ERROR: {
       const { error } = action.payload;
-
-      toast.error(error.message);
 
       return { ...state, error };
     }

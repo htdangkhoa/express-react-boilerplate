@@ -1,35 +1,35 @@
-import React, { useEffect, Suspense } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
-import { useTranslation } from 'react-i18next';
+import Slider from 'react-slick';
 import Layout from 'components/Layout';
-import cookies from 'utils/cookies';
 import * as action from './action';
 import image from '../../assets/image.png';
 import styles from './styles.scss';
 
-const Home = ({ users, route: { title }, fetchApi, fetchUserAction }) => {
-  useEffect(() => {
-    fetchUserAction();
-  }, []);
+const slickSettings = {
+  dots: true,
+  infinite: true,
+  speed: 500,
+  slidesToShow: 1,
+  slidesToScroll: 1,
+  autoplay: true,
+  arrows: false,
+};
 
-  const [t, i18n] = useTranslation();
+const slickImgs = [image, image, image];
 
+const Home = ({ users, route: { title }, fetchApi }) => {
   return (
-    <Layout title={title} needLogin>
-      <img src={image} />
-      <div className={styles.Home}>Home</div>
+    <Layout title={title} needLogin className={styles.Home}>
+      <Slider {...slickSettings}>
+        {slickImgs.map((img, i) => (
+          <div key={i}>
+            <img src={image} className={styles.bannerImg} />
+          </div>
+        ))}
+      </Slider>
 
-      <p>{t('hello')}</p>
-
-      <p>
-        <input
-          type='checkbox'
-          onChange={async (event) => {
-            await i18n.changeLanguage(event.target.checked ? 'vi' : 'en');
-          }}
-        />
-        {' Change lang'}
-      </p>
+      <div>Home</div>
 
       <button
         onClick={() => {
@@ -51,7 +51,6 @@ const mapStateToProps = ({ home }) => ({
 
 const mapDispatchToProps = {
   fetchUserAction: action.fetchUserAction,
-  fetchApi: action.fetchApiAction,
 };
 
 export default connect(

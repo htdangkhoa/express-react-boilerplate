@@ -1,14 +1,18 @@
-import { resolve, join } from 'path';
+import { resolve } from 'path';
 import cssModuleRequireHook from 'css-modules-require-hook';
 import sass from 'node-sass';
 import assetRequireHook from 'asset-require-hook';
 
 const hooks = () => {
   cssModuleRequireHook({
-    generateScopedName: __DEV__ ? '[local]' : '[hash:base64:5]',
+    generateScopedName: '[local]',
     extensions: ['.css', '.scss', '.sass'],
     preprocessCss: (data, file) => {
-      return sass.renderSync({ data, file }).css;
+      return sass.renderSync({
+        data,
+        file,
+        includePaths: [resolve(process.cwd(), 'src/client')],
+      }).css;
     },
     devMode: __DEV__,
   });

@@ -19,6 +19,8 @@ const useMongo = ({
 
       const usersCollection = db.collection('users');
 
+      const postsCollection = db.collection('posts');
+
       const result: MongoResultType = {
         client,
         db,
@@ -27,7 +29,7 @@ const useMongo = ({
       if (app) {
         const { request } = app;
 
-        Object.assign(request, { ...result, usersCollection });
+        Object.assign(request, { ...result, usersCollection, postsCollection });
       }
 
       return result;

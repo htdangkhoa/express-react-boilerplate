@@ -3,7 +3,6 @@ import { type Request, type Response } from 'express';
 import { genSaltSync, hashSync, compareSync } from 'bcrypt';
 import {
   badRequest,
-  success,
   resultModel,
   genericError,
   unauthorized,
@@ -29,6 +28,12 @@ export const registerController = () => async (req: Request, res: Response) => {
   }
 
   try {
+    const user = await usersCollection.findOne({ email });
+
+    if (user) {
+      return res.json(unauthorized({ message: 'User already exist.' }));
+    }
+
     const { ops: data } = await usersCollection.insertOne(
       { email, password: hashPassword(password), name },
       { serializeFunctions: true },

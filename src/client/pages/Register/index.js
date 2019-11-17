@@ -1,24 +1,41 @@
 import React from 'react';
+import { Redirect } from 'react-router';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
-// import { isEmail } from 'validator';
-
 import Layout from 'components/Layout';
-
 import * as action from './action';
 
-let Login = ({ handleSubmit, loginAction, route: { title } }) => {
-  const onSubmit = async (value) => {
-    loginAction(value);
+let Register = ({
+  route: { title },
+  handleSubmit,
+  register: { registerSuccess },
+  registerAction,
+}) => {
+  const onSubmit = (value) => {
+    registerAction(value);
   };
 
-  return (
-    <Layout title={title} returnPath='/'>
-      <h2 className='text-center'>Login</h2>
-
+  return registerSuccess ? (
+    <Redirect to='/login' />
+  ) : (
+    <Layout title={title}>
+      <h2 className='text-center'>Register</h2>
       <div className='row'>
         <div className='col col-md-6 offset-md-3'>
           <form onSubmit={handleSubmit(onSubmit)}>
+            <div className='form-group'>
+              <b>
+                <label htmlFor='name'>Name</label>
+              </b>
+              <Field
+                id='name'
+                name='name'
+                component='input'
+                placeholder='Name'
+                className='form-control'
+              />
+            </div>
+
             <div className='form-group'>
               <b>
                 <label htmlFor='email'>Email</label>
@@ -48,7 +65,7 @@ let Login = ({ handleSubmit, loginAction, route: { title } }) => {
             </div>
 
             <button type='submit' className='btn btn-primary btn-block'>
-              Login
+              Register
             </button>
           </form>
         </div>
@@ -57,20 +74,17 @@ let Login = ({ handleSubmit, loginAction, route: { title } }) => {
   );
 };
 
-Login = reduxForm({
-  form: 'Login',
-})(Login);
+Register = reduxForm({
+  form: 'Register',
+})(Register);
 
-const mapStateToProps = ({ global, login }) => ({
-  global,
-  login,
-});
+const mapStateToProps = ({ global, register }) => ({ global, register });
 
 const mapDispatchToProps = {
-  loginAction: action.loginAction,
+  registerAction: action.registerAction,
 };
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(Login);
+)(Register);
