@@ -7,6 +7,8 @@ const router = Router();
 
 router.use('/auth', auth);
 
-router.use('/', [generic, post]);
+router.use('/post', post);
+
+router.use('/', [generic]);
 
 export default router;

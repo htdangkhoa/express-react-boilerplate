@@ -38,6 +38,7 @@ app.use(
   passportMiddleware([
     /^(?!.*api).*/g,
     /^(?!.*^\/api\/auth\/logout)(\/api\/auth)/,
+    /^(?!.*^\/api\/post\/create-post)(\/api\/post)/,
   ]),
 );
 
