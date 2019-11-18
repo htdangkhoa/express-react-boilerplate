@@ -7,6 +7,7 @@ import { connectRouter } from 'connected-react-router';
 import home from 'pages/Home/reducer';
 import login from 'pages/Login/reducer';
 import register from 'pages/Register/reducer';
+import post from 'pages/Post/reducer';
 import { UPDATE_TOKEN, UPDATE_LOADING, UPDATE_THEME, GET_ME } from './action';
 
 const initialState: GlobalStateType = {
@@ -56,6 +57,7 @@ const createReducers = (history: History) =>
     home,
     login,
     register,
+    post,
   });
 
 export default createReducers;

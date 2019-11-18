@@ -6,7 +6,7 @@
   "scripts": {
     "start": "NODE_ENV=production node -r dotenv-flow/config dist/index.js",
     "dev": "NODE_ENV=development nodemon src/index.js --exec \"node -r dotenv-flow/config ./node_modules/.bin/babel-node\"",
-    "predev": "flow",
+    "predev": "flow stop && flow",
     "build": "BABEL_ENV=production babel --minified --no-comments src -D -d dist && npm run wp",
     "wp": "NODE_ENV=production node -r dotenv-flow/config ./node_modules/.bin/webpack --progress --colors --config src/tools/webpack.config.js --bail",
     "stats": "NODE_ENV=production node -r dotenv-flow/config ./node_modules/.bin/webpack --config src/tools/webpack.config.js --progress --profile --json > stats.json --bail",

@@ -16,7 +16,9 @@
   "globals": {
     "Atomics": "readonly",
     "SharedArrayBuffer": "readonly",
-    "__DEV__": true
+    "__DEV__": true,
+    "__SERVER__": false,
+    "__CLIENT__": false
   },
   "parserOptions": {
     "ecmaFeatures": {

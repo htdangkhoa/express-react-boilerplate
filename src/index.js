@@ -11,6 +11,9 @@ import {
 import hooks from './tools/hooks';
 import useMongo from './mongo';
 
+global.__CLIENT__ = false;
+global.__SERVER__ = true;
+
 (async () => {
   hooks();
 
