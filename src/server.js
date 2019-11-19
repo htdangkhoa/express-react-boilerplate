@@ -9,6 +9,7 @@ import React from 'react';
 import { renderToStaticMarkupAsync } from 'react-async-ssr';
 import { StaticRouter } from 'react-router';
 import { renderRoutes, matchRoutes } from 'react-router-config';
+import { LastLocationProvider } from 'react-router-last-location';
 import { Provider } from 'react-redux';
 import { Helmet } from 'react-helmet';
 import renderHtml from './utils/render-html';
@@ -73,7 +74,7 @@ app.get('*', async (req: Request, res: Response) => {
     const App = (
       <Provider store={store}>
         <StaticRouter location={req.path} context={context}>
-          {renderRoutes(routes)}
+          <LastLocationProvider>{renderRoutes(routes)}</LastLocationProvider>
         </StaticRouter>
       </Provider>
     );

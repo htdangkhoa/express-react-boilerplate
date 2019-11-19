@@ -2,12 +2,13 @@
 import { type Dispatch } from 'redux';
 import { toast } from 'react-toastify';
 import { type ApiDataType } from 'types';
-import { actionGenerator, apiActionGenerator } from 'utils';
+import { actionGenerator } from 'utils';
+import { requestAction } from 'utils/request';
 
 export const REGISTER_ACTION = actionGenerator('@@REGISTER_ACTION');
 export const registerAction = (data: Object) => (dispatch: Dispatch) =>
   dispatch(
-    apiActionGenerator({
+    requestAction({
       url: '/auth/register',
       method: 'POST',
       data,

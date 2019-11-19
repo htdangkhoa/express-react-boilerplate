@@ -2,13 +2,14 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
 import { Redirect, withRouter } from 'react-router';
+import { useLastLocation } from 'react-router-last-location';
 import PropTypes from 'prop-types';
 import * as globalAction from 'store/action';
 
 const Child = ({ title, children, className }) => (
   <>
     <Helmet title={title} />
-    <div className={`container ${className}`}>{children}</div>
+    <div className={`container ${className || ''}`.trim()}>{children}</div>
   </>
 );
 
@@ -23,10 +24,12 @@ const Layout = (props) => {
     getMeAction,
   } = props;
 
+  const lastLocation = useLastLocation();
+
   useEffect(() => {
     fetchTokenAction();
 
-    if (refreshToken && needLogin) {
+    if (refreshToken) {
       renewTokenAction({ refreshToken });
     }
 
@@ -40,7 +43,7 @@ const Layout = (props) => {
   }
 
   if (pathname === '/login' && accessToken) {
-    return <Redirect to={returnPath} />;
+    return <Redirect to={lastLocation.pathname || returnPath} />;
   }
 
   return <Child {...props} />;

@@ -1,15 +1,16 @@
 /* @flow */
+import './vendor';
+import '../i18n';
 import React, { Suspense } from 'react';
 import { AppContainer } from 'react-hot-loader';
 import { render, hydrate } from 'react-dom';
 import { renderRoutes } from 'react-router-config';
 import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'connected-react-router';
+import { LastLocationProvider } from 'react-router-last-location';
 import Loading from 'components/Loading';
 import configureStore from '../store';
 import routes from '../routes';
-import './vendor';
-import '../i18n';
 
 const initialState = window.__INITIAL_STATE__;
 
@@ -25,7 +26,9 @@ const bootstrap = (routesConfig: Array<Object>) => {
       <AppContainer>
         <Provider store={store}>
           <ConnectedRouter history={history}>
-            {renderRoutes(routesConfig)}
+            <LastLocationProvider>
+              {renderRoutes(routesConfig)}
+            </LastLocationProvider>
           </ConnectedRouter>
         </Provider>
       </AppContainer>

@@ -1,7 +1,5 @@
 import Login from 'pages/Login';
 import Register from 'pages/Register';
-import Home from 'pages/Home';
-import { fetchUserAction } from 'pages/Home/action';
 import Post from 'pages/Post';
 import PostDetail from 'pages/Post/PostDetail';
 import { getPostDetailAction } from 'pages/Post/PostDetail/action';
@@ -14,13 +12,6 @@ export default [
   {
     component: App,
     routes: [
-      // {
-      //   path: '/',
-      //   exact: true,
-      //   component: Home,
-      //   title: 'Home',
-      //   loadData: ({ _params }) => [fetchUserAction()],
-      // },
       {
         path: '/',
         exact: true,

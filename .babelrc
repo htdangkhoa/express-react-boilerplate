@@ -18,6 +18,7 @@
         "alias": {
           "pages": "./src/client/pages",
           "components": "./src/client/components",
+          "assets": "./src/client/assets",
           "utils": "./src/utils",
           "types": "./src/types",
           "models": "./src/models",

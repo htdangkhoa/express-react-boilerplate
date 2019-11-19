@@ -1,3 +1,5 @@
+@import 'themes/global';
+
 .tagGroup {
   display: flex;
   flex-wrap: wrap;
@@ -13,4 +15,12 @@
     background: #eee;
     color: #888;
   }
+}
+
+.bannerImg {
+  width: 100%;
+}
+
+.slick-dots {
+  position: static;
 }

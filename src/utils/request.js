@@ -1,7 +1,7 @@
 /* @flow */
-import axios, { type AxiosError, type AxiosResponse } from 'axios';
+import axios, { type AxiosError } from 'axios';
 import { omit } from 'lodash';
-import { type Store, type Dispatch, type Action } from 'redux';
+import { type Dispatch } from 'redux';
 import { type RequestType, type ApiActionType, type ApiDataType } from 'types';
 import { updateLoadingAction } from 'store/action';
 import cookies from './cookies';
@@ -42,77 +42,6 @@ export const request = async ({
   });
 
   return result;
-};
-
-export const requestMiddleware = ({ dispatch }: Store) => (next: Dispatch) => (
-  action: Action,
-) => {
-  next(action);
-
-  if (action.type !== '@@API') return;
-
-  const apiAction: ApiActionType = (action.payload: ApiActionType);
-
-  const ACTION = actionGenerator(`${apiAction.label || 'REQUEST_API_ACTION'}`);
-
-  const requestOptions = omit(apiAction, ['onSuccess', 'onError']);
-
-  if (__CLIENT__) {
-    dispatch(updateLoadingAction(true));
-  }
-
-  request(requestOptions)
-    .then(({ data: res }: AxiosResponse) => {
-      if (__CLIENT__) {
-        dispatch(updateLoadingAction(false));
-      }
-
-      const result: ApiDataType = (res: ApiDataType);
-
-      const { code = 200, data, error } = result;
-
-      let finalAction = { payload: { ...result } };
-
-      switch (code) {
-        case 200: {
-          finalAction = { ...finalAction, type: ACTION.SUCCESS };
-
-          dispatch(finalAction);
-
-          if (apiAction.onSuccess) {
-            apiAction.onSuccess(result);
-          }
-
-          break;
-        }
-        default: {
-          finalAction = { ...finalAction, type: ACTION.ERROR };
-
-          dispatch(finalAction);
-
-          if (apiAction.onError) {
-            apiAction.onError(result);
-          }
-
-          break;
-        }
-      }
-    })
-    .catch(({ response: { _status, data: res } }: AxiosError) => {
-      if (__CLIENT__) {
-        dispatch(updateLoadingAction(false));
-      }
-
-      const result: ApiDataType = (res: ApiDataType);
-
-      const { code = 200, data, error } = result;
-
-      next({ type: ACTION.ERROR, payload: { ...result } });
-
-      if (apiAction.onError) {
-        apiAction.onError(result);
-      }
-    });
 };
 
 export const requestAction = (options: ApiActionType) => async (

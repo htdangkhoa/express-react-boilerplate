@@ -16,7 +16,7 @@ export const TYPE_REFRESH = '@@TYPE_REFRESH';
 
 export const sign = (
   payload: string | Object,
-  expiresIn?: string | number = 30,
+  expiresIn?: string | number = 86400,
 ): string => jwt.sign(payload, PRIVATE_KEY, { expiresIn, algorithm: 'RS256' });
 
 export const verify = (token: string): any =>

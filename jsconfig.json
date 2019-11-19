@@ -13,6 +13,7 @@
       "pages/*": ["client/pages/*"],
       "components": ["client/components"],
       "components/*": ["client/components/*"],
+      "assets/*": ["client/assets/*"],
       "utils": ["utils"],
       "utils/*": ["utils/*"],
       "types": ["types"],

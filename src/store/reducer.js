@@ -4,7 +4,6 @@ import { combineReducers } from 'redux';
 import { type History } from 'history';
 import { reducer as form } from 'redux-form';
 import { connectRouter } from 'connected-react-router';
-import home from 'pages/Home/reducer';
 import login from 'pages/Login/reducer';
 import register from 'pages/Register/reducer';
 import postReducer from 'pages/Post/reducer';
@@ -54,7 +53,6 @@ const createReducers = (history: History) =>
     router: connectRouter(history),
     form,
     global,
-    home,
     login,
     register,
     postReducer,

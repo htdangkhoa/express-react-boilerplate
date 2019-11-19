@@ -1,7 +1,8 @@
 /* @flow */
 import { type GlobalStateType, type ApiDataType, type ThemeType } from 'types';
 import { type Dispatch } from 'redux';
-import { actionGenerator, apiActionGenerator } from 'utils';
+import { actionGenerator } from 'utils';
+import { requestAction } from 'utils/request';
 import cookies from 'utils/cookies';
 
 export const UPDATE_TOKEN = '@@UPDATE_TOKEN';
@@ -48,7 +49,7 @@ export const updateThemeAction = (theme: ThemeType = 'light') => (
 export const RENEW_TOKEN = actionGenerator('@@RENEW_TOKEN');
 export const renewTokenAction = (data: Object) => (dispatch: Dispatch) =>
   dispatch(
-    apiActionGenerator({
+    requestAction({
       url: '/auth/renew-token',
       method: 'POST',
       data,
@@ -65,7 +66,7 @@ export const renewTokenAction = (data: Object) => (dispatch: Dispatch) =>
 export const GET_ME = actionGenerator('@@GET_ME');
 export const getMeAction = () => async (dispatch: Dispatch) =>
   dispatch(
-    apiActionGenerator({
+    requestAction({
       url: '/me',
       label: GET_ME.NAME,
       onSuccess: ({ data }: ApiDataType) => {
@@ -74,8 +75,12 @@ export const getMeAction = () => async (dispatch: Dispatch) =>
           payload: data,
         });
       },
-      onError: ({ error }: ApiDataType) => {
-        dispatch({ type: GET_ME.ERROR, payload: error });
+      onError: async ({ code, error }: ApiDataType) => {
+        if (code === 401) {
+          await dispatch(updateTokenAction());
+        }
+
+        await dispatch({ type: GET_ME.ERROR, payload: error });
       },
     }),
   );

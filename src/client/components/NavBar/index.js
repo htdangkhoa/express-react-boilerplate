@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { useTranslation } from 'react-i18next';
-import { NavLink as RRNavLink } from 'react-router-dom';
+import { NavLink as RRNavLink, Link as RRLink } from 'react-router-dom';
 import {
   Navbar,
   NavbarBrand,
@@ -129,10 +129,10 @@ const NavBar = ({
               <DropdownMenu right className={styles.dropDownMenuI18n}>
                 {!accessToken && (
                   <>
-                    <DropdownItem tag={RRNavLink} to='/login'>
+                    <DropdownItem tag={RRLink} to='/login'>
                       Login
                     </DropdownItem>
-                    <DropdownItem tag={RRNavLink} to='/register'>
+                    <DropdownItem tag={RRLink} to='/register'>
                       Register
                     </DropdownItem>
                   </>

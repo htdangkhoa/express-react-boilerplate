@@ -46,6 +46,7 @@
     "react/prop-types": "warn",
     "no-underscore-dangle": "warn",
     "import/prefer-default-export": "off",
+    "import/no-cycle": "off",
     "no-unused-vars": ["error", { "argsIgnorePattern": "^_" }]
   }
 }
