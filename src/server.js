@@ -90,9 +90,11 @@ app.get('*', async (req: Request, res: Response) => {
 
     const status = context.status === '404' ? 404 : 200;
 
+    const initialState = store.getState();
+
     return res
       .status(status)
-      .send(renderHtml({ head, htmlContent, initialState: store.getState() }));
+      .send(renderHtml({ head, htmlContent, initialState }));
   } catch (error) {
     console.error(`==> 😭  Rendering routes error: ${error}`);
 

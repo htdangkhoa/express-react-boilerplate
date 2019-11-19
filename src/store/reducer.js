@@ -7,7 +7,7 @@ import { connectRouter } from 'connected-react-router';
 import home from 'pages/Home/reducer';
 import login from 'pages/Login/reducer';
 import register from 'pages/Register/reducer';
-import post from 'pages/Post/reducer';
+import postReducer from 'pages/Post/reducer';
 import { UPDATE_TOKEN, UPDATE_LOADING, UPDATE_THEME, GET_ME } from './action';
 
 const initialState: GlobalStateType = {
@@ -26,7 +26,7 @@ const global = (state: any = initialState, action: ActionType) => {
         ...action.payload,
       };
 
-      if (!action.payload?.accessToken) {
+      if (!s.accessToken) {
         s = { ...s, user: null };
       }
 
@@ -57,7 +57,7 @@ const createReducers = (history: History) =>
     home,
     login,
     register,
-    post,
+    postReducer,
   });
 
 export default createReducers;

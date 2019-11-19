@@ -16,7 +16,6 @@ const Layout = (props) => {
   const {
     needLogin,
     returnPath = '/',
-    className,
     location: { pathname },
     global: { accessToken, refreshToken, user },
     fetchTokenAction,
@@ -31,7 +30,7 @@ const Layout = (props) => {
       renewTokenAction({ refreshToken });
     }
 
-    if (!user && accessToken) {
+    if (!user) {
       getMeAction();
     }
   }, []);

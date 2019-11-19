@@ -3,6 +3,8 @@ import Register from 'pages/Register';
 import Home from 'pages/Home';
 import { fetchUserAction } from 'pages/Home/action';
 import Post from 'pages/Post';
+import PostDetail from 'pages/Post/PostDetail';
+import { getPostDetailAction } from 'pages/Post/PostDetail/action';
 import { getPostsAction } from 'pages/Post/action';
 import About from 'pages/About';
 import NotFound from 'pages/NotFound';
@@ -25,6 +27,11 @@ export default [
         component: Post,
         title: 'Post',
         loadData: ({ _params }) => [getPostsAction()],
+      },
+      {
+        path: '/p/:_id',
+        component: PostDetail,
+        loadData: ({ params: { _id } }) => [getPostDetailAction(_id)],
       },
       {
         path: '/login',

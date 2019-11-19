@@ -4,15 +4,13 @@ import { Helmet } from 'react-helmet';
 import { connect } from 'react-redux';
 import { hot } from 'react-hot-loader';
 import { renderRoutes } from 'react-router-config';
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import head from 'utils/head';
 
 import Loading from 'components/Loading';
 import NavBar from 'components/NavBar';
 
 import styles from './styles.scss';
-
-toast.configure({ autoClose: 8000 });
 
 const App = (props) => {
   const {

@@ -12,8 +12,8 @@ export const updateTokenAction = (payload?: GlobalStateType) => (
     cookies.remove('accessToken');
     cookies.remove('refreshToken');
   } else {
-    cookies.set('accessToken', payload?.accessToken);
-    cookies.set('refreshToken', payload?.refreshToken);
+    cookies.set('accessToken', payload?.accessToken, { path: '/' });
+    cookies.set('refreshToken', payload?.refreshToken, { path: '/' });
   }
 
   return dispatch({

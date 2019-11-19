@@ -1,12 +1,7 @@
 /* @flow */
 import axios, { type AxiosError, type AxiosResponse } from 'axios';
 import { omit } from 'lodash';
-import {
-  type MiddlewareAPI,
-  type Store,
-  type Dispatch,
-  type Action,
-} from 'redux';
+import { type Store, type Dispatch, type Action } from 'redux';
 import { type RequestType, type ApiActionType, type ApiDataType } from 'types';
 import { updateLoadingAction } from 'store/action';
 import cookies from './cookies';

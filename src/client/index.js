@@ -1,11 +1,4 @@
 /* @flow */
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'react-toastify/dist/ReactToastify.css';
-import '@fortawesome/fontawesome-free/js/all';
-import '@fortawesome/fontawesome-free/css/all.css';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
-
 import React, { Suspense } from 'react';
 import { AppContainer } from 'react-hot-loader';
 import { render, hydrate } from 'react-dom';
@@ -15,6 +8,7 @@ import { ConnectedRouter } from 'connected-react-router';
 import Loading from 'components/Loading';
 import configureStore from '../store';
 import routes from '../routes';
+import './vendor';
 import '../i18n';
 
 const initialState = window.__INITIAL_STATE__;

@@ -62,7 +62,7 @@ const NavBar = ({
         <Collapse isOpen={!collapsed} navbar>
           <Nav navbar className='w-100 mr-auto'>
             <NavItem>
-              <NavLink tag={RRNavLink} to='#'>
+              <NavLink tag={RRNavLink} to='/'>
                 Posts
               </NavLink>
             </NavItem>

@@ -1,0 +1,16 @@
+.tagGroup {
+  display: flex;
+  flex-wrap: wrap;
+
+  .tagItem {
+    margin-right: 0.5rem;
+    max-width: 120px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    border: 1px solid #888;
+    border-radius: 4px;
+    padding: 0 4px;
+    background: #eee;
+    color: #888;
+  }
+}
