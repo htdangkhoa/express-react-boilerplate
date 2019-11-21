@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { Link, NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Slider from 'react-slick';
 import Paginate from 'react-paginate';
 import Layout from 'components/Layout';
@@ -53,9 +53,9 @@ const Post = ({
       <div>
         {posts.map((post) => (
           <div key={post._id}>
-            <NavLink to={`/p/${post._id}`}>
+            <Link to={`/p/${post._id}`}>
               <h3>{post.title}</h3>
-            </NavLink>
+            </Link>
 
             <div className={styles.tagGroup}>
               {post.tags.map((tag, i) => (

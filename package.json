@@ -101,6 +101,7 @@
     "react-hot-loader": "^4.12.15",
     "react-i18next": "^11.0.0",
     "react-markdown": "^4.2.2",
+    "react-mde": "^7.6.2",
     "react-paginate": "^6.3.2",
     "react-redux": "^7.1.1",
     "react-router": "^5.1.2",
@@ -119,6 +120,7 @@
     "redux-form": "^8.2.6",
     "redux-thunk": "^2.3.0",
     "serialize-javascript": "^2.1.0",
+    "showdown": "^1.9.1",
     "slick-carousel": "^1.8.1",
     "universal-cookie": "^4.0.2",
     "validator": "^12.0.0"

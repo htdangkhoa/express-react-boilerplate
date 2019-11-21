@@ -10,6 +10,7 @@ export const registerAction = (data: Object) => (dispatch: Dispatch) =>
   dispatch(
     requestAction({
       url: '/auth/register',
+      label: REGISTER_ACTION.NAME,
       method: 'POST',
       data,
       onSuccess: (_res: ApiDataType) =>

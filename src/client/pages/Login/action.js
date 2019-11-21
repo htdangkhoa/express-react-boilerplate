@@ -7,8 +7,8 @@ export const LOGIN_ACTION = actionGenerator('@@LOGIN_ACTION');
 export const loginAction = (data) => (dispatch) =>
   dispatch(
     requestAction({
-      label: LOGIN_ACTION.NAME,
       url: '/auth/login',
+      label: LOGIN_ACTION.NAME,
       method: 'POST',
       data,
       onSuccess: ({ data: res }) => {

@@ -10,8 +10,8 @@ export const getPostsAction = (skip?: number = 0) => (dispatch: Dispatch) =>
   dispatch(
     requestAction({
       url: '/post/newest',
-      params: { skip },
       label: GET_POSTS.NAME,
+      params: { skip },
       onSuccess: ({ data }: ApiDataType) => {
         dispatch({ type: GET_POSTS.SUCCESS, payload: data });
       },

@@ -3,7 +3,10 @@ import Register from 'pages/Register';
 import Post from 'pages/Post';
 import { getPostsAction } from 'pages/Post/action';
 import PostDetail from 'pages/Post/PostDetail';
-import { getPostDetailAction } from 'pages/Post/PostDetail/action';
+import {
+  getPostDetailAction,
+  getCommentsAction,
+} from 'pages/Post/PostDetail/action';
 import About from 'pages/About';
 import NotFound from 'pages/NotFound';
 import App from './client/app';
@@ -17,12 +20,15 @@ export default [
         exact: true,
         component: Post,
         title: 'Post',
-        // loadData: ({ _params }) => [getPostsAction()],
+        loadData: ({ _params }) => [getPostsAction()],
       },
       {
         path: '/p/:_id',
         component: PostDetail,
-        loadData: ({ params: { _id } }) => [getPostDetailAction(_id)],
+        loadData: ({ params: { _id } }) => [
+          getPostDetailAction(_id),
+          getCommentsAction(_id),
+        ],
       },
       {
         path: '/login',

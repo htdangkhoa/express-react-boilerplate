@@ -1,9 +1,11 @@
 /* @flow */
 import { Router } from 'express';
-import { postCommentController } from './controller';
+import { getCommentsController, postCommentController } from './controller';
 
 const router = Router();
 
-router.post('/post', postCommentController());
+router.get('/get-comments/:_id', getCommentsController());
+
+router.post('/post-comment', postCommentController());
 
 export default router;

@@ -96,3 +96,8 @@ export type GlobalStateType = {
   user?: Object,
   theme?: ThemeType,
 };
+
+export type PostCommentActionType = {
+  _id: string,
+  comment: string,
+};

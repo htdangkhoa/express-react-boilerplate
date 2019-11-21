@@ -1,6 +1,7 @@
 /* @flow */
 import { type Request, type Response } from 'express';
 import { genSaltSync, hashSync, compareSync } from 'bcrypt';
+import { head } from 'lodash';
 import {
   badRequest,
   resultModel,
@@ -39,7 +40,7 @@ export const registerController = () => async (req: Request, res: Response) => {
       { serializeFunctions: true },
     );
 
-    return res.json(resultModel({ data }));
+    return res.json(resultModel({ data: head(data) }));
   } catch (error) {
     return res.json(genericError({ message: error.message }));
   }

@@ -51,9 +51,9 @@ export const renewTokenAction = (data: Object) => (dispatch: Dispatch) =>
   dispatch(
     requestAction({
       url: '/auth/renew-token',
+      label: RENEW_TOKEN.NAME,
       method: 'POST',
       data,
-      label: RENEW_TOKEN.NAME,
       onSuccess: ({ data: res }: ApiDataType) => {
         dispatch(updateTokenAction({ ...res }));
       },
