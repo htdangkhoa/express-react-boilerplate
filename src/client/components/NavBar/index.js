@@ -22,6 +22,7 @@ import styles from './styles.scss';
 
 const NavBar = ({
   global: { theme, accessToken, user },
+  location: { pathname },
   updateTokenAction,
   updateThemeAction,
 }) => {
@@ -42,6 +43,8 @@ const NavBar = ({
   const onChangeLanguage = async (lang) => {
     await i18n.changeLanguage(lang);
   };
+
+  const onLogout = () => updateTokenAction();
 
   return (
     <Navbar
@@ -129,10 +132,19 @@ const NavBar = ({
               <DropdownMenu right className={styles.dropDownMenuI18n}>
                 {!accessToken && (
                   <>
-                    <DropdownItem tag={RRLink} to='/login'>
+                    <DropdownItem
+                      className='text-right'
+                      tag={RRLink}
+                      to={{
+                        pathname: '/login',
+                        state: { preventLastLocation: pathname === '/login' },
+                      }}>
                       Login
                     </DropdownItem>
-                    <DropdownItem tag={RRLink} to='/register'>
+                    <DropdownItem
+                      className='text-right'
+                      tag={RRLink}
+                      to='/register'>
                       Register
                     </DropdownItem>
                   </>
@@ -140,9 +152,10 @@ const NavBar = ({
 
                 {accessToken && (
                   <>
-                    <DropdownItem
-                      className='text-right'
-                      onClick={() => updateTokenAction()}>
+                    <DropdownItem className='text-right' tag={RRLink} to='#'>
+                      Create post
+                    </DropdownItem>
+                    <DropdownItem className='text-right' onClick={onLogout}>
                       Logout
                     </DropdownItem>
                   </>
@@ -156,7 +169,10 @@ const NavBar = ({
   );
 };
 
-const mapStateToProps = ({ global }) => ({ global });
+const mapStateToProps = ({ global, router: { location } }) => ({
+  global,
+  location,
+});
 
 const mapDispatchToProps = {
   updateTokenAction: action.updateTokenAction,

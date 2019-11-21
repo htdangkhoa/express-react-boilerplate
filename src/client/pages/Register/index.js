@@ -1,5 +1,5 @@
 import React from 'react';
-import { Redirect } from 'react-router';
+import { RedirectWithoutLastLocation } from 'react-router-last-location';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import Layout from 'components/Layout';
@@ -16,7 +16,7 @@ let Register = ({
   };
 
   return registerSuccess ? (
-    <Redirect to='/login' />
+    <RedirectWithoutLastLocation to='/login' />
   ) : (
     <Layout title={title}>
       <h2 className='text-center'>Register</h2>

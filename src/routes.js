@@ -1,9 +1,9 @@
 import Login from 'pages/Login';
 import Register from 'pages/Register';
 import Post from 'pages/Post';
+import { getPostsAction } from 'pages/Post/action';
 import PostDetail from 'pages/Post/PostDetail';
 import { getPostDetailAction } from 'pages/Post/PostDetail/action';
-import { getPostsAction } from 'pages/Post/action';
 import About from 'pages/About';
 import NotFound from 'pages/NotFound';
 import App from './client/app';
@@ -17,7 +17,7 @@ export default [
         exact: true,
         component: Post,
         title: 'Post',
-        loadData: ({ _params }) => [getPostsAction()],
+        // loadData: ({ _params }) => [getPostsAction()],
       },
       {
         path: '/p/:_id',

@@ -6,13 +6,14 @@ import { requestAction } from 'utils/request';
 
 export const GET_POSTS = actionGenerator('@@GET_POSTS');
 
-export const getPostsAction = () => (dispatch: Dispatch) =>
+export const getPostsAction = (skip?: number = 0) => (dispatch: Dispatch) =>
   dispatch(
     requestAction({
       url: '/post/newest',
+      params: { skip },
       label: GET_POSTS.NAME,
       onSuccess: ({ data }: ApiDataType) => {
-        dispatch({ type: GET_POSTS.SUCCESS, payload: [...data] });
+        dispatch({ type: GET_POSTS.SUCCESS, payload: data });
       },
       onError: ({ error }: ApiDataType) => {
         dispatch({ type: GET_POSTS.ERROR, payload: error });

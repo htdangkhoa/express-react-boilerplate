@@ -6,13 +6,23 @@ import postDetail from './PostDetail/reducer';
 
 const initialState = {
   posts: [],
+  metaData: {
+    index: 0,
+    total: 0,
+  },
   error: null,
 };
 
 const post = (state: any = initialState, action: ActionType) => {
   switch (action.type) {
     case GET_POSTS.SUCCESS: {
-      return { ...state, posts: [...state.posts, ...action.payload] };
+      const { posts, metaData } = action.payload;
+
+      return {
+        ...state,
+        posts: [...posts],
+        metaData: { ...metaData },
+      };
     }
     case GET_POSTS.ERROR: {
       return { ...state, error: action.payload };

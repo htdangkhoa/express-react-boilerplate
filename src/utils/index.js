@@ -7,9 +7,11 @@ export const actionGenerator = (actionName: string) => ({
 });
 
 export const paging = (skip?: number = 0, limit?: number = 20) => {
+  const rawSkip = Math.abs(Math.floor(skip));
+
   const l = Math.abs(Math.floor(limit));
 
-  const s = Math.abs(Math.floor(skip)) * l;
+  const s = rawSkip * l;
 
-  return { s, l };
+  return { rawSkip, s, l };
 };

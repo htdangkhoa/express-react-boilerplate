@@ -6,9 +6,12 @@ import { resultModel, genericError, badRequest } from 'models/result.model';
 import { compact } from 'lodash';
 
 export const getPostsController = () => async (req: Request, res: Response) => {
-  const { postsCollection, skip = 0 } = req;
+  const {
+    postsCollection,
+    query: { skip = 0 },
+  } = req;
 
-  const { s, l } = paging(skip);
+  const { rawSkip, s, l } = paging(skip, 10);
 
   try {
     const posts = await postsCollection
@@ -17,7 +20,16 @@ export const getPostsController = () => async (req: Request, res: Response) => {
       .limit(l)
       .toArray();
 
-    return res.json(resultModel({ data: posts }));
+    const count = await postsCollection.countDocuments();
+
+    const total = Math.ceil(count / l);
+
+    const metaData = {
+      index: rawSkip,
+      total,
+    };
+
+    return res.json(resultModel({ data: { posts, metaData } }));
   } catch (error) {
     return res.json(genericError({ message: error.message }));
   }

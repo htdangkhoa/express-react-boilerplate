@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Link, NavLink } from 'react-router-dom';
 import Slider from 'react-slick';
+import Paginate from 'react-paginate';
 import Layout from 'components/Layout';
 import image from 'assets/image.png';
 import * as action from './action';
@@ -19,12 +20,23 @@ const slickSettings = {
 
 const slickImgs = [image, image, image];
 
-const Post = ({ route: { title }, post: { posts }, getPostsAction }) => {
+const Post = ({
+  route: { title },
+  post: {
+    posts,
+    metaData: { index: page, total },
+  },
+  getPostsAction,
+}) => {
   useEffect(() => {
     if (!posts || posts.length === 0) {
       getPostsAction();
     }
   }, []);
+
+  const onPageChange = ({ selected: skip }) => {
+    getPostsAction(skip);
+  };
 
   return (
     <Layout title={title}>
@@ -38,7 +50,7 @@ const Post = ({ route: { title }, post: { posts }, getPostsAction }) => {
         </Slider>
       </div>
 
-      <div className>
+      <div>
         {posts.map((post) => (
           <div key={post._id}>
             <NavLink to={`/p/${post._id}`}>
@@ -54,6 +66,19 @@ const Post = ({ route: { title }, post: { posts }, getPostsAction }) => {
             </div>
           </div>
         ))}
+
+        <Paginate
+          pageCount={total}
+          marginPagesDisplayed={3}
+          pageRangeDisplayed={5}
+          initialPage={page}
+          previousLabel={<i className='fa fa-angle-left' />}
+          nextLabel={<i className='fa fa-angle-right' />}
+          onPageChange={onPageChange}
+          containerClassName={'pagination'}
+          subContainerClassName={'pages pagination'}
+          activeClassName={'active'}
+        />
       </div>
     </Layout>
   );

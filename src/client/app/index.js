@@ -9,6 +9,7 @@ import head from 'utils/head';
 
 import Loading from 'components/Loading';
 import NavBar from 'components/NavBar';
+import Footer from 'components/Footer';
 
 import styles from './styles.scss';
 
@@ -24,6 +25,7 @@ const App = (props) => {
       <div>
         <NavBar />
         {renderRoutes(route.routes)}
+        <Footer />
         {isLoading && <Loading />}
       </div>
       <ToastContainer />

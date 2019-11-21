@@ -2,7 +2,10 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
 import { Redirect, withRouter } from 'react-router';
-import { useLastLocation } from 'react-router-last-location';
+import {
+  useLastLocation,
+  RedirectWithoutLastLocation,
+} from 'react-router-last-location';
 import PropTypes from 'prop-types';
 import * as globalAction from 'store/action';
 
@@ -43,7 +46,9 @@ const Layout = (props) => {
   }
 
   if (pathname === '/login' && accessToken) {
-    return <Redirect to={lastLocation.pathname || returnPath} />;
+    return (
+      <RedirectWithoutLastLocation to={lastLocation.pathname || returnPath} />
+    );
   }
 
   return <Child {...props} />;

@@ -5,6 +5,7 @@ import React, { Suspense } from 'react';
 import { AppContainer } from 'react-hot-loader';
 import { render, hydrate } from 'react-dom';
 import { renderRoutes } from 'react-router-config';
+import { CookiesProvider } from 'react-cookie';
 import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'connected-react-router';
 import { LastLocationProvider } from 'react-router-last-location';
@@ -27,7 +28,7 @@ const bootstrap = (routesConfig: Array<Object>) => {
         <Provider store={store}>
           <ConnectedRouter history={history}>
             <LastLocationProvider>
-              {renderRoutes(routesConfig)}
+              <CookiesProvider>{renderRoutes(routesConfig)}</CookiesProvider>
             </LastLocationProvider>
           </ConnectedRouter>
         </Provider>
