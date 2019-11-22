@@ -29,10 +29,10 @@ const PostDetail = ({
   useEffect(() => {
     if (post?._id !== _id) {
       getPostDetailAction(_id);
+    }
 
-      if (comments.length === 0) {
-        getCommentsAction(_id);
-      }
+    if (comments?.length === 0 || post?._id !== _id) {
+      getCommentsAction(_id);
     }
 
     if (error) {
@@ -48,8 +48,11 @@ const PostDetail = ({
     setSource(value);
   };
 
-  const onPostComment = () =>
-    postCommentAction({ _id: post._id, comment: source });
+  const onPostComment = () => {
+    postCommentAction({ _id, comment: source });
+
+    setSource('');
+  };
 
   return (
     <Layout title={post?.title || ''}>
@@ -58,10 +61,11 @@ const PostDetail = ({
       <div>
         <h3>Comments</h3>
 
-        {comments.map((comment) => (
+        {comments?.map((comment) => (
           <ReactMarkdown
-            key={comment._id}
-            source={comment.comment}
+            key={comment?._id}
+            source={comment?.comment}
+            renderers={{ code: CodeBlock }}
             escapeHtml
             skipHtml
           />

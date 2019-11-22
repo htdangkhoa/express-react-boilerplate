@@ -17,7 +17,7 @@ export default (state: any = initialState, action: ActionType) => {
       return { ...state, error: action.payload };
     }
     case GET_COMMENTS.SUCCESS: {
-      return { ...state, comments: [...state.comments, ...action.payload] };
+      return { ...state, comments: [...action.payload] };
     }
     case GET_COMMENTS.ERROR: {
       return { ...state, error: { ...action.payload } };
