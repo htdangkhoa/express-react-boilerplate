@@ -2,8 +2,8 @@ export default {
   htmlAttributes: {
     lang: 'en',
   },
-  defaultTitle: 'React Cool Starter',
-  titleTemplate: 'React Cool Starter - %s',
+  defaultTitle: 'Express React Boilerplate',
+  titleTemplate: 'Express React Boilerplate | %s',
   meta: [
     {
       name: 'description',

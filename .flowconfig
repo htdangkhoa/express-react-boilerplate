@@ -3,6 +3,7 @@
 [include]
 
 [libs]
+src/types/globals.js
 
 [lints]
 
@@ -10,6 +11,7 @@
 esproposal.optional_chaining=enable
 module.system.node.resolve_dirname=node_modules
 module.system.node.resolve_dirname=src
+module.system.node.resolve_dirname=src/client
 module.file_ext=.js
 module.file_ext=.jsx
 module.file_ext=.json

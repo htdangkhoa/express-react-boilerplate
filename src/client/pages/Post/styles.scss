@@ -1,0 +1,64 @@
+@import 'themes/global';
+
+.tagGroup {
+  display: flex;
+  flex-wrap: wrap;
+
+  .tagItem {
+    margin-right: 0.5rem;
+    max-width: 120px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    border: 1px solid #888;
+    border-radius: 4px;
+    padding: 0 4px;
+    background: #eee;
+    color: #888;
+  }
+}
+
+.bannerImg {
+  width: 100%;
+}
+
+.slick-dots {
+  position: static;
+}
+
+.pagination {
+  margin: 12px 0;
+  justify-content: center;
+
+  li {
+    border: 2px solid black;
+    border-radius: 4px;
+    margin: 0 4px;
+    font-size: larger;
+    min-width: 38px;
+    min-height: 38px;
+    line-height: 38px;
+    justify-content: center;
+    display: flex;
+
+    a {
+      cursor: pointer;
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    &.active {
+      border: 2px solid red;
+
+      a {
+        color: red;
+      }
+    }
+
+    &.break {
+      pointer-events: none;
+      cursor: none;
+    }
+  }
+}

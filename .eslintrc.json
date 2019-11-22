@@ -6,13 +6,19 @@
   },
   "extends": [
     "airbnb-base",
-    "prettier",
-    "plugin:import/errors",
-    "plugin:import/warnings"
+    "plugin:flowtype/recommended",
+    "plugin:react/recommended",
+    "plugin:import/recommended",
+    "plugin:prettier/recommended",
+    "prettier/flowtype",
+    "prettier/react"
   ],
   "globals": {
     "Atomics": "readonly",
-    "SharedArrayBuffer": "readonly"
+    "SharedArrayBuffer": "readonly",
+    "__DEV__": true,
+    "__SERVER__": false,
+    "__CLIENT__": false
   },
   "parserOptions": {
     "ecmaFeatures": {
@@ -21,6 +27,26 @@
     "ecmaVersion": 2018,
     "sourceType": "module"
   },
-  "plugins": ["react", "plugin:prettier/recommended", "import"],
-  "rules": {}
+  "plugins": ["prettier", "flowtype", "react", "import"],
+  "settings": {
+    "import/resolver": {
+      "babel-module": {}
+    }
+  },
+  "rules": {
+    "prettier/prettier": "error",
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": true,
+        "optionalDependencies": false,
+        "peerDependencies": false
+      }
+    ],
+    "react/prop-types": "warn",
+    "no-underscore-dangle": "warn",
+    "import/prefer-default-export": "off",
+    "import/no-cycle": "off",
+    "no-unused-vars": ["error", { "argsIgnorePattern": "^_" }]
+  }
 }

@@ -1,11 +1,8 @@
-// @flow
+/* @flow */
 import serialize from 'serialize-javascript';
-import { Helmet } from 'react-helmet';
 import { minify } from 'html-minifier';
 import { isDev } from '../config';
 import { type RenderHtmlType } from '../types';
-
-// const h = Helmet.renderStatic()
 
 const renderHtml = ({
   head,
@@ -26,11 +23,12 @@ const renderHtml = ({
       ${head.link.toString()}
     </head>
     <body>
+      <noscript>You need to enable JavaScript to run this app.</noscript>
       <div id="react-view">${htmlContent}</div>
 
       <script>window.__INITIAL_STATE__ = ${serialize(initialState)}</script>
 
-      <script type="text/javascript" src="/bundle.js"></script>
+      <script type="text/javascript" src="/dist/bundle.js"></script>
 
       ${head.script.toString()}
     </body>

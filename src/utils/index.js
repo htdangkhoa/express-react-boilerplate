@@ -1,16 +1,17 @@
-// @flow
-import { type RequestType, type ApiActionType } from 'types';
+/* @flow */
 
 export const actionGenerator = (actionName: string) => ({
   NAME: actionName,
-  PENDING: `${actionName}_PENDING`,
   SUCCESS: `${actionName}_SUCCESS`,
   ERROR: `${actionName}_ERROR`,
 });
 
-export const apiActionGenerator = (options: ApiActionType) => ({
-  type: '@@API',
-  payload: {
-    ...options,
-  },
-});
+export const paging = (skip?: number = 0, limit?: number = 20) => {
+  const rawSkip = Math.abs(Math.floor(skip));
+
+  const l = Math.abs(Math.floor(limit));
+
+  const s = rawSkip * l;
+
+  return { rawSkip, s, l };
+};

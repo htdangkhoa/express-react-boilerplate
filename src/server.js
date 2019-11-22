@@ -1,21 +1,24 @@
-// @flow
+/* @flow */
 import { resolve } from 'path';
-import Express, { Router, type Request, type Response } from 'express';
+import Express, { type Request, type Response } from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
+import compression from 'compression';
+import helmet from 'helmet';
 import React from 'react';
 import { renderToStaticMarkupAsync } from 'react-async-ssr';
 import { StaticRouter } from 'react-router';
 import { renderRoutes, matchRoutes } from 'react-router-config';
+import { LastLocationProvider } from 'react-router-last-location';
+import { CookiesProvider } from 'react-cookie';
 import { Provider } from 'react-redux';
 import { Helmet } from 'react-helmet';
 import renderHtml from './utils/render-html';
 import routes from './routes';
-import { webpackMiddleware } from './middlewares';
+import { webpackMiddleware, passportMiddleware } from './middlewares';
 import api from './api';
 import { isDev } from './config';
-import configureStore from './utils/configure-store';
-import { resultModel } from './models/result.model';
+import configureStore from './store';
 
 const app = Express();
 
@@ -29,7 +32,18 @@ app.use([
   cors({ origin: true }),
   bodyParser.json(),
   bodyParser.urlencoded({ extended: true }),
+  compression(),
+  helmet(),
 ]);
+
+app.use(
+  passportMiddleware([
+    /^(?!.*api).*/g,
+    /^(?!.*^\/api\/auth\/logout)(\/api\/auth)/,
+    /^(?!.*^\/api\/post\/create-post)(\/api\/post)/,
+    /^(?!.*^\/api\/comment\/post-comment)(\/api\/comment)/,
+  ]),
+);
 
 app.use('/api', api);
 
@@ -62,7 +76,11 @@ app.get('*', async (req: Request, res: Response) => {
     const App = (
       <Provider store={store}>
         <StaticRouter location={req.path} context={context}>
-          {renderRoutes(routes)}
+          <LastLocationProvider>
+            <CookiesProvider cookies={req.universalCookies}>
+              {renderRoutes(routes)}
+            </CookiesProvider>
+          </LastLocationProvider>
         </StaticRouter>
       </Provider>
     );
@@ -79,9 +97,11 @@ app.get('*', async (req: Request, res: Response) => {
 
     const status = context.status === '404' ? 404 : 200;
 
+    const initialState = store.getState();
+
     return res
       .status(status)
-      .send(renderHtml({ head, htmlContent, initialState: store.getState() }));
+      .send(renderHtml({ head, htmlContent, initialState }));
   } catch (error) {
     console.error(`==> 😭  Rendering routes error: ${error}`);
 

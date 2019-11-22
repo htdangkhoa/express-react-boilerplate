@@ -1,15 +1,11 @@
+/* @flow */
 import { createBrowserHistory, createMemoryHistory } from 'history';
 import { createStore, applyMiddleware } from 'redux';
 import { routerMiddleware } from 'connected-react-router';
 import { composeWithDevTools } from 'redux-devtools-extension/developmentOnly';
-import { createLogger } from 'redux-logger';
 import thunk from 'redux-thunk';
-import { isDev } from '../config';
-import { requestMiddleware } from './request';
-import createReducers from '../reducers';
-import { type ConfigureStoreType } from '../types';
-
-const logger = createLogger({ predicate: (getState, action) => isDev });
+import { type ConfigureStoreType } from 'types';
+import createReducers from './reducer';
 
 const configureStore = ({ initialState, url }: ConfigureStoreType) => {
   const isServer = typeof window === 'undefined';
@@ -18,12 +14,7 @@ const configureStore = ({ initialState, url }: ConfigureStoreType) => {
     ? createMemoryHistory({ initialEntries: [url || '/'] })
     : createBrowserHistory();
 
-  const middlewares = [
-    routerMiddleware(history),
-    thunk,
-    requestMiddleware,
-    logger,
-  ];
+  const middlewares = [routerMiddleware(history), thunk];
 
   const enhancers = composeWithDevTools(applyMiddleware(...middlewares));
 
@@ -32,6 +23,18 @@ const configureStore = ({ initialState, url }: ConfigureStoreType) => {
     initialState || {},
     enhancers,
   );
+
+  if (module.hot) {
+    module.hot.accept('./reducer', async () => {
+      try {
+        const nextReducer = await import('./reducer');
+
+        store.replaceReducer(nextReducer.default);
+      } catch (error) {
+        console.error(`==> 😭  Reducer hot reloading error ${error}`);
+      }
+    });
+  }
 
   return {
     store,

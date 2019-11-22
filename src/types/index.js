@@ -1,12 +1,38 @@
-// @flow
+/* @flow */
+import { type Express } from 'express';
+import { type MongoClient, type Db } from 'mongodb';
 import { type HelmetData } from 'react-helmet';
+
+export type MongoConnectionType = {
+  host: string,
+
+  database: string,
+
+  user?: string,
+
+  password?: string,
+
+  app?: Express,
+};
+
+export type MongoResultType = {
+  client: MongoClient,
+
+  db: Db,
+};
+
+export type ResultModelErrorType = {
+  message?: string,
+
+  extras?: Object,
+};
 
 export type ResultModelType = {
   code?: number,
 
   data?: any,
 
-  error?: { message?: string },
+  error?: ResultModelErrorType,
 };
 
 export type RenderHtmlType = {
@@ -15,10 +41,6 @@ export type RenderHtmlType = {
   htmlContent: string,
 
   initialState?: Object,
-};
-
-export type RouteType = {
-  route: { routes: Array<Object> },
 };
 
 export type ConfigureStoreType = {
@@ -60,7 +82,22 @@ export type ApiDataType = {
 export type ApiActionType = {
   label?: string,
 
-  onSuccess?: (data?: ApiDataType) => void,
+  onSuccess?: (data: ApiDataType) => void,
 
-  onError?: (data?: ApiDataType) => void,
+  onError?: (data: ApiDataType) => void,
 } & RequestType;
+
+export type ThemeType = 'light' | 'dark';
+
+export type GlobalStateType = {
+  loading?: boolean,
+  accessToken: ?string,
+  refreshToken: ?string,
+  user?: Object,
+  theme?: ThemeType,
+};
+
+export type PostCommentActionType = {
+  _id: string,
+  comment: string,
+};

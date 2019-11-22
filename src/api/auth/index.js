@@ -1,10 +1,16 @@
 import { Router } from 'express';
-import { loginController } from './controller';
+import {
+  registerController,
+  loginController,
+  renewTokenController,
+} from './controller';
 
 const router = Router();
 
+router.post('/register', registerController());
+
 router.post('/login', loginController());
 
-const authApi = () => router;
+router.post('/renew-token', renewTokenController());
 
-export default authApi;
+export default router;

@@ -1,12 +1,15 @@
-// @flow
-import axios from 'axios';
+/* @flow */
+import axios, { type AxiosError } from 'axios';
 import { omit } from 'lodash';
-import { type MiddlewareAPI, type Dispatch, type Action } from 'redux';
+import { type Dispatch } from 'redux';
 import { type RequestType, type ApiActionType, type ApiDataType } from 'types';
+import { updateLoadingAction } from 'store/action';
 import cookies from './cookies';
 import { actionGenerator } from './';
 
-const baseUrl = 'http://localhost:8888/api';
+const baseUrl = __DEV__
+  ? 'http://localhost:8888/api'
+  : 'https://express-react-boilerplate.netlify.com/api';
 
 export const request = async ({
   host = baseUrl,
@@ -17,11 +20,12 @@ export const request = async ({
   headers = {},
   token,
 }: RequestType) => {
-  const authorization = token || cookies.get('token');
+  const authorization = token || cookies.get('accessToken');
 
   let config = {
-    data,
+    method,
     params,
+    data,
     headers: {
       'Access-Control-Allow-Origin': '*',
       'Content-Type': 'application/json',
@@ -42,60 +46,52 @@ export const request = async ({
   return result;
 };
 
-export const requestMiddleware = ({ dispatch, getState }: MiddlewareAPI) => (
-  next: Dispatch,
-) => (action: Action) => {
-  next(action);
-
-  if (!action.type || action.type !== '@@API') {
-    return;
+export const requestAction = (options: ApiActionType) => async (
+  dispatch: Dispatch,
+) => {
+  if (__CLIENT__) {
+    dispatch(updateLoadingAction(true));
   }
 
-  const apiAction: ApiActionType = (action.payload: ApiActionType);
+  const opt = omit(options, ['onSuccess', 'onError']);
 
-  const ACTION = actionGenerator(`${apiAction.label || 'REQUEST_API_ACTION'}`);
+  const requestOptions: RequestType = (opt: RequestType);
 
-  let requestOptions = omit({ ...apiAction }, ['onSuccess', 'onError']);
+  const ACTION = actionGenerator(`${options.label || 'REQUEST_API_ACTION'}`);
 
-  dispatch({
-    type: ACTION.PENDING,
-    payload: apiAction.url || '',
-  });
+  try {
+    const { data: res } = await request(requestOptions);
 
-  request({ ...requestOptions })
-    .then((res) => {
-      const result: ApiDataType = (res.data: ApiDataType);
+    if (__CLIENT__) {
+      dispatch(updateLoadingAction(false));
+    }
 
-      const { code = 200, data, error } = result;
+    const result: ApiDataType = (res: ApiDataType);
 
-      let resultAction = { payload: { ...result } };
+    const { code = 200, data, error } = result;
 
-      switch (code) {
-        case 200: {
-          resultAction = { type: ACTION.SUCCESS, ...resultAction };
+    if (options.onSuccess) {
+      return options.onSuccess(result);
+    }
 
-          dispatch(resultAction);
+    return dispatch({ type: ACTION.SUCCESS, payload: result });
+  } catch (err) {
+    if (__CLIENT__) {
+      dispatch(updateLoadingAction(false));
+    }
 
-          apiAction.onSuccess && apiAction.onSuccess(result);
+    const {
+      response: { data: res },
+    }: AxiosError = (err: AxiosError);
 
-          break;
-        }
-        default: {
-          resultAction = { type: ACTION.ERROR, ...resultAction };
+    const result: ApiDataType = (res: ApiDataType);
 
-          dispatch(resultAction);
+    const { code = 200, data, error } = result;
 
-          apiAction.onError && apiAction.onError(result);
+    if (options.onError) {
+      return options.onError(result);
+    }
 
-          break;
-        }
-      }
-    })
-    .catch((err) => {
-      const result: ApiDataType = (err.response.data: ApiDataType);
-
-      const { code = 200, data, error } = result;
-
-      dispatch({ type: ACTION.ERROR, payload: { ...result } });
-    });
+    return dispatch({ type: ACTION.ERROR, payload: result });
+  }
 };

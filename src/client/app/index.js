@@ -1,33 +1,45 @@
-// @flow
-import React, { Fragment } from 'react';
+/* @flow */
+import React from 'react';
 import { Helmet } from 'react-helmet';
+import { connect } from 'react-redux';
 import { hot } from 'react-hot-loader';
-import { Link } from 'react-router-dom';
 import { renderRoutes } from 'react-router-config';
-import { type RouteType } from 'types';
+import { ToastContainer } from 'react-toastify';
 import head from 'utils/head';
+
+import Loading from 'components/Loading';
+import NavBar from 'components/NavBar';
+import Footer from 'components/Footer';
+
 import styles from './styles.scss';
 
-const App = ({ route }: RouteType) => {
+const App = (props) => {
+  const {
+    route,
+    global: { isLoading, theme },
+  } = props;
+
   return (
-    <div className={styles.App}>
+    <div className={`${styles.App} ${theme}`}>
       <Helmet {...head} />
       <div>
-        <ul>
-          <li>
-            <Link to='/'>Home</Link>
-          </li>
-          <li>
-            <Link to='/about'>About</Link>
-          </li>
-          <li>
-            <Link to='/test'>Test</Link>
-          </li>
-        </ul>
+        <NavBar />
         {renderRoutes(route.routes)}
+        <Footer />
+        {isLoading && <Loading />}
       </div>
+      <ToastContainer />
     </div>
   );
 };
 
-export default hot(module)(App);
+const mapStateToProps = ({ global }) => ({ global });
+
+const mapDispatchToProps = {};
+
+export default hot(module)(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps,
+  )(App),
+);

@@ -1,14 +1,17 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
+/* @flow */
+import './vendor';
+import '../i18n';
 import React, { Suspense } from 'react';
 import { AppContainer } from 'react-hot-loader';
 import { render, hydrate } from 'react-dom';
 import { renderRoutes } from 'react-router-config';
-import { BrowserRouter } from 'react-router-dom';
+import { CookiesProvider } from 'react-cookie';
 import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'connected-react-router';
-import configureStore from '../utils/configure-store';
+import { LastLocationProvider } from 'react-router-last-location';
+import Loading from 'components/Loading';
+import configureStore from '../store';
 import routes from '../routes';
-import '../i18n';
 
 const initialState = window.__INITIAL_STATE__;
 
@@ -16,17 +19,17 @@ delete window.__INITIAL_STATE__;
 
 const { store, history } = configureStore({ initialState });
 
-const Loading = () => <div>Loading...</div>;
-
-const bootstrap = (routes: Array<Object>) => {
-  const renderMethod = !!module.hot ? render : hydrate;
+const bootstrap = (routesConfig: Array<Object>) => {
+  const renderMethod = module.hot ? render : hydrate;
 
   renderMethod(
     <Suspense fallback={<Loading />}>
       <AppContainer>
         <Provider store={store}>
           <ConnectedRouter history={history}>
-            {renderRoutes(routes)}
+            <LastLocationProvider>
+              <CookiesProvider>{renderRoutes(routesConfig)}</CookiesProvider>
+            </LastLocationProvider>
           </ConnectedRouter>
         </Provider>
       </AppContainer>

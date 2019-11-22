@@ -1,6 +1,15 @@
+import Login from 'pages/Login';
+import Register from 'pages/Register';
+import Post from 'pages/Post';
+import { getPostsAction } from 'pages/Post/action';
+import PostDetail from 'pages/Post/PostDetail';
+import {
+  getPostDetailAction,
+  getCommentsAction,
+} from 'pages/Post/PostDetail/action';
+import About from 'pages/About';
+import NotFound from 'pages/NotFound';
 import App from './client/app';
-import { Home, About, NotFound } from './client/pages';
-import { fetchUserAction } from './client/pages/Home/action';
 
 export default [
   {
@@ -9,9 +18,27 @@ export default [
       {
         path: '/',
         exact: true,
-        component: Home,
-        title: 'Home',
-        loadData: ({ params }) => [fetchUserAction()],
+        component: Post,
+        title: 'Post',
+        loadData: ({ _params }) => [getPostsAction()],
+      },
+      {
+        path: '/p/:_id',
+        component: PostDetail,
+        loadData: ({ params: { _id } }) => [
+          getPostDetailAction(_id),
+          getCommentsAction(_id),
+        ],
+      },
+      {
+        path: '/login',
+        component: Login,
+        title: 'Login',
+      },
+      {
+        path: '/register',
+        component: Register,
+        title: 'Register',
       },
       {
         path: '/about',

@@ -1,3 +1,5 @@
 {
-  "hello": "Hello"
+  "language": "Language",
+  "lang_en": "English",
+  "lang_vi": "Vietnamese"
 }

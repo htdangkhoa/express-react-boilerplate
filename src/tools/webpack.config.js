@@ -1,16 +1,52 @@
-const { join, resolve } = require('path');
+const { resolve } = require('path');
 const webpack = require('webpack');
 const TerserWebpackPlugin = require('terser-webpack-plugin');
+const CompressionWebpackPlugin = require('compression-webpack-plugin');
+const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 const { NODE_ENV, isDev } = require('../config');
 
 const getEntries = () => {
-  const entry = [resolve(__dirname, '..', 'client/index.js')];
+  let entries = [resolve(__dirname, '..', 'client/index.js')];
 
   if (isDev) {
-    entry.push('react-hot-loader/patch', 'webpack-hot-middleware/client');
+    entries = [
+      ...entries,
+      'react-hot-loader/patch',
+      'webpack-hot-middleware/client',
+    ];
   }
 
-  return entry;
+  return entries;
+};
+
+const getPlugins = () => {
+  let plugins = [
+    new webpack.NamedModulesPlugin(),
+    new webpack.DefinePlugin({
+      __CLIENT__: true,
+      __SERVER__: false,
+      __DEV__: isDev,
+    }),
+    new CompressionWebpackPlugin({
+      algorithm: 'gzip',
+      test: /\.js(\?.*)?$/i,
+    }),
+  ];
+
+  if (isDev) {
+    plugins = [
+      ...plugins,
+      new webpack.ProgressPlugin(),
+      new webpack.HotModuleReplacementPlugin(),
+      new FriendlyErrorsWebpackPlugin({
+        compilationSuccessInfo: {
+          messages: ['=====> Listening at http://localhost:8888'],
+        },
+      }),
+    ];
+  }
+
+  return plugins;
 };
 
 module.exports = {
@@ -20,11 +56,9 @@ module.exports = {
   output: {
     path: resolve(__dirname, '..', '..', 'dist/public'),
     filename: 'bundle.js',
+    publicPath: '/dist',
   },
-  plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NamedModulesPlugin(),
-  ],
+  plugins: getPlugins(),
   module: {
     rules: [
       {
@@ -40,7 +74,11 @@ module.exports = {
           {
             loader: 'css',
             options: {
-              modules: true,
+              importLoaders: 1,
+              modules: {
+                localIdentName: '[local]',
+                context: resolve(process.cwd(), 'src'),
+              },
               sourceMap: isDev,
             },
           },
@@ -53,7 +91,11 @@ module.exports = {
           {
             loader: 'css',
             options: {
-              modules: true,
+              importLoaders: 2,
+              modules: {
+                localIdentName: '[local]',
+                context: resolve(process.cwd(), 'src'),
+              },
               sourceMap: isDev,
             },
           },
@@ -61,6 +103,9 @@ module.exports = {
             loader: 'sass',
             options: {
               sourceMap: isDev,
+              sassOptions: {
+                includePaths: [resolve(process.cwd(), 'src/client')],
+              },
             },
           },
         ],
