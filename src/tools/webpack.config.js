@@ -55,7 +55,7 @@ module.exports = {
   entry: getEntries(),
   output: {
     path: resolve(__dirname, '..', '..', 'dist/public'),
-    filename: 'bundle.js',
+    filename: isDev ? 'bundle.js' : 'bundle.min.js',
     publicPath: '/dist',
   },
   plugins: getPlugins(),

@@ -28,7 +28,9 @@ const renderHtml = ({
 
       <script>window.__INITIAL_STATE__ = ${serialize(initialState)}</script>
 
-      <script type="text/javascript" src="/dist/bundle.js"></script>
+      <script type="text/javascript" src="${
+        isDev ? '/dist/bundle.js' : '/bundle.min.js'
+      }"></script>
 
       ${head.script.toString()}
     </body>
