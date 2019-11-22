@@ -7,7 +7,9 @@ import { updateLoadingAction } from 'store/action';
 import cookies from './cookies';
 import { actionGenerator } from './';
 
-const baseUrl = 'http://localhost:8888/api';
+const baseUrl = __DEV__
+  ? 'http://localhost:8888/api'
+  : 'https://express-react-boilerplate.netlify.com/api';
 
 export const request = async ({
   host = baseUrl,
