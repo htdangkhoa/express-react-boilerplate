@@ -9,25 +9,21 @@ import head from 'utils/head';
 
 import Loading from 'components/Loading';
 import NavBar from 'components/NavBar';
-import Footer from 'components/Footer';
-
-import styles from './styles.scss';
 
 const App = (props) => {
   const {
     route,
-    global: { isLoading, theme },
+    global: { isLoading },
   } = props;
 
   return (
-    <div className={`${styles.App} ${theme}`}>
+    <div>
       <Helmet {...head} />
-      <div>
+      <>
         <NavBar />
-        {renderRoutes(route.routes)}
-        <Footer />
+        <main>{renderRoutes(route.routes)}</main>
         {isLoading && <Loading />}
-      </div>
+      </>
       <ToastContainer />
     </div>
   );

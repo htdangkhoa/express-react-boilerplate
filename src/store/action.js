@@ -43,6 +43,8 @@ export const updateThemeAction = (theme: ThemeType = 'light') => (
 ) => {
   localStorage.setItem('theme', theme);
 
+  document.documentElement.setAttribute('theme', theme);
+
   return dispatch({ type: UPDATE_THEME, payload: theme });
 };
 

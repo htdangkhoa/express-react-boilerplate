@@ -62,13 +62,13 @@ export const createPostController = () => async (
   res: Response,
 ) => {
   const {
-    body: { title, content, tags = '' },
+    body: { title, description, content, tags = '' },
     postsCollection,
   } = req;
 
   const listTag = tags.split(',');
 
-  if (!title || !content || compact(listTag).length === 0) {
+  if (!title || !description || !content || compact(listTag).length === 0) {
     return res.json(badRequest());
   }
 
@@ -76,10 +76,12 @@ export const createPostController = () => async (
     const { ops: data } = await postsCollection.insertOne(
       {
         title,
+        description,
         content,
         tags: listTag,
         comments: [],
         viewers: [],
+        publishAt: new Date(),
       },
       { serializeFunction: true },
     );

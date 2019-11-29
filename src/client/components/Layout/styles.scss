@@ -1,0 +1,22 @@
+.sidebar {
+  border-right: 2px solid var(--primary__text);
+  max-height: 350px;
+
+  &__title {
+    color: var(--primary__text);
+  }
+
+  &__item {
+    padding: 0.5rem 0;
+    color: var(--secondary__text);
+
+    &:hover {
+      color: var(--primary__text);
+    }
+
+    &.active {
+      text-decoration: underline;
+      font-weight: bold;
+    }
+  }
+}

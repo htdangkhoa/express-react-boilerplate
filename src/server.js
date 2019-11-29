@@ -47,7 +47,7 @@ app.use(
 
 app.use('/api', api);
 
-app.get('*', async (req: Request, res: Response) => {
+app.get('/*', async (req: Request, res: Response) => {
   const { store } = configureStore({ url: req.url });
 
   const loadBranchData = (): Promise<any> => {

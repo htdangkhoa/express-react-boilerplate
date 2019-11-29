@@ -114,6 +114,10 @@ const NavBar = ({
                     <i className='fas fa-moon fa-sm fa-flip-horizontal'></i>
                   </div>
                 }
+                onColor='#fbfbff'
+                offColor='#222725'
+                onHandleColor='#449dd1'
+                offHandleColor='#449dd1'
               />
             </NavItem>
 

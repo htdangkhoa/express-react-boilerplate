@@ -1,1 +1,29 @@
-@import './variables';
+@import './variables.scss';
+
+html {
+  --primary__background: #{$ghost__white};
+
+  --primary__text: #{$celestial__blue};
+
+  --secondary__text: #{$arsenic};
+}
+
+html[theme='dark'] {
+  --primary__background: #{$raisin__black};
+
+  --primary__text: #{$celestial__blue};
+
+  --secondary__text: #{$silver__sand};
+}
+
+body {
+  background: var(--primary__background);
+
+  color: var(--secondary__text);
+
+  .btn-primary {
+    background: var(--primary__text);
+
+    border-color: var(--primary__text);
+  }
+}

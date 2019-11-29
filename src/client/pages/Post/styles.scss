@@ -1,11 +1,27 @@
 @import 'themes/global';
 
-.tagGroup {
+.post {
+  &-item {
+    margin-bottom: 8px;
+  }
+
+  &-title {
+    color: $celestial__blue;
+  }
+
+  &-description {
+    margin-bottom: 12px;
+  }
+}
+
+.tag-group {
   display: flex;
   flex-wrap: wrap;
+  margin-bottom: 24px;
 
-  .tagItem {
+  .tag-item {
     margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
     max-width: 120px;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -17,31 +33,46 @@
   }
 }
 
-.bannerImg {
-  width: 100%;
-}
+.comment {
+  &-container {
+  }
 
-.slick-dots {
-  position: static;
+  &-login {
+    margin-bottom: 12px;
+    background: var(--primary__background);
+    border-color: var(--secondary__text);
+  }
+
+  &-submit {
+    margin: 24px 0;
+  }
+
+  &-item {
+    margin-bottom: 12px;
+    background: var(--primary__background);
+    border-color: var(--secondary__text);
+  }
 }
 
 .pagination {
-  margin: 12px 0;
+  margin: 8px 0;
   justify-content: center;
 
   li {
-    border: 2px solid black;
+    border: 2px solid var(--secondary__text);
     border-radius: 4px;
-    margin: 0 4px;
+    margin: 4px;
     font-size: larger;
     min-width: 38px;
     min-height: 38px;
-    line-height: 38px;
+    line-height: 19px;
     justify-content: center;
     display: flex;
 
     a {
+      color: var(--secondary__text);
       cursor: pointer;
+      padding: 8px;
 
       &:focus {
         outline: none;
@@ -49,16 +80,21 @@
     }
 
     &.active {
-      border: 2px solid red;
+      border: 2px solid var(--primary__text);
 
       a {
-        color: red;
+        color: var(--primary__text);
       }
     }
 
     &.break {
       pointer-events: none;
       cursor: none;
+      border-color: var(--secondary__text);
+
+      a {
+        color: var(--secondary__text);
+      }
     }
   }
 }

@@ -40,6 +40,7 @@ export const postCommentController = () => async (
         post_id: ObjectId(_id),
         user_id: ObjectId(user._id),
         comment,
+        createAt: new Date(),
       },
       { serializeFunctions: true },
     );
