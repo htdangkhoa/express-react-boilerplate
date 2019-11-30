@@ -30,18 +30,18 @@ const Post = ({
     <Layout title={title}>
       <div>
         {posts.map((post) => (
-          <div key={post._id} className='post-item'>
+          <div key={post._id} className='post__item'>
             <div>{formatDate(post.publishAt)}</div>
 
-            <Link to={`/p/${post._id}`} className='post-title'>
+            <Link to={`/p/${post._id}`} className='post__title'>
               <h3>{post.title}</h3>
             </Link>
 
-            <p className='post-description'>{post.description}</p>
+            <p className='post__description'>{post.description}</p>
 
-            <div className='tag-group'>
+            <div className='tag__group'>
               {post.tags.map((tag, i) => (
-                <Link to={`/tags/${tag}`} key={i} className='tag-item'>
+                <Link to={`/tags/${tag}`} key={i} className='tag__item'>
                   {tag}
                 </Link>
               ))}

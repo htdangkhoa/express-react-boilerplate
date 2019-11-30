@@ -64,18 +64,6 @@ const NavBar = ({
 
         <Collapse isOpen={!collapsed} navbar>
           <Nav navbar className='w-100 mr-auto'>
-            <NavItem>
-              <NavLink tag={RRNavLink} to='/'>
-                Posts
-              </NavLink>
-            </NavItem>
-
-            <NavItem>
-              <NavLink tag={RRNavLink} to='#'>
-                Questions
-              </NavLink>
-            </NavItem>
-
             <UncontrolledDropdown nav inNavbar>
               <DropdownToggle nav caret className='text-capitalize'>
                 {t('language')}

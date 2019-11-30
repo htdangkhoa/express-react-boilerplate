@@ -7,61 +7,185 @@ import {
   useLastLocation,
   RedirectWithoutLastLocation,
 } from 'react-router-last-location';
+import Switch from 'react-switch';
 import PropTypes from 'prop-types';
 import * as globalAction from 'store/action';
 import './styles.scss';
 
-const Child = ({ title, children, showSidebar = true }) => (
-  <>
-    <Helmet title={title} />
-    <div className='container'>
-      <div className='row'>
-        {showSidebar && (
-          <div className='col-3 sidebar d-none d-md-block'>
-            <Link to='/' className='sidebar__title'>
-              <h1>KBlog</h1>
-            </Link>
-            <p>
-              Chia sẻ những kinh nghiệm, kiến thức, các case study giúp mọi
-              người có thể tạo ra những service chuyên nghiệp hơn
-            </p>
+const Child = ({
+  title,
+  children,
+  showSidebar = true,
+  location: { pathname },
+  global: { theme, accessToken, user },
+  updateThemeAction,
+  updateTokenAction,
+}) => {
+  useEffect(() => {
+    updateThemeAction(localStorage.getItem('theme') || 'light');
+  }, []);
 
-            <ul className='nav flex-column'>
-              <li className='nav-item'>
-                <NavLink
-                  className='nav-link sidebar__item'
-                  to='/'
-                  isActive={(_, { pathname }) => {
-                    return pathname.match(/^\/$/) || pathname.match(/^\/p\//);
-                  }}>
-                  Posts
-                </NavLink>
-              </li>
-              <li className='nav-item'>
-                <NavLink className='nav-link sidebar__item' to='/introduce'>
-                  Introduce
-                </NavLink>
-              </li>
-              <li className='nav-item'>
-                <NavLink className='nav-link sidebar__item' to='/contact'>
-                  Contact
-                </NavLink>
-              </li>
-              <li className='nav-item'>
-                <NavLink className='nav-link sidebar__item' to='/friends'>
-                  Friends
-                </NavLink>
-              </li>
-            </ul>
+  const onChangeTheme = (checked) => {
+    updateThemeAction(checked ? 'dark' : 'light');
+  };
+
+  return (
+    <>
+      <Helmet title={title} />
+      <div className='container'>
+        <div className='row main_container'>
+          {showSidebar && (
+            <div className='col-md-3 col-12 sidebar'>
+              <div className='sidebar__title__container'>
+                <Link to='/' className='sidebar__title mr-auto'>
+                  <h1>KBlog</h1>
+                </Link>
+
+                <Switch
+                  checked={theme === 'dark'}
+                  onChange={onChangeTheme}
+                  checkedIcon={
+                    <div className='switch__icon'>
+                      <i className='fas fa-sun fa-sm'></i>
+                    </div>
+                  }
+                  uncheckedIcon={
+                    <div className='switch__icon'>
+                      <i className='fas fa-moon fa-sm fa-flip-horizontal'></i>
+                    </div>
+                  }
+                  onColor='#fbfbff'
+                  offColor='#222725'
+                  onHandleColor='#449dd1'
+                  offHandleColor='#449dd1'
+                />
+              </div>
+
+              <p>
+                Chia sẻ những kinh nghiệm, kiến thức, các case study giúp mọi
+                người có thể tạo ra những service chuyên nghiệp hơn
+              </p>
+
+              <div className='sidebar__section'>
+                <h5>Account</h5>
+
+                {!accessToken && (
+                  <>
+                    <ul className='nav flex-column'>
+                      <li className='nav-item'>
+                        <Link className='nav-link sidebar__item' to='/login'>
+                          Login
+                        </Link>
+                      </li>
+
+                      <li className='nav-item'>
+                        <Link className='nav-link sidebar__item' to='/register'>
+                          Register
+                        </Link>
+                      </li>
+                    </ul>
+                  </>
+                )}
+
+                {user && (
+                  <>
+                    <ul className='nav flex-column'>
+                      <li className='nav-item'>
+                        <NavLink
+                          className='nav-link sidebar__item'
+                          to='/profile'>
+                          {user?.name}
+                        </NavLink>
+                      </li>
+
+                      <li className='nav-item'>
+                        <NavLink
+                          className='nav-link sidebar__item'
+                          to='/create-post'>
+                          Create post
+                        </NavLink>
+                      </li>
+
+                      <li className='nav-item'>
+                        <Link
+                          className='nav-link sidebar__item'
+                          to={pathname}
+                          onClick={() => {
+                            updateTokenAction();
+                          }}>
+                          Logout
+                        </Link>
+                      </li>
+                    </ul>
+                  </>
+                )}
+              </div>
+
+              <div className='sidebar__section'>
+                <h5>Menu</h5>
+
+                <ul className='nav flex-column'>
+                  <li className='nav-item'>
+                    <NavLink
+                      className='nav-link sidebar__item'
+                      to='/'
+                      isActive={(_, { pathname: path }) => {
+                        return path.match(/^\/$/) || path.match(/^\/p\//);
+                      }}>
+                      Posts
+                    </NavLink>
+                  </li>
+                  <li className='nav-item'>
+                    <NavLink className='nav-link sidebar__item' to='/questions'>
+                      Questions
+                    </NavLink>
+                  </li>
+                  <li className='nav-item'>
+                    <NavLink className='nav-link sidebar__item' to='/introduce'>
+                      Introduce
+                    </NavLink>
+                  </li>
+                  <li className='nav-item'>
+                    <NavLink className='nav-link sidebar__item' to='/contact'>
+                      Contact
+                    </NavLink>
+                  </li>
+                </ul>
+              </div>
+
+              <div className='sidebar__section'>
+                <h5>Links</h5>
+
+                <ul className='list-group list-group-horizontal'>
+                  <a href='#' target='_'>
+                    <li className='list-group-item p-0 rounded-circle sidebar__link'>
+                      <i className='fab fa-facebook-f'></i>
+                    </li>
+                  </a>
+
+                  <a href='https://github.com/htdangkhoa' target='_'>
+                    <li className='list-group-item p-0 rounded-circle sidebar__link'>
+                      <i className='fab fa-github-alt'></i>
+                    </li>
+                  </a>
+
+                  <a href='mailto:huynhtran.dangkhoa@gmail.com' target='_'>
+                    <li className='list-group-item p-0 rounded-circle sidebar__link'>
+                      <i className='far fa-envelope'></i>
+                    </li>
+                  </a>
+                </ul>
+              </div>
+            </div>
+          )}
+          <div className={`${showSidebar ? 'col-md-9 col-12' : 'col-12'}`}>
+            <div>{children}</div>
           </div>
-        )}
-        <div className={`${showSidebar ? 'col-md-9 col-12' : 'col-12'}`}>
-          <div>{children}</div>
         </div>
       </div>
-    </div>
-  </>
-);
+    </>
+  );
+};
 
 const Layout = (props) => {
   const {
@@ -116,6 +240,8 @@ const mapDispatchToProps = {
   fetchTokenAction: globalAction.fetchTokenAction,
   renewTokenAction: globalAction.renewTokenAction,
   getMeAction: globalAction.getMeAction,
+  updateThemeAction: globalAction.updateThemeAction,
+  updateTokenAction: globalAction.updateTokenAction,
 };
 
 export default connect(

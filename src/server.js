@@ -6,7 +6,7 @@ import cors from 'cors';
 import compression from 'compression';
 import helmet from 'helmet';
 import React from 'react';
-import { renderToStaticMarkupAsync } from 'react-async-ssr';
+import ReactDOMServer from 'react-dom/server';
 import { StaticRouter } from 'react-router';
 import { renderRoutes, matchRoutes } from 'react-router-config';
 import { LastLocationProvider } from 'react-router-last-location';
@@ -29,7 +29,7 @@ if (isDev) {
 }
 
 app.use([
-  cors({ origin: true }),
+  cors({ origin: true, credentials: false }),
   bodyParser.json(),
   bodyParser.urlencoded({ extended: true }),
   compression(),
@@ -85,8 +85,6 @@ app.get('/*', async (req: Request, res: Response) => {
       </Provider>
     );
 
-    const htmlContent = await renderToStaticMarkupAsync(App);
-
     const head = Helmet.renderStatic();
 
     // if (context.url) {
@@ -99,9 +97,22 @@ app.get('/*', async (req: Request, res: Response) => {
 
     const initialState = store.getState();
 
-    return res
-      .status(status)
-      .send(renderHtml({ head, htmlContent, initialState }));
+    const body = [];
+
+    return ReactDOMServer.renderToNodeStream(App)
+      .on('data', (chunk) => {
+        body.push(chunk.toString());
+      })
+      .on('error', (error) => {
+        return res.status(404).send(error.message);
+      })
+      .on('end', () => {
+        const htmlContent = body.join('');
+
+        return res
+          .status(status)
+          .send(renderHtml({ head, htmlContent, initialState }));
+      });
   } catch (error) {
     console.error(`==> 😭  Rendering routes error: ${error}`);
 

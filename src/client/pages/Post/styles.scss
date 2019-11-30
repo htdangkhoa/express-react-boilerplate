@@ -1,25 +1,27 @@
 @import 'themes/global';
 
 .post {
-  &-item {
+  &__item {
     margin-bottom: 8px;
   }
 
-  &-title {
+  &__title {
     color: $celestial__blue;
   }
 
-  &-description {
+  &__description {
     margin-bottom: 12px;
   }
 }
 
-.tag-group {
-  display: flex;
-  flex-wrap: wrap;
-  margin-bottom: 24px;
+.tag {
+  &__group {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 24px;
+  }
 
-  .tag-item {
+  &__item {
     margin-right: 0.5rem;
     margin-bottom: 0.5rem;
     max-width: 120px;
@@ -34,24 +36,38 @@
 }
 
 .comment {
-  &-container {
+  &__container {
+    display: block;
   }
 
-  &-login {
+  &__login {
     margin-bottom: 12px;
     background: var(--primary__background);
     border-color: var(--secondary__text);
+
+    a {
+      color: var(--secondary__text);
+
+      &:hover {
+        color: var(--primary__text);
+      }
+    }
   }
 
-  &-submit {
+  &__submit {
     margin: 24px 0;
   }
 
-  &-item {
+  &__item {
     margin-bottom: 12px;
     background: var(--primary__background);
     border-color: var(--secondary__text);
   }
+}
+
+.mde-preview {
+  background: white;
+  color: black;
 }
 
 .pagination {

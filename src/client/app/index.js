@@ -8,7 +8,6 @@ import { ToastContainer } from 'react-toastify';
 import head from 'utils/head';
 
 import Loading from 'components/Loading';
-import NavBar from 'components/NavBar';
 
 const App = (props) => {
   const {
@@ -20,8 +19,7 @@ const App = (props) => {
     <div>
       <Helmet {...head} />
       <>
-        <NavBar />
-        <main>{renderRoutes(route.routes)}</main>
+        <div>{renderRoutes(route.routes)}</div>
         {isLoading && <Loading />}
       </>
       <ToastContainer />
