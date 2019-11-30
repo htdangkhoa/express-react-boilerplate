@@ -3,6 +3,7 @@ import { combineReducers } from 'redux';
 import { type ActionType } from 'types';
 import { GET_POSTS } from './action';
 import postDetail from './PostDetail/reducer';
+import createPost from './CreatePost/reducer';
 
 const initialState = {
   posts: [],
@@ -32,4 +33,4 @@ const post = (state: any = initialState, action: ActionType) => {
   }
 };
 
-export default combineReducers({ post, postDetail });
+export default combineReducers({ post, postDetail, createPost });

@@ -68,11 +68,18 @@ export const requestAction = (options: ApiActionType) => async (
 
     const { code = 200, data, error } = result;
 
+    if (code !== 200 && options.onError) {
+      return options.onError(result);
+    }
+
     if (options.onSuccess) {
       return options.onSuccess(result);
     }
 
-    return dispatch({ type: ACTION.SUCCESS, payload: result });
+    return dispatch({
+      type: code === 200 ? ACTION.SUCCESS : ACTION.ERROR,
+      payload: result,
+    });
   } catch (err) {
     if (__CLIENT__) {
       dispatch(updateLoadingAction(false));

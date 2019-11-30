@@ -1,0 +1,38 @@
+@import '../styles';
+
+.create__post__container {
+  .form-control {
+    margin: 12px 0;
+  }
+
+  .tags {
+    &__group {
+      display: flex;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+      padding: 0;
+      align-items: center;
+      background: white;
+      border: 1px solid #ced4da;
+      border-radius: 4px;
+      padding: 6px 12px;
+
+      .tag__item {
+        margin-bottom: 0;
+      }
+    }
+
+    &__input {
+      border: none;
+      outline: none;
+      margin: 6px 0;
+      flex: 1;
+      display: block;
+      color: #495057;
+    }
+  }
+}
+
+.btn-publish {
+  margin: 24px 0;
+}

@@ -15,6 +15,7 @@ import './styles.scss';
 const Child = ({
   title,
   children,
+  className = '',
   showSidebar = true,
   location: { pathname },
   global: { theme, accessToken, user },
@@ -179,7 +180,7 @@ const Child = ({
             </div>
           )}
           <div className={`${showSidebar ? 'col-md-9 col-12' : 'col-12'}`}>
-            <div>{children}</div>
+            <div className={className}>{children}</div>
           </div>
         </div>
       </div>

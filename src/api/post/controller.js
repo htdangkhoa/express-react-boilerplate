@@ -3,7 +3,7 @@ import { type Request, type Response } from 'express';
 import { ObjectId } from 'mongodb';
 import { paging } from 'utils';
 import { resultModel, genericError, badRequest } from 'models/result.model';
-import { compact } from 'lodash';
+import { compact, head } from 'lodash';
 
 export const getPostsController = () => async (req: Request, res: Response) => {
   const {
@@ -73,7 +73,7 @@ export const createPostController = () => async (
   }
 
   try {
-    const { ops: data } = await postsCollection.insertOne(
+    const { ops } = await postsCollection.insertOne(
       {
         title,
         description,
@@ -86,7 +86,7 @@ export const createPostController = () => async (
       { serializeFunction: true },
     );
 
-    return res.json(resultModel({ data }));
+    return res.json(resultModel({ data: head(ops) }));
   } catch (error) {
     return res.json(genericError({ message: error.message }));
   }
