@@ -1,9 +1,15 @@
 import React from 'react';
+
 import Layout from 'components/Layout';
 
+import './styles.scss';
+
 const NotFound = ({ route: { title } }) => (
-  <Layout title={title}>
-    <div>NotFound</div>
+  <Layout title={title} className='not__found__container'>
+    <div className='text-center'>
+      <h1>404</h1>
+      <p>The page you&apos;re looking for isn&apos;t here.</p>
+    </div>
   </Layout>
 );
 

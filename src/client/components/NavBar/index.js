@@ -64,18 +64,6 @@ const NavBar = ({
 
         <Collapse isOpen={!collapsed} navbar>
           <Nav navbar className='w-100 mr-auto'>
-            <NavItem>
-              <NavLink tag={RRNavLink} to='/'>
-                Posts
-              </NavLink>
-            </NavItem>
-
-            <NavItem>
-              <NavLink tag={RRNavLink} to='#'>
-                Questions
-              </NavLink>
-            </NavItem>
-
             <UncontrolledDropdown nav inNavbar>
               <DropdownToggle nav caret className='text-capitalize'>
                 {t('language')}
@@ -114,6 +102,10 @@ const NavBar = ({
                     <i className='fas fa-moon fa-sm fa-flip-horizontal'></i>
                   </div>
                 }
+                onColor='#fbfbff'
+                offColor='#222725'
+                onHandleColor='#449dd1'
+                offHandleColor='#449dd1'
               />
             </NavItem>
 

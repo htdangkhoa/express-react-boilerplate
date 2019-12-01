@@ -15,6 +15,9 @@
     "preanalyze": "npm run stats",
     "storybook": "start-storybook --ci"
   },
+  "engines": {
+    "node": ">=10.13.0"
+  },
   "nodemonConfig": {
     "ignore": [
       "dist",
@@ -51,12 +54,12 @@
     "eslint-plugin-react": "^7.16.0",
     "flow-bin": "^0.112.0",
     "friendly-errors-webpack-plugin": "^1.7.0",
-    "nodemon": "^1.19.4",
+    "nodemon": "^2.0.1",
     "prettier": "^1.18.2",
     "sass-loader": "^8.0.0",
     "style-loader": "^1.0.0",
     "terser-webpack-plugin": "^2.2.1",
-    "url-loader": "^2.2.0",
+    "url-loader": "^3.0.0",
     "webpack": "^4.29.0",
     "webpack-bundle-analyzer": "^3.6.0",
     "webpack-cli": "^3.2.1",
@@ -78,6 +81,7 @@
     "dotenv-flow": "^3.1.0",
     "express": "^4.17.1",
     "helmet": "^3.21.1",
+    "highlight.js": "^9.16.2",
     "history": "^4.10.1",
     "html-minifier": "^4.0.0",
     "i18next": "^19.0.1",
@@ -85,6 +89,7 @@
     "i18next-xhr-backend": "^3.2.0",
     "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.15",
+    "moment-timezone": "^0.5.27",
     "mongodb": "^3.3.3",
     "mongoose": "^5.7.7",
     "node-sass": "^4.13.0",
@@ -92,13 +97,10 @@
     "passport-jwt": "^4.0.0",
     "prop-types": "^15.7.2",
     "react": "^16.10.2",
-    "react-async-ssr": "^0.5.2",
-    "react-autosize-textarea": "^7.0.0",
     "react-cookie": "^4.0.1",
     "react-dev-utils": "^9.1.0",
     "react-dom": "^16.11.0",
     "react-helmet": "^5.2.1",
-    "react-hook-form": "^3.26.4",
     "react-hot-loader": "^4.12.15",
     "react-i18next": "^11.0.0",
     "react-markdown": "^4.2.2",
@@ -109,7 +111,6 @@
     "react-router-config": "^5.1.1",
     "react-router-dom": "^5.1.2",
     "react-router-last-location": "^2.0.1",
-    "react-slick": "^0.25.2",
     "react-spinners": "^0.6.1",
     "react-switch": "^5.0.1",
     "react-syntax-highlighter": "^11.0.2",
@@ -122,7 +123,6 @@
     "redux-thunk": "^2.3.0",
     "serialize-javascript": "^2.1.0",
     "showdown": "^1.9.1",
-    "slick-carousel": "^1.8.1",
     "universal-cookie": "^4.0.2",
     "validator": "^12.0.0"
   }

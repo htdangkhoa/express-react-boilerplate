@@ -2,7 +2,9 @@ import React from 'react';
 import { RedirectWithoutLastLocation } from 'react-router-last-location';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
+
 import Layout from 'components/Layout';
+
 import * as action from './action';
 
 let Register = ({
@@ -18,7 +20,7 @@ let Register = ({
   return registerSuccess ? (
     <RedirectWithoutLastLocation to='/login' />
   ) : (
-    <Layout title={title}>
+    <Layout title={title} showSidebar={false}>
       <h2 className='text-center'>Register</h2>
       <div className='row'>
         <div className='col col-md-6 offset-md-3'>

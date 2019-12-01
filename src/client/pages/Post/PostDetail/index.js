@@ -1,19 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import ReactMarkdown from 'react-markdown';
 import ReactMde from 'react-mde';
 import 'react-mde/lib/styles/css/react-mde-all.css';
 import { Converter } from 'showdown';
+import moment from 'moment-timezone';
+
 import Layout from 'components/Layout';
-import CodeBlock from 'components/CodeBlock';
+
 import * as action from './action';
+import '../styles.scss';
 
 const converter = new Converter({
   tables: true,
   simplifiedAutoLink: true,
   strikethrough: true,
   tasklists: true,
+  omitExtraWLInCodeBlocks: true,
 });
 
 const PostDetail = ({
@@ -52,29 +57,43 @@ const PostDetail = ({
     postCommentAction({ _id, comment: source });
 
     setSource('');
+
+    setSelectedTab('write');
   };
 
   return (
     <Layout title={post?.title || ''}>
-      <ReactMarkdown source={post?.content} renderers={{ code: CodeBlock }} />
+      <div className='post__item'>
+        <h1 className='post__title'>{post?.title}</h1>
 
-      <div>
-        <h3>Comments</h3>
+        <div className='tag__group'>
+          {post?.tags?.map((tag, i) => (
+            <Link to={`/tags/${tag}`} key={i} className='tag__item'>
+              {tag}
+            </Link>
+          ))}
+        </div>
 
-        {comments?.map((comment) => (
+        <div className='mde-preview'>
           <ReactMarkdown
-            key={comment?._id}
-            source={comment?.comment}
-            renderers={{ code: CodeBlock }}
-            escapeHtml
-            skipHtml
+            source={post?.content}
+            escapeHtml={false}
+            className='mde-preview-content'
           />
-        ))}
+        </div>
+      </div>
+
+      <hr />
+
+      <div className='comment__container'>
+        <h5>Comments</h5>
 
         {!accessToken && (
           <>
-            <div className='card'>
-              <div className='card-body text-center'>Login to comment.</div>
+            <div className='card comment__login'>
+              <div className='card-body text-center'>
+                <Link to='/login'>Login to comment.</Link>
+              </div>
             </div>
           </>
         )}
@@ -93,11 +112,35 @@ const PostDetail = ({
               }}
             />
 
-            <button className='btn btn-primary' onClick={onPostComment}>
+            <button
+              className='btn btn-primary btn-block comment__submit'
+              onClick={onPostComment}>
               Post Comment
             </button>
           </>
         )}
+
+        {comments?.map((comment) => (
+          <div className='card comment__item' key={comment._id}>
+            <div className='card-body'>
+              <div>{comment.user?.name}</div>
+
+              <div className='mde-preview'>
+                <ReactMarkdown
+                  key={comment?._id}
+                  source={comment?.comment}
+                  className='mde-preview-content'
+                />
+              </div>
+
+              <div>
+                {moment(comment.createAt || new Date())
+                  .format('MMM DD, YYYY')
+                  .toString()}
+              </div>
+            </div>
+          </div>
+        ))}
       </div>
     </Layout>
   );

@@ -7,6 +7,7 @@ import {
   getPostDetailAction,
   getCommentsAction,
 } from 'pages/Post/PostDetail/action';
+import CreatePost from 'pages/Post/CreatePost';
 import About from 'pages/About';
 import NotFound from 'pages/NotFound';
 import App from './client/app';
@@ -29,6 +30,10 @@ export default [
           getPostDetailAction(_id),
           getCommentsAction(_id),
         ],
+      },
+      {
+        path: '/create-post',
+        component: CreatePost,
       },
       {
         path: '/login',

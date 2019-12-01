@@ -7,9 +7,7 @@ import { updateLoadingAction } from 'store/action';
 import cookies from './cookies';
 import { actionGenerator } from './';
 
-const baseUrl = __DEV__
-  ? 'http://localhost:8888/api'
-  : 'https://express-react-boilerplate.netlify.com/api';
+const baseUrl = 'http://localhost:8888/api';
 
 export const request = async ({
   host = baseUrl,
@@ -70,11 +68,18 @@ export const requestAction = (options: ApiActionType) => async (
 
     const { code = 200, data, error } = result;
 
+    if (code !== 200 && options.onError) {
+      return options.onError(result);
+    }
+
     if (options.onSuccess) {
       return options.onSuccess(result);
     }
 
-    return dispatch({ type: ACTION.SUCCESS, payload: result });
+    return dispatch({
+      type: code === 200 ? ACTION.SUCCESS : ACTION.ERROR,
+      payload: result,
+    });
   } catch (err) {
     if (__CLIENT__) {
       dispatch(updateLoadingAction(false));

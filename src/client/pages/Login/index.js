@@ -13,7 +13,7 @@ let Login = ({ handleSubmit, loginAction, route: { title } }) => {
   };
 
   return (
-    <Layout title={title} returnPath='/'>
+    <Layout title={title} returnPath='/' showSidebar={false}>
       <h2 className='text-center'>Login</h2>
 
       <div className='row'>

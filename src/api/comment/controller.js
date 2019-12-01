@@ -15,7 +15,21 @@ export const getCommentsController = () => async (
 
   try {
     const comments = await commentsCollection
-      .find({ post_id: ObjectId(_id) })
+      .aggregate([
+        { $match: { post_id: ObjectId(_id) } },
+        {
+          $lookup: {
+            let: { user: '$user_id' },
+            from: 'users',
+            pipeline: [
+              { $match: { $expr: { $eq: ['$$user', '$_id'] } } },
+              { $project: { _id: true, name: true } },
+            ],
+            as: 'user',
+          },
+        },
+        { $unwind: '$user' },
+      ])
       .toArray();
 
     return res.json(resultModel({ data: comments }));
@@ -40,6 +54,7 @@ export const postCommentController = () => async (
         post_id: ObjectId(_id),
         user_id: ObjectId(user._id),
         comment,
+        createAt: new Date(),
       },
       { serializeFunctions: true },
     );

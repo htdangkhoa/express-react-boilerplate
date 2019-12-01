@@ -1,24 +1,14 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import Slider from 'react-slick';
 import Paginate from 'react-paginate';
+
 import Layout from 'components/Layout';
+
 import image from 'assets/image.png';
+import { formatDate } from 'utils';
 import * as action from './action';
-import styles from './styles.scss';
-
-const slickSettings = {
-  dots: true,
-  infinite: true,
-  speed: 500,
-  slidesToShow: 1,
-  slidesToScroll: 1,
-  autoplay: true,
-  arrows: false,
-};
-
-const slickImgs = [image, image, image];
+import './styles.scss';
 
 const Post = ({
   route: { title },
@@ -41,25 +31,19 @@ const Post = ({
   return (
     <Layout title={title}>
       <div>
-        <Slider {...slickSettings}>
-          {slickImgs.map((img, i) => (
-            <div key={i}>
-              <img src={image} className={styles.bannerImg} />
-            </div>
-          ))}
-        </Slider>
-      </div>
-
-      <div>
         {posts.map((post) => (
-          <div key={post._id}>
-            <Link to={`/p/${post._id}`}>
+          <div key={post._id} className='post__item'>
+            <div>{formatDate(post.publishAt)}</div>
+
+            <Link to={`/p/${post._id}`} className='post__title'>
               <h3>{post.title}</h3>
             </Link>
 
-            <div className={styles.tagGroup}>
+            <p className='post__description'>{post.description}</p>
+
+            <div className='tag__group'>
               {post.tags.map((tag, i) => (
-                <Link to={`/tags/${tag}`} key={i} className={styles.tagItem}>
+                <Link to={`/tags/${tag}`} key={i} className='tag__item'>
                   {tag}
                 </Link>
               ))}
@@ -75,7 +59,7 @@ const Post = ({
           previousLabel={<i className='fa fa-angle-left' />}
           nextLabel={<i className='fa fa-angle-right' />}
           onPageChange={onPageChange}
-          containerClassName={'pagination'}
+          containerClassName={'pagination row'}
           subContainerClassName={'pages pagination'}
           activeClassName={'active'}
         />

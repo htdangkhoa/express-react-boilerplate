@@ -3,7 +3,7 @@ import { type Request, type Response } from 'express';
 import { ObjectId } from 'mongodb';
 import { paging } from 'utils';
 import { resultModel, genericError, badRequest } from 'models/result.model';
-import { compact } from 'lodash';
+import { compact, head } from 'lodash';
 
 export const getPostsController = () => async (req: Request, res: Response) => {
   const {
@@ -62,29 +62,31 @@ export const createPostController = () => async (
   res: Response,
 ) => {
   const {
-    body: { title, content, tags = '' },
+    body: { title, description, content, tags = '' },
     postsCollection,
   } = req;
 
   const listTag = tags.split(',');
 
-  if (!title || !content || compact(listTag).length === 0) {
+  if (!title || !description || !content || compact(listTag).length === 0) {
     return res.json(badRequest());
   }
 
   try {
-    const { ops: data } = await postsCollection.insertOne(
+    const { ops } = await postsCollection.insertOne(
       {
         title,
+        description,
         content,
         tags: listTag,
         comments: [],
         viewers: [],
+        publishAt: new Date(),
       },
       { serializeFunction: true },
     );
 
-    return res.json(resultModel({ data }));
+    return res.json(resultModel({ data: head(ops) }));
   } catch (error) {
     return res.json(genericError({ message: error.message }));
   }

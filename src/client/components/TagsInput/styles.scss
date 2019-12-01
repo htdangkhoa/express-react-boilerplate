@@ -1,0 +1,12 @@
+.tags {
+  &__group {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 12px 0;
+    padding: 0;
+
+    li {
+      list-style-type: none;
+    }
+  }
+}
