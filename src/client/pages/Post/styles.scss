@@ -3,6 +3,11 @@
 .post {
   &__item {
     margin-bottom: 8px;
+
+    .mde-preview {
+      background: var(--primary__background);
+      color: var(--secondary__text);
+    }
   }
 
   &__title {
@@ -62,6 +67,11 @@
     margin-bottom: 12px;
     background: var(--primary__background);
     border-color: var(--secondary__text);
+
+    .mde-preview {
+      background: var(--primary__background);
+      color: var(--secondary__text);
+    }
   }
 }
 

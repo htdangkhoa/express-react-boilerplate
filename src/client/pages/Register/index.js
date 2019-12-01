@@ -2,7 +2,9 @@ import React from 'react';
 import { RedirectWithoutLastLocation } from 'react-router-last-location';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
+
 import Layout from 'components/Layout';
+
 import * as action from './action';
 
 let Register = ({

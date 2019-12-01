@@ -15,6 +15,9 @@
     "preanalyze": "npm run stats",
     "storybook": "start-storybook --ci"
   },
+  "engines": {
+    "node": ">=10.13.0"
+  },
   "nodemonConfig": {
     "ignore": [
       "dist",
@@ -51,12 +54,12 @@
     "eslint-plugin-react": "^7.16.0",
     "flow-bin": "^0.112.0",
     "friendly-errors-webpack-plugin": "^1.7.0",
-    "nodemon": "^1.19.4",
+    "nodemon": "^2.0.1",
     "prettier": "^1.18.2",
     "sass-loader": "^8.0.0",
     "style-loader": "^1.0.0",
     "terser-webpack-plugin": "^2.2.1",
-    "url-loader": "^2.2.0",
+    "url-loader": "^3.0.0",
     "webpack": "^4.29.0",
     "webpack-bundle-analyzer": "^3.6.0",
     "webpack-cli": "^3.2.1",

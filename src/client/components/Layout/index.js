@@ -136,11 +136,11 @@ const Child = ({
                       Posts
                     </NavLink>
                   </li>
-                  <li className='nav-item'>
+                  {/* <li className='nav-item'>
                     <NavLink className='nav-link sidebar__item' to='/questions'>
                       Questions
                     </NavLink>
-                  </li>
+                  </li> */}
                   <li className='nav-item'>
                     <NavLink className='nav-link sidebar__item' to='/introduce'>
                       Introduce

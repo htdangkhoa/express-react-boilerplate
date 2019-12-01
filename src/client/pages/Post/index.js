@@ -2,7 +2,9 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Paginate from 'react-paginate';
+
 import Layout from 'components/Layout';
+
 import image from 'assets/image.png';
 import { formatDate } from 'utils';
 import * as action from './action';

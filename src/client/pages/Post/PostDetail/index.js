@@ -6,8 +6,8 @@ import ReactMarkdown from 'react-markdown';
 import ReactMde from 'react-mde';
 import 'react-mde/lib/styles/css/react-mde-all.css';
 import { Converter } from 'showdown';
-
 import moment from 'moment-timezone';
+
 import Layout from 'components/Layout';
 
 import * as action from './action';
@@ -74,8 +74,12 @@ const PostDetail = ({
           ))}
         </div>
 
-        <div className='markdown-body'>
-          <ReactMarkdown source={post?.content} escapeHtml={false} />
+        <div className='mde-preview'>
+          <ReactMarkdown
+            source={post?.content}
+            escapeHtml={false}
+            className='mde-preview-content'
+          />
         </div>
       </div>
 
@@ -121,7 +125,13 @@ const PostDetail = ({
             <div className='card-body'>
               <div>{comment.user?.name}</div>
 
-              <ReactMarkdown key={comment?._id} source={comment?.comment} />
+              <div className='mde-preview'>
+                <ReactMarkdown
+                  key={comment?._id}
+                  source={comment?.comment}
+                  className='mde-preview-content'
+                />
+              </div>
 
               <div>
                 {moment(comment.createAt || new Date())
