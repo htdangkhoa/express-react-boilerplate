@@ -14,6 +14,8 @@ import useMongo from './mongo';
 global.__CLIENT__ = false;
 global.__SERVER__ = true;
 
+const port = process.env.PORT || 8888;
+
 (async () => {
   hooks();
 
@@ -28,13 +30,13 @@ global.__SERVER__ = true;
       app: server,
     });
 
-    createServer(server).listen(process.env.PORT || 8888, () => {
+    createServer(server).listen(port, () => {
       console.clear();
 
       console.log(`Starting the ${NODE_ENV} server...`);
 
       if (isDev) {
-        openBrowser('http://localhost:8888/');
+        openBrowser(`http://localhost:${port}/`);
       }
     });
   } catch (error) {

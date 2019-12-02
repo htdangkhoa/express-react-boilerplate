@@ -1,7 +1,7 @@
 {
   "name": "erb",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "dist/index.js",
   "license": "MIT",
   "scripts": {
     "start": "NODE_ENV=production node -r dotenv-flow/config dist/index.js",
