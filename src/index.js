@@ -28,7 +28,7 @@ global.__SERVER__ = true;
       app: server,
     });
 
-    createServer(server).listen(8888, () => {
+    createServer(server).listen(process.env.PORT || 8888, () => {
       console.clear();
 
       console.log(`Starting the ${NODE_ENV} server...`);
