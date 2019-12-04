@@ -2,6 +2,7 @@ import { createServer } from 'http';
 import openBrowser from 'react-dev-utils/openBrowser';
 import {
   NODE_ENV,
+  PORT,
   isDev,
   DB_HOST as host,
   DB_NAME as database,
@@ -13,8 +14,6 @@ import useMongo from './mongo';
 
 global.__CLIENT__ = false;
 global.__SERVER__ = true;
-
-const port = process.env.PORT || 8888;
 
 (async () => {
   hooks();
@@ -30,13 +29,13 @@ const port = process.env.PORT || 8888;
       app: server,
     });
 
-    createServer(server).listen(port, () => {
+    createServer(server).listen(PORT, () => {
       console.clear();
 
       console.log(`Starting the ${NODE_ENV} server...`);
 
       if (isDev) {
-        openBrowser(`http://localhost:${port}/`);
+        openBrowser(`http://localhost:${PORT}/`);
       }
     });
   } catch (error) {

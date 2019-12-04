@@ -245,7 +245,4 @@ const mapDispatchToProps = {
   updateTokenAction: globalAction.updateTokenAction,
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(withRouter(Layout));
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Layout));
