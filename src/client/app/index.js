@@ -29,11 +29,4 @@ const App = (props) => {
 
 const mapStateToProps = ({ global }) => ({ global });
 
-const mapDispatchToProps = {};
-
-export default hot(module)(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps,
-  )(App),
-);
+export default hot(module)(connect(mapStateToProps)(App));
