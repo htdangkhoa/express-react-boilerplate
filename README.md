@@ -29,11 +29,13 @@
 - Client side [(React)](https://reactjs.org).
 - Universal routing [(react-router)](https://github.com/ReactTraining/react-router).
 - State management [(Redux)](https://redux.js.org).
+- Easy debuging with [(redux-devtools)](https://github.com/reduxjs/redux-devtools).
 - Tweak React components in real time [(react-hot-loader)](https://github.com/gaearon/react-hot-loader).
 - SEO [(react-helmet)](https://github.com/nfl/react-helmet).
 - Promise based HTTP client for the browser and NodeJS [(axios)](https://github.com/axios/axios).
 - Internationalization [(i18next)](https://www.i18next.com/) & [(react-i18next)](https://github.com/i18next/react-i18next).
 - Light & Dark theme.
+- Data fetching from server-side.
 - ES6.
 - Flowtype.
 - ESlint.
