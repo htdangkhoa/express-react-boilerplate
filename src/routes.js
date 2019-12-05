@@ -8,8 +8,8 @@ import {
   getCommentsAction,
 } from 'pages/Post/PostDetail/action';
 import CreatePost from 'pages/Post/CreatePost';
-import About from 'pages/About';
 import Introduce from 'pages/Introduce';
+import Contact from 'pages/Contact';
 import NotFound from 'pages/NotFound';
 import App from './client/app';
 
@@ -48,14 +48,14 @@ export default [
         title: 'Register',
       },
       {
-        path: '/about',
-        component: About,
-        title: 'About',
-      },
-      {
         path: '/introduce',
         component: Introduce,
         title: 'Introduce',
+      },
+      {
+        path: '/contact',
+        component: Contact,
+        title: 'Contact',
       },
       {
         component: NotFound,

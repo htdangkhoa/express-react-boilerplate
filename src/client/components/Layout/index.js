@@ -63,8 +63,8 @@ const Child = ({
               </div>
 
               <p>
-                Chia sẻ những kinh nghiệm, kiến thức, các case study giúp mọi
-                người có thể tạo ra những service chuyên nghiệp hơn
+                Sharing experiences, knowledge, and case studies help people
+                create more professional applications and products.
               </p>
 
               <div className='sidebar__section'>
