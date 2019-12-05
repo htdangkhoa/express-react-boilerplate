@@ -3,7 +3,8 @@ const webpack = require('webpack');
 const TerserWebpackPlugin = require('terser-webpack-plugin');
 const CompressionWebpackPlugin = require('compression-webpack-plugin');
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
-const { NODE_ENV, isDev } = require('../config');
+const WebpackBar = require('webpackbar');
+const { NODE_ENV, isDev, PORT } = require('../config');
 
 const getEntries = () => {
   let entries = [resolve(__dirname, '..', 'client/index.js')];
@@ -36,11 +37,11 @@ const getPlugins = () => {
   if (isDev) {
     plugins = [
       ...plugins,
-      new webpack.ProgressPlugin(),
+      new WebpackBar(),
       new webpack.HotModuleReplacementPlugin(),
       new FriendlyErrorsWebpackPlugin({
         compilationSuccessInfo: {
-          messages: ['=====> Listening at http://localhost:8888'],
+          messages: [`=====> Listening at http://localhost:${PORT}`],
         },
       }),
     ];
@@ -65,7 +66,7 @@ module.exports = {
         test: /\.(t|j)s?$/,
         exclude: /node_modules/,
         loader: 'babel',
-        // options: { cacheDirectory: isDev },
+        options: { cacheDirectory: isDev },
       },
       {
         test: /\.css$/,

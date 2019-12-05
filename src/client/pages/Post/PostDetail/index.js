@@ -2,24 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import ReactMarkdown from 'react-markdown';
 import ReactMde from 'react-mde';
-import 'react-mde/lib/styles/css/react-mde-all.css';
-import { Converter } from 'showdown';
 import moment from 'moment-timezone';
 
 import Layout from 'components/Layout';
+import MdViewer, { shortnameToUnicode, converter } from 'components/MdViewer';
 
 import * as action from './action';
 import '../styles.scss';
-
-const converter = new Converter({
-  tables: true,
-  simplifiedAutoLink: true,
-  strikethrough: true,
-  tasklists: true,
-  omitExtraWLInCodeBlocks: true,
-});
 
 const PostDetail = ({
   match: { params },
@@ -74,13 +64,7 @@ const PostDetail = ({
           ))}
         </div>
 
-        <div className='mde-preview'>
-          <ReactMarkdown
-            source={post?.content}
-            escapeHtml={false}
-            className='mde-preview-content'
-          />
-        </div>
+        <MdViewer source={post?.content} />
       </div>
 
       <hr />
@@ -106,7 +90,9 @@ const PostDetail = ({
               onChange={onInputChange}
               value={source}
               generateMarkdownPreview={async (markdown) => {
-                const html = await converter.makeHtml(markdown);
+                const supportEmoji = shortnameToUnicode(markdown);
+
+                const html = await converter.makeHtml(supportEmoji);
 
                 return html;
               }}
@@ -125,13 +111,7 @@ const PostDetail = ({
             <div className='card-body'>
               <div>{comment.user?.name}</div>
 
-              <div className='mde-preview'>
-                <ReactMarkdown
-                  key={comment?._id}
-                  source={comment?.comment}
-                  className='mde-preview-content'
-                />
-              </div>
+              <MdViewer key={comment?._id} source={comment?.comment} />
 
               <div>
                 {moment(comment.createAt || new Date())
@@ -157,7 +137,4 @@ const mapDispatchToProps = {
   postCommentAction: action.postCommentAction,
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(PostDetail);
+export default connect(mapStateToProps, mapDispatchToProps)(PostDetail);

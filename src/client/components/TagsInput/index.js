@@ -1,7 +1,5 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-
-// import './styles.scss';
 
 const TagsInput = ({
   className,
@@ -14,6 +12,10 @@ const TagsInput = ({
   const [tags, setTags] = useState(value);
 
   const [val, setVal] = useState('');
+
+  useEffect(() => {
+    setTags(value);
+  }, [value]);
 
   const onInputKeyDown = async ({ keyCode, target }) => {
     if (keyCode === 13 && target.value) {

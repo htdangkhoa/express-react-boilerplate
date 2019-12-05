@@ -1,6 +1,6 @@
 const {
   NODE_ENV = 'development',
-  PORT = 8888,
+  PORT = 8080,
   DB_HOST,
   DB_NAME,
   DB_USER,

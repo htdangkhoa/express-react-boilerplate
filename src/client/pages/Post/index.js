@@ -74,7 +74,4 @@ const mapDispatchToProps = {
   getPostsAction: action.getPostsAction,
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(Post);
+export default connect(mapStateToProps, mapDispatchToProps)(Post);

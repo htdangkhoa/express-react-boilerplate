@@ -12,7 +12,7 @@
   </a>
 
   <a href='https://github.com/prettier/prettier'>
-    <img src='https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square' alt='code style: prettier' />
+    <img src='https://img.shields.io/badge/code_style-prettier-ff69b4.svg' alt='code style: prettier' />
   </a>
 
   <a href='https://github.com/htdangkhoa/erb/actions'>
@@ -25,6 +25,7 @@
 </p>
 
 ## Features
+
 - Server side [(Express)](https://expressjs.com).
 - Client side [(React)](https://reactjs.org).
 - Universal routing [(react-router)](https://github.com/ReactTraining/react-router).
@@ -42,26 +43,32 @@
 - Prettier.
 
 ## Requirements
+
 - [Node](https://nodejs.org/en/) >= 10.13.0
 
 ## Getting Started
+
 **1. Clone repo:**
+
 ```bash
 $ git clone https://github.com/htdangkhoa/erb.git
 $ cd erb
 ```
 
 **2. Install dependencies:**
+
 ```bash
 $ yarn # or npm install
 ```
 
 **3. Run it:**
+
 ```bash
 $ yarn dev # or npm run dev
 ```
 
 ## Build
+
 ```bash
 $ yarn build # or npm run build
 ```
@@ -71,6 +78,7 @@ $ yarn build # or npm run build
 > **NOTE**: You can change environment variables in `.env.development` for Development mode or `.env.production` for Production mode.
 
 ## Scripts
+
 | Script    | Description                                                                           |
 | --------- | ------------------------------------------------------------------------------------- |
 | dev       | Start the development server.                                                         |

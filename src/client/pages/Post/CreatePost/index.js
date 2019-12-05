@@ -1,29 +1,20 @@
+/* @flow */
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 import { Redirect } from 'react-router';
 import ReactMde from 'react-mde';
-import 'react-mde/lib/styles/css/react-mde-all.css';
-import { Converter } from 'showdown';
 import { toast } from 'react-toastify';
 
 import Layout from 'components/Layout';
 import TagsInput from 'components/TagsInput';
+import { shortnameToUnicode, converter } from 'components/MdViewer';
 
 import * as action from './action';
 
 import './styles.scss';
 
-const converter = new Converter({
-  tables: true,
-  simplifiedAutoLink: true,
-  strikethrough: true,
-  tasklists: true,
-  omitExtraWLInCodeBlocks: true,
-});
-
 const CreatePost = ({
-  title,
+  route: { title },
   createPost: { post, error },
   createPostAction,
   deleteLocalPostAction,
@@ -49,6 +40,12 @@ const CreatePost = ({
   const [tags, setTags] = useState([]);
 
   const onTagsInputChange = (values) => {
+    if (values.length > 5) {
+      setTags([...tags]);
+
+      return;
+    }
+
     setTags([...values]);
   };
 
@@ -92,13 +89,25 @@ const CreatePost = ({
       <TagsInput
         className='tags__group'
         inputClassName='tags__input'
-        placeholder='Tag your post'
+        placeholder='Tag your post. Maximum 5 tags. At least 1 tag!'
         value={tags}
         onChange={onTagsInputChange}
         tagComponent={(tag, i) => (
-          <Link to={`/tags/${tag}`} key={i} className='tag__item'>
-            {tag}
-          </Link>
+          <div key={i} className='tag__item tag__input__item'>
+            <span>{tag}</span>
+
+            <button
+              type='button'
+              className='ml-1 close'
+              aria-label='Close'
+              onClick={() => {
+                tags.shift(i, 1);
+
+                setTags([...tags]);
+              }}>
+              <i className='fas fa-sm fa-times'></i>
+            </button>
+          </div>
         )}
       />
 
@@ -108,7 +117,9 @@ const CreatePost = ({
         onChange={onInputChange}
         value={source}
         generateMarkdownPreview={async (markdown) => {
-          const html = await converter.makeHtml(markdown);
+          const supportEmoji = shortnameToUnicode(markdown);
+
+          const html = await converter.makeHtml(supportEmoji);
 
           return html;
         }}
@@ -133,7 +144,4 @@ const mapDispatchToProps = {
   deleteLocalPostAction: action.deleteLocalPostAction,
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(CreatePost);
+export default connect(mapStateToProps, mapDispatchToProps)(CreatePost);
