@@ -87,11 +87,11 @@ app.get('/*', async (req: Request, res: Response) => {
 
     const head = Helmet.renderStatic();
 
-    // if (context.url) {
-    //   res.status(301).setHeader('location', context.url);
+    if (context.url) {
+      res.status(301).setHeader('location', context.url);
 
-    //   return res.end();
-    // }
+      return res.end();
+    }
 
     const status = context.status === '404' ? 404 : 200;
 
@@ -114,6 +114,8 @@ app.get('/*', async (req: Request, res: Response) => {
           .send(renderHtml({ head, htmlContent, initialState }));
       });
   } catch (error) {
+    console.error(error);
+
     console.error(`==> 😭  Rendering routes error: ${error}`);
 
     return res.status(404).send('Not Found :(');

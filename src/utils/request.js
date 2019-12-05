@@ -8,7 +8,7 @@ import cookies from './cookies';
 import { actionGenerator } from './';
 
 const baseUrl = __DEV__
-  ? 'http://localhost:8888/api'
+  ? 'http://localhost:8080/api'
   : 'https://htdangkhoa-erb.herokuapp.com/api';
 
 export const request = async ({
@@ -83,6 +83,8 @@ export const requestAction = (options: ApiActionType) => async (
       payload: result,
     });
   } catch (err) {
+    console.error(err);
+
     if (__CLIENT__) {
       dispatch(updateLoadingAction(false));
     }

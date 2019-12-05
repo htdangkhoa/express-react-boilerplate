@@ -86,7 +86,4 @@ const mapDispatchToProps = {
   registerAction: action.registerAction,
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(Register);
+export default connect(mapStateToProps, mapDispatchToProps)(Register);
