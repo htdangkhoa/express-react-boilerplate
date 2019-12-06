@@ -22,6 +22,12 @@ import configureStore from './store';
 
 const app = Express();
 
+app.use('*.js', helmet({ noSniff: false }), (req, res, next) => {
+  req.url += '.gz';
+  res.set('Content-Encoding', 'gzip');
+  return next();
+});
+
 app.use(Express.static(resolve(__dirname, 'public')));
 
 if (isDev) {
