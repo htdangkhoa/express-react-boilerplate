@@ -53,12 +53,12 @@ const PostDetail = ({
 
   return (
     <Layout title={post?.title || ''}>
-      <div className='post__item'>
-        <h1 className='post__title'>{post?.title}</h1>
+      <div className="post__item">
+        <h1 className="post__title">{post?.title}</h1>
 
-        <div className='tag__group'>
+        <div className="tag__group">
           {post?.tags?.map((tag, i) => (
-            <Link to={`/tags/${tag}`} key={i} className='tag__item'>
+            <Link to={`/tags/${tag}`} key={i} className="tag__item">
               {tag}
             </Link>
           ))}
@@ -69,14 +69,14 @@ const PostDetail = ({
 
       <hr />
 
-      <div className='comment__container'>
+      <div className="comment__container">
         <h5>Comments</h5>
 
         {!accessToken && (
           <>
-            <div className='card comment__login'>
-              <div className='card-body text-center'>
-                <Link to='/login'>Login to comment.</Link>
+            <div className="card comment__login">
+              <div className="card-body text-center">
+                <Link to="/login">Login to comment.</Link>
               </div>
             </div>
           </>
@@ -99,7 +99,7 @@ const PostDetail = ({
             />
 
             <button
-              className='btn btn-primary btn-block comment__submit'
+              className="btn btn-primary btn-block comment__submit"
               onClick={onPostComment}>
               Post Comment
             </button>
@@ -107,8 +107,8 @@ const PostDetail = ({
         )}
 
         {comments?.map((comment) => (
-          <div className='card comment__item' key={comment._id}>
-            <div className='card-body'>
+          <div className="card comment__item" key={comment._id}>
+            <div className="card-body">
               <div>{comment.user?.name}</div>
 
               <MdViewer key={comment?._id} source={comment?.comment} />
@@ -137,4 +137,7 @@ const mapDispatchToProps = {
   postCommentAction: action.postCommentAction,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(PostDetail);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(PostDetail);

@@ -5,7 +5,7 @@ import { type Dispatch } from 'redux';
 import { type RequestType, type ApiActionType, type ApiDataType } from 'types';
 import { updateLoadingAction } from 'store/action';
 import cookies from './cookies';
-import { actionGenerator } from './';
+import { actionGenerator } from '.';
 
 const baseUrl = __DEV__
   ? 'http://localhost:8080/api'

@@ -26,8 +26,8 @@ converter.setFlavor('github');
 
 const MdViewer = ({ source = '' }) => {
   return (
-    <div className='mde-preview'>
-      <div className='mde-preview-content'>
+    <div className="mde-preview">
+      <div className="mde-preview-content">
         <>{ReactHTMLParser(converter.makeHtml(shortnameToUnicode(source)))}</>
       </div>
     </div>

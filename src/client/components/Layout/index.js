@@ -33,12 +33,12 @@ const Child = ({
   return (
     <>
       <Helmet title={title} />
-      <div className='container'>
-        <div className='row main_container'>
+      <div className="container">
+        <div className="row main_container">
           {showSidebar && (
-            <div className='col-md-3 col-12 sidebar'>
-              <div className='sidebar__title__container'>
-                <Link to='/' className='sidebar__title mr-auto'>
+            <div className="col-md-3 col-12 sidebar">
+              <div className="sidebar__title__container">
+                <Link to="/" className="sidebar__title mr-auto">
                   <h1>KBlog</h1>
                 </Link>
 
@@ -46,19 +46,19 @@ const Child = ({
                   checked={theme === 'dark'}
                   onChange={onChangeTheme}
                   checkedIcon={
-                    <div className='switch__icon'>
-                      <i className='fas fa-sun fa-sm'></i>
+                    <div className="switch__icon">
+                      <i className="fas fa-sun fa-sm"></i>
                     </div>
                   }
                   uncheckedIcon={
-                    <div className='switch__icon'>
-                      <i className='fas fa-moon fa-sm fa-flip-horizontal'></i>
+                    <div className="switch__icon">
+                      <i className="fas fa-moon fa-sm fa-flip-horizontal"></i>
                     </div>
                   }
-                  onColor='#fbfbff'
-                  offColor='#222725'
-                  onHandleColor='#449dd1'
-                  offHandleColor='#449dd1'
+                  onColor="#fbfbff"
+                  offColor="#222725"
+                  onHandleColor="#449dd1"
+                  offHandleColor="#449dd1"
                 />
               </div>
 
@@ -67,20 +67,20 @@ const Child = ({
                 create more professional applications and products.
               </p>
 
-              <div className='sidebar__section'>
+              <div className="sidebar__section">
                 <h5>Account</h5>
 
                 {!accessToken && (
                   <>
-                    <ul className='nav flex-column'>
-                      <li className='nav-item'>
-                        <Link className='nav-link sidebar__item' to='/login'>
+                    <ul className="nav flex-column">
+                      <li className="nav-item">
+                        <Link className="nav-link sidebar__item" to="/login">
                           Login
                         </Link>
                       </li>
 
-                      <li className='nav-item'>
-                        <Link className='nav-link sidebar__item' to='/register'>
+                      <li className="nav-item">
+                        <Link className="nav-link sidebar__item" to="/register">
                           Register
                         </Link>
                       </li>
@@ -90,26 +90,26 @@ const Child = ({
 
                 {user && (
                   <>
-                    <ul className='nav flex-column'>
-                      <li className='nav-item'>
+                    <ul className="nav flex-column">
+                      <li className="nav-item">
                         <NavLink
-                          className='nav-link sidebar__item'
-                          to='/profile'>
+                          className="nav-link sidebar__item"
+                          to="/profile">
                           {user?.name}
                         </NavLink>
                       </li>
 
-                      <li className='nav-item'>
+                      <li className="nav-item">
                         <NavLink
-                          className='nav-link sidebar__item'
-                          to='/create-post'>
+                          className="nav-link sidebar__item"
+                          to="/create-post">
                           Create post
                         </NavLink>
                       </li>
 
-                      <li className='nav-item'>
+                      <li className="nav-item">
                         <Link
-                          className='nav-link sidebar__item'
+                          className="nav-link sidebar__item"
                           to={pathname}
                           onClick={() => {
                             updateTokenAction();
@@ -122,14 +122,14 @@ const Child = ({
                 )}
               </div>
 
-              <div className='sidebar__section'>
+              <div className="sidebar__section">
                 <h5>Menu</h5>
 
-                <ul className='nav flex-column'>
-                  <li className='nav-item'>
+                <ul className="nav flex-column">
+                  <li className="nav-item">
                     <NavLink
-                      className='nav-link sidebar__item'
-                      to='/'
+                      className="nav-link sidebar__item"
+                      to="/"
                       isActive={(_, { pathname: path }) => {
                         return path.match(/^\/$/) || path.match(/^\/p\//);
                       }}>
@@ -141,40 +141,40 @@ const Child = ({
                       Questions
                     </NavLink>
                   </li> */}
-                  <li className='nav-item'>
-                    <NavLink className='nav-link sidebar__item' to='/introduce'>
+                  <li className="nav-item">
+                    <NavLink className="nav-link sidebar__item" to="/introduce">
                       Introduce
                     </NavLink>
                   </li>
-                  <li className='nav-item'>
-                    <NavLink className='nav-link sidebar__item' to='/contact'>
+                  <li className="nav-item">
+                    <NavLink className="nav-link sidebar__item" to="/contact">
                       Contact
                     </NavLink>
                   </li>
                 </ul>
               </div>
 
-              <div className='sidebar__section'>
+              <div className="sidebar__section">
                 <h5>Links</h5>
 
-                <ul className='list-group list-group-horizontal'>
-                  <a href='https://github.com/htdangkhoa' target='_'>
-                    <li className='list-group-item p-0 rounded-circle sidebar__link'>
-                      <i className='fab fa-github-alt'></i>
+                <ul className="list-group list-group-horizontal">
+                  <a href="https://github.com/htdangkhoa" target="_">
+                    <li className="list-group-item p-0 rounded-circle sidebar__link">
+                      <i className="fab fa-github-alt"></i>
                     </li>
                   </a>
 
                   <a
-                    href='https://www.linkedin.com/in/khoa-đăng-7575a6136'
-                    target='_'>
-                    <li className='list-group-item p-0 rounded-circle sidebar__link'>
-                      <i className='fab fa-linkedin'></i>
+                    href="https://www.linkedin.com/in/khoa-đăng-7575a6136"
+                    target="_">
+                    <li className="list-group-item p-0 rounded-circle sidebar__link">
+                      <i className="fab fa-linkedin"></i>
                     </li>
                   </a>
 
-                  <a href='mailto:huynhtran.dangkhoa@gmail.com' target='_'>
-                    <li className='list-group-item p-0 rounded-circle sidebar__link'>
-                      <i className='far fa-envelope'></i>
+                  <a href="mailto:huynhtran.dangkhoa@gmail.com" target="_">
+                    <li className="list-group-item p-0 rounded-circle sidebar__link">
+                      <i className="far fa-envelope"></i>
                     </li>
                   </a>
                 </ul>
@@ -216,7 +216,7 @@ const Layout = (props) => {
   }, []);
 
   if (needLogin && !accessToken) {
-    return <Redirect to='/login' />;
+    return <Redirect to="/login" />;
   }
 
   if (pathname === '/login' && accessToken) {
@@ -247,4 +247,7 @@ const mapDispatchToProps = {
   updateTokenAction: globalAction.updateTokenAction,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Layout));
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(withRouter(Layout));

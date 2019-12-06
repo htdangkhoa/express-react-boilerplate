@@ -32,18 +32,18 @@ const Post = ({
     <Layout title={title}>
       <div>
         {posts.map((post) => (
-          <div key={post._id} className='post__item'>
+          <div key={post._id} className="post__item">
             <div>{formatDate(post.publishAt)}</div>
 
-            <Link to={`/p/${post._id}`} className='post__title'>
+            <Link to={`/p/${post._id}`} className="post__title">
               <h3>{post.title}</h3>
             </Link>
 
-            <p className='post__description'>{post.description}</p>
+            <p className="post__description">{post.description}</p>
 
-            <div className='tag__group'>
+            <div className="tag__group">
               {post.tags.map((tag, i) => (
-                <Link to={`/tags/${tag}`} key={i} className='tag__item'>
+                <Link to={`/tags/${tag}`} key={i} className="tag__item">
                   {tag}
                 </Link>
               ))}
@@ -56,8 +56,8 @@ const Post = ({
           marginPagesDisplayed={3}
           pageRangeDisplayed={5}
           initialPage={page}
-          previousLabel={<i className='fa fa-angle-left' />}
-          nextLabel={<i className='fa fa-angle-right' />}
+          previousLabel={<i className="fa fa-angle-left" />}
+          nextLabel={<i className="fa fa-angle-right" />}
           onPageChange={onPageChange}
           containerClassName={'pagination row'}
           subContainerClassName={'pages pagination'}
@@ -74,4 +74,7 @@ const mapDispatchToProps = {
   getPostsAction: action.getPostsAction,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Post);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Post);

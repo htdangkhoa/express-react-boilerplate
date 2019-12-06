@@ -13,41 +13,41 @@ let Login = ({ handleSubmit, loginAction, route: { title } }) => {
   };
 
   return (
-    <Layout title={title} returnPath='/' showSidebar={false}>
-      <h2 className='text-center'>Login</h2>
+    <Layout title={title} returnPath="/" showSidebar={false}>
+      <h2 className="text-center">Login</h2>
 
-      <div className='row'>
-        <div className='col col-md-6 offset-md-3'>
+      <div className="row">
+        <div className="col col-md-6 offset-md-3">
           <form onSubmit={handleSubmit(onSubmit)}>
-            <div className='form-group'>
+            <div className="form-group">
               <b>
-                <label htmlFor='email'>Email</label>
+                <label htmlFor="email">Email</label>
               </b>
               <Field
-                id='email'
-                name='email'
-                type='email'
-                component='input'
-                placeholder='Email'
-                className='form-control'
+                id="email"
+                name="email"
+                type="email"
+                component="input"
+                placeholder="Email"
+                className="form-control"
               />
             </div>
 
-            <div className='form-group'>
+            <div className="form-group">
               <b>
-                <label htmlFor='password'>Password</label>
+                <label htmlFor="password">Password</label>
               </b>
               <Field
-                id='password'
-                name='password'
-                type='password'
-                component='input'
-                placeholder='Password'
-                className='form-control'
+                id="password"
+                name="password"
+                type="password"
+                component="input"
+                placeholder="Password"
+                className="form-control"
               />
             </div>
 
-            <button type='submit' className='btn btn-primary btn-block'>
+            <button type="submit" className="btn btn-primary btn-block">
               Login
             </button>
           </form>
@@ -70,4 +70,7 @@ const mapDispatchToProps = {
   loginAction: action.loginAction,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Login);
