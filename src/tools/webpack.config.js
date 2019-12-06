@@ -31,6 +31,7 @@ const getPlugins = () => {
     new CompressionWebpackPlugin({
       algorithm: 'gzip',
       test: /\.js(\?.*)?$/i,
+      deleteOriginalAssets: !isDev,
     }),
   ];
 
