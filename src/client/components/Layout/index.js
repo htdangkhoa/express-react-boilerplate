@@ -158,15 +158,17 @@ const Child = ({
                 <h5>Links</h5>
 
                 <ul className='list-group list-group-horizontal'>
-                  <a href='#' target='_'>
-                    <li className='list-group-item p-0 rounded-circle sidebar__link'>
-                      <i className='fab fa-facebook-f'></i>
-                    </li>
-                  </a>
-
                   <a href='https://github.com/htdangkhoa' target='_'>
                     <li className='list-group-item p-0 rounded-circle sidebar__link'>
                       <i className='fab fa-github-alt'></i>
+                    </li>
+                  </a>
+
+                  <a
+                    href='https://www.linkedin.com/in/khoa-đăng-7575a6136'
+                    target='_'>
+                    <li className='list-group-item p-0 rounded-circle sidebar__link'>
+                      <i className='fab fa-linkedin'></i>
                     </li>
                   </a>
 
