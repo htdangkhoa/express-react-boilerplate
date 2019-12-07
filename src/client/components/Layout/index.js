@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
 import { Redirect, withRouter } from 'react-router';
@@ -8,6 +8,7 @@ import {
   RedirectWithoutLastLocation,
 } from 'react-router-last-location';
 import Switch from 'react-switch';
+import { Collapse } from 'reactstrap';
 import PropTypes from 'prop-types';
 import * as globalAction from 'store/action';
 import './styles.scss';
@@ -30,158 +31,175 @@ const Child = ({
     updateThemeAction(checked ? 'dark' : 'light');
   };
 
+  const [collapsed, setCollapsed] = useState(true);
+
+  const toggleNavbar = () => setCollapsed(!collapsed);
+
   return (
     <>
       <Helmet title={title} />
       <div className='container'>
         <div className='row main_container'>
           {showSidebar && (
-            <div className='col-md-3 col-12 sidebar'>
-              <div className='sidebar__title__container'>
-                <Link to='/' className='sidebar__title mr-auto'>
-                  <h1>KBlog</h1>
-                </Link>
-
-                <Switch
-                  checked={theme === 'dark'}
-                  onChange={onChangeTheme}
-                  checkedIcon={
-                    <div className='switch__icon'>
-                      <i className='fas fa-sun fa-sm'></i>
-                    </div>
-                  }
-                  uncheckedIcon={
-                    <div className='switch__icon'>
-                      <i className='fas fa-moon fa-sm fa-flip-horizontal'></i>
-                    </div>
-                  }
-                  onColor='#fbfbff'
-                  offColor='#222725'
-                  onHandleColor='#449dd1'
-                  offHandleColor='#449dd1'
-                />
+            <div className='col-lg-3 col-12 sidebar'>
+              <div className='d-lg-none justify-content-end d-flex mb-lg-0 mb-2'>
+                <button className='btn btn-primary' onClick={toggleNavbar}>
+                  <i className='fas fa-bars'></i>
+                </button>
               </div>
 
-              <p>
-                Sharing experiences, knowledge, and case studies help people
-                create more professional applications and products.
-              </p>
+              <Collapse isOpen={!collapsed} navbar className='d-lg-block'>
+                <div className='sidebar__title__container'>
+                  <Link to='/' className='sidebar__title mr-auto'>
+                    <h1>KBlog</h1>
+                  </Link>
 
-              <div className='sidebar__section'>
-                <h5>Account</h5>
+                  <Switch
+                    checked={theme === 'dark'}
+                    onChange={onChangeTheme}
+                    checkedIcon={
+                      <div className='switch__icon'>
+                        <i className='fas fa-sun fa-sm'></i>
+                      </div>
+                    }
+                    uncheckedIcon={
+                      <div className='switch__icon'>
+                        <i className='fas fa-moon fa-sm fa-flip-horizontal'></i>
+                      </div>
+                    }
+                    onColor='#fbfbff'
+                    offColor='#222725'
+                    onHandleColor='#449dd1'
+                    offHandleColor='#449dd1'
+                  />
+                </div>
 
-                {!accessToken && (
-                  <>
-                    <ul className='nav flex-column'>
-                      <li className='nav-item'>
-                        <Link className='nav-link sidebar__item' to='/login'>
-                          Login
-                        </Link>
-                      </li>
+                <p>
+                  Sharing experiences, knowledge, and case studies help people
+                  create more professional applications and products.
+                </p>
 
-                      <li className='nav-item'>
-                        <Link className='nav-link sidebar__item' to='/register'>
-                          Register
-                        </Link>
-                      </li>
-                    </ul>
-                  </>
-                )}
+                <div className='sidebar__section'>
+                  <h5>Account</h5>
 
-                {user && (
-                  <>
-                    <ul className='nav flex-column'>
-                      <li className='nav-item'>
-                        <NavLink
-                          className='nav-link sidebar__item'
-                          to='/profile'>
-                          {user?.name}
-                        </NavLink>
-                      </li>
+                  {!accessToken && (
+                    <>
+                      <ul className='nav flex-column'>
+                        <li className='nav-item'>
+                          <Link className='nav-link sidebar__item' to='/login'>
+                            Login
+                          </Link>
+                        </li>
 
-                      <li className='nav-item'>
-                        <NavLink
-                          className='nav-link sidebar__item'
-                          to='/create-post'>
-                          Create post
-                        </NavLink>
-                      </li>
+                        <li className='nav-item'>
+                          <Link
+                            className='nav-link sidebar__item'
+                            to='/register'>
+                            Register
+                          </Link>
+                        </li>
+                      </ul>
+                    </>
+                  )}
 
-                      <li className='nav-item'>
-                        <Link
-                          className='nav-link sidebar__item'
-                          to={pathname}
-                          onClick={() => {
-                            updateTokenAction();
-                          }}>
-                          Logout
-                        </Link>
-                      </li>
-                    </ul>
-                  </>
-                )}
-              </div>
+                  {user && (
+                    <>
+                      <ul className='nav flex-column'>
+                        <li className='nav-item'>
+                          <NavLink
+                            className='nav-link sidebar__item'
+                            to='/profile'>
+                            {user?.name}
+                          </NavLink>
+                        </li>
 
-              <div className='sidebar__section'>
-                <h5>Menu</h5>
+                        <li className='nav-item'>
+                          <NavLink
+                            className='nav-link sidebar__item'
+                            to='/create-post'>
+                            Create post
+                          </NavLink>
+                        </li>
 
-                <ul className='nav flex-column'>
-                  <li className='nav-item'>
-                    <NavLink
-                      className='nav-link sidebar__item'
-                      to='/'
-                      isActive={(_, { pathname: path }) => {
-                        return path.match(/^\/$/) || path.match(/^\/p\//);
-                      }}>
-                      Posts
-                    </NavLink>
-                  </li>
-                  {/* <li className='nav-item'>
+                        <li className='nav-item'>
+                          <Link
+                            className='nav-link sidebar__item'
+                            to={pathname}
+                            onClick={() => {
+                              updateTokenAction();
+                            }}>
+                            Logout
+                          </Link>
+                        </li>
+                      </ul>
+                    </>
+                  )}
+                </div>
+
+                <div className='sidebar__section'>
+                  <h5>Menu</h5>
+
+                  <ul className='nav flex-column'>
+                    <li className='nav-item'>
+                      <NavLink
+                        className='nav-link sidebar__item'
+                        to='/'
+                        isActive={(_, { pathname: path }) => {
+                          return path.match(/^\/$/) || path.match(/^\/p\//);
+                        }}>
+                        Posts
+                      </NavLink>
+                    </li>
+                    {/* <li className='nav-item'>
                     <NavLink className='nav-link sidebar__item' to='/questions'>
                       Questions
                     </NavLink>
                   </li> */}
-                  <li className='nav-item'>
-                    <NavLink className='nav-link sidebar__item' to='/introduce'>
-                      Introduce
-                    </NavLink>
-                  </li>
-                  <li className='nav-item'>
-                    <NavLink className='nav-link sidebar__item' to='/contact'>
-                      Contact
-                    </NavLink>
-                  </li>
-                </ul>
-              </div>
-
-              <div className='sidebar__section'>
-                <h5>Links</h5>
-
-                <ul className='list-group list-group-horizontal'>
-                  <a href='https://github.com/htdangkhoa' target='_'>
-                    <li className='list-group-item p-0 rounded-circle sidebar__link'>
-                      <i className='fab fa-github-alt'></i>
+                    <li className='nav-item'>
+                      <NavLink
+                        className='nav-link sidebar__item'
+                        to='/introduce'>
+                        Introduce
+                      </NavLink>
                     </li>
-                  </a>
-
-                  <a
-                    href='https://www.linkedin.com/in/khoa-đăng-7575a6136'
-                    target='_'>
-                    <li className='list-group-item p-0 rounded-circle sidebar__link'>
-                      <i className='fab fa-linkedin'></i>
+                    <li className='nav-item'>
+                      <NavLink className='nav-link sidebar__item' to='/contact'>
+                        Contact
+                      </NavLink>
                     </li>
-                  </a>
+                  </ul>
+                </div>
 
-                  <a href='mailto:huynhtran.dangkhoa@gmail.com' target='_'>
-                    <li className='list-group-item p-0 rounded-circle sidebar__link'>
-                      <i className='far fa-envelope'></i>
-                    </li>
-                  </a>
-                </ul>
-              </div>
+                <div className='sidebar__section'>
+                  <h5>Links</h5>
+
+                  <ul className='list-group list-group-horizontal'>
+                    <a href='https://github.com/htdangkhoa' target='_'>
+                      <li className='list-group-item p-0 rounded-circle sidebar__link'>
+                        <i className='fab fa-github-alt'></i>
+                      </li>
+                    </a>
+
+                    <a
+                      href='https://www.linkedin.com/in/khoa-đăng-7575a6136'
+                      target='_'>
+                      <li className='list-group-item p-0 rounded-circle sidebar__link'>
+                        <i className='fab fa-linkedin'></i>
+                      </li>
+                    </a>
+
+                    <a href='mailto:huynhtran.dangkhoa@gmail.com' target='_'>
+                      <li className='list-group-item p-0 rounded-circle sidebar__link'>
+                        <i className='far fa-envelope'></i>
+                      </li>
+                    </a>
+                  </ul>
+                </div>
+              </Collapse>
             </div>
           )}
-          <div className={`${showSidebar ? 'col-md-9 col-12' : 'col-12'}`}>
+
+          <div className={`${showSidebar ? 'col-lg-9 col-12' : 'col-12'}`}>
             <div className={className}>{children}</div>
           </div>
         </div>

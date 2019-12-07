@@ -30,40 +30,38 @@ const Post = ({
 
   return (
     <Layout title={title}>
-      <div>
-        {posts.map((post) => (
-          <div key={post._id} className='post__item'>
-            <div>{formatDate(post.publishAt)}</div>
+      {posts.map((post) => (
+        <div key={post._id} className='post__item'>
+          <div>{formatDate(post.publishAt)}</div>
 
-            <Link to={`/p/${post._id}`} className='post__title'>
-              <h3>{post.title}</h3>
-            </Link>
+          <Link to={`/p/${post._id}`} className='post__title'>
+            <h3>{post.title}</h3>
+          </Link>
 
-            <p className='post__description'>{post.description}</p>
+          <p className='post__description'>{post.description}</p>
 
-            <div className='tag__group'>
-              {post.tags.map((tag, i) => (
-                <Link to={`/tags/${tag}`} key={i} className='tag__item'>
-                  {tag}
-                </Link>
-              ))}
-            </div>
+          <div className='tag__group'>
+            {post.tags.map((tag, i) => (
+              <Link to={`/tags/${tag}`} key={i} className='tag__item'>
+                {tag}
+              </Link>
+            ))}
           </div>
-        ))}
+        </div>
+      ))}
 
-        <Paginate
-          pageCount={total}
-          marginPagesDisplayed={3}
-          pageRangeDisplayed={5}
-          initialPage={page}
-          previousLabel={<i className='fa fa-angle-left' />}
-          nextLabel={<i className='fa fa-angle-right' />}
-          onPageChange={onPageChange}
-          containerClassName={'pagination row'}
-          subContainerClassName={'pages pagination'}
-          activeClassName={'active'}
-        />
-      </div>
+      <Paginate
+        pageCount={total}
+        marginPagesDisplayed={3}
+        pageRangeDisplayed={5}
+        initialPage={page}
+        previousLabel={<i className='fa fa-angle-left' />}
+        nextLabel={<i className='fa fa-angle-right' />}
+        onPageChange={onPageChange}
+        containerClassName={'pagination row'}
+        subContainerClassName={'pages pagination'}
+        activeClassName={'active'}
+      />
     </Layout>
   );
 };

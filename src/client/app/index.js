@@ -16,14 +16,14 @@ const App = (props) => {
   } = props;
 
   return (
-    <div>
+    <>
       <Helmet {...head} />
       <>
-        <div>{renderRoutes(route.routes)}</div>
+        {renderRoutes(route.routes)}
         {isLoading && <Loading />}
       </>
       <ToastContainer />
-    </div>
+    </>
   );
 };
 
