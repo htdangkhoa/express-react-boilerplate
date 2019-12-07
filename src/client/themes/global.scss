@@ -22,9 +22,31 @@ body {
   color: var(--secondary__text);
 
   .btn-primary {
-    background: var(--primary__text);
+    background: #{$celestial__blue};
 
-    border-color: var(--primary__text);
+    border-color: #{$celestial__blue};
+
+    outline: none;
+
+    &:hover {
+      background: #{$steel__blue};
+
+      border-color: #{$steel__blue};
+    }
+
+    &:focus,
+    &:not(:disabled):not(.disabled):active,
+    &:not(:disabled):not(.disabled):active:focus {
+      background: #{$steel__blue};
+
+      border-color: #{$steel__blue};
+
+      box-shadow: 0 0 0 0.2rem #{$steel__blue};
+    }
+  }
+
+  a:hover {
+    color: #{$steel__blue};
   }
 
   img {

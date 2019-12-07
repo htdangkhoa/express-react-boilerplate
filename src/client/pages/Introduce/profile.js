@@ -1,8 +1,9 @@
 /* @flow */
-const download = (link: string) =>
-  `<a href="${link}" target="_blank">Download</a>`;
+const site = (link: string, display?: string = 'Site') =>
+  `<a href="${link}" target="_blank">${display}</a>`;
 
-const site = (link: string) => `<a href="${link}" target="_blank">Site</a>`;
+const download = (link: string, display?: string = 'Download') =>
+  site(link, display);
 
 export default `
 # Introduce
@@ -69,6 +70,10 @@ Search for clubs easily. View club's upcoming meetings. Contact clubs in one cli
 
 **DreValet & DreFleet | Dec, 2018 - Sep, 2019 | ${download(
   'https://play.google.com/store/apps/details?id=com.drevalet.dre&hl=en',
+  'Download DreValet',
+)} | ${download(
+  'https://play.google.com/store/apps/details?id=com.drevalet.drevalet',
+  'Download DreFleet',
 )}**
 \`Android\` / \`Kotlin\` / \`RxJava\` / \`RxAndroid\` / \`Firebase\` / \`Realm\`
 The app that gets you a trusted valet at the tap of a button! Enjoy your night out – we’ll get both you and your car home safely.
