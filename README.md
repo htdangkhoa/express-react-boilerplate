@@ -1,6 +1,6 @@
 <h1 align='center'>erb</h1>
 
-<p align='center'>:fire: :fire: :fire: Express react boilerplate :fire: :fire: :fire:</p>
+<p align='center'>🔥 🔥 🔥 Express react boilerplate 🔥 🔥 🔥</p>
 
 <p align='center'>
   <a href='https://david-dm.org/htdangkhoa/erb'>
@@ -48,29 +48,34 @@
 
 ## Getting Started
 
-**1. Clone repo:**
+**1. Usage:**
 
 ```bash
-$ git clone https://github.com/htdangkhoa/erb.git
-$ cd erb
+$ yarn global add express-react-boilerplate
+# or npm install -g express-react-boilerplate
+
+$ express-react-boilerplate <dir>
 ```
 
 **2. Install dependencies:**
 
 ```bash
-$ yarn # or npm install
+$ yarn
+# or npm install
 ```
 
 **3. Run it:**
 
 ```bash
-$ yarn dev # or npm run dev
+$ yarn dev
+# or npm run dev
 ```
 
 ## Build
 
 ```bash
-$ yarn build # or npm run build
+$ yarn build
+# or npm run build
 ```
 
 ---
@@ -87,3 +92,29 @@ $ yarn build # or npm run build
 | wp        | Bundle client to `dist/`.                                                             |
 | analyze   | Visualize the contents of all your bundles.                                           |
 | storybook | Start the storybook server.                                                           |
+
+## Contributors
+- [htdangkhoa](https://github.com/htdangkhoa)
+
+## License
+    MIT License
+
+    Copyright (c) 2019 Huỳnh Trần Đăng Khoa
+
+    Permission is hereby granted, free of charge, to any person obtaining a copy
+    of this software and associated documentation files (the "Software"), to deal
+    in the Software without restriction, including without limitation the rights
+    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+    copies of the Software, and to permit persons to whom the Software is
+    furnished to do so, subject to the following conditions:
+
+    The above copyright notice and this permission notice shall be included in all
+    copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+    SOFTWARE.

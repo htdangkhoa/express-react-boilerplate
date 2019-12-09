@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const commander = require('commander');
 const gitClone = require('git-clone');
 const rimraf = require('rimraf');
@@ -28,6 +30,8 @@ const main = () => {
     }
 
     rimraf.sync(`${dir}/bin`);
+
+    rimraf.sync(`${dir}/static.json`);
 
     const newPackage = omit(packageJson, [
       'author',
