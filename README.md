@@ -24,6 +24,12 @@
   </a>
 </p>
 
+<p align='center'>
+  <a href='https://www.npmjs.com/package/express-react-boilerplate'>
+    <img src='https://nodei.co/npm/express-react-boilerplate.png' alt='NPM' />
+  </a>
+</p>
+
 ## Features
 
 - Server side [(Express)](https://expressjs.com).
