@@ -3,12 +3,42 @@
   "version": "1.1.0",
   "main": "dist/index.js",
   "license": "MIT",
+  "author": "htdangkhoa <huynhtran.dangkhoa@gmail.com> (https://github.com/htdangkhoa)",
+  "contributors": [
+    "huynhtran.dangkhoa@gmail.com"
+  ],
+  "homepage": "https://github.com/htdangkhoa/erb",
+  "bugs": {
+    "url": "https://github.com/htdangkhoa/erb/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/htdangkhoa/erb.git"
+  },
+  "keywords": [
+    "erb",
+    "express",
+    "expressjs",
+    "rest",
+    "restful",
+    "router",
+    "app",
+    "api",
+    "react",
+    "react-router",
+    "redux",
+    "template",
+    "webpack",
+    "universal"
+  ],
+  "bin": "./bin/index.js",
   "scripts": {
     "start": "NODE_ENV=production node -r dotenv-flow/config dist/index.js",
     "prestart": "npm run build",
     "dev": "NODE_ENV=development nodemon src/index.js --exec \"node -r dotenv-flow/config ./node_modules/.bin/babel-node\"",
     "predev": "flow stop && flow",
     "build": "BABEL_ENV=production babel --minified --no-comments src -D -d dist && npm run wp",
+    "prebuild": "rimraf dist",
     "wp": "NODE_ENV=production node -r dotenv-flow/config ./node_modules/.bin/webpack --progress --colors --config src/tools/webpack.config.js --bail",
     "stats": "NODE_ENV=production node -r dotenv-flow/config ./node_modules/.bin/webpack --config src/tools/webpack.config.js --progress --profile --json > stats.json --bail",
     "analyze": "webpack-bundle-analyzer stats.json",
@@ -76,6 +106,7 @@
     "bcrypt": "^3.0.6",
     "body-parser": "^1.19.0",
     "bootstrap": "^4.3.1",
+    "commander": "^4.0.1",
     "compression": "^1.7.4",
     "connected-react-router": "^6.5.2",
     "cors": "^2.8.5",
@@ -83,6 +114,7 @@
     "dotenv-flow": "^3.1.0",
     "emojione": "^4.5.0",
     "express": "^4.17.1",
+    "git-clone": "^0.1.0",
     "helmet": "^3.21.1",
     "history": "^4.10.1",
     "html-minifier": "^4.0.0",
@@ -120,6 +152,7 @@
     "redux-devtools-extension": "^2.13.8",
     "redux-form": "^8.2.6",
     "redux-thunk": "^2.3.0",
+    "rimraf": "^3.0.0",
     "serialize-javascript": "^2.1.0",
     "showdown": "^1.9.1",
     "universal-cookie": "^4.0.2",
