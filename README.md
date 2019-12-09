@@ -54,7 +54,7 @@
 $ yarn global add express-react-boilerplate
 # or npm install -g express-react-boilerplate
 
-$ erb <dir>
+$ erb-gen <dir>
 ```
 
 **2. Install dependencies:**
