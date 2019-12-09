@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const commander = require('commander');
 const gitClone = require('git-clone');
 const rimraf = require('rimraf');
@@ -8,7 +10,7 @@ const packageJson = require('../package.json');
 const TEMPLATE_DIR = 'https://github.com/htdangkhoa/erb.git';
 
 commander
-  .name('erb-gen')
+  .name('erb')
   .version(packageJson.version, '-v, --version')
   .usage('<dir>')
   .parse(process.argv);
@@ -28,6 +30,8 @@ const main = () => {
     }
 
     rimraf.sync(`${dir}/bin`);
+
+    rimraf.sync(`${dir}/static.json`);
 
     const newPackage = omit(packageJson, [
       'author',
