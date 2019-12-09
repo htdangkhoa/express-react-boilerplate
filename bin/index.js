@@ -10,7 +10,7 @@ const packageJson = require('../package.json');
 const TEMPLATE_DIR = 'https://github.com/htdangkhoa/erb.git';
 
 commander
-  .name('erb')
+  .name('erb-gen')
   .version(packageJson.version, '-v, --version')
   .usage('<dir>')
   .parse(process.argv);

@@ -1,6 +1,6 @@
 {
   "name": "express-react-boilerplate",
-  "version": "1.2.0",
+  "version": "1.5.0",
   "main": "dist/index.js",
   "license": "MIT",
   "author": "htdangkhoa <huynhtran.dangkhoa@gmail.com> (https://github.com/htdangkhoa)",
@@ -31,7 +31,9 @@
     "webpack",
     "universal"
   ],
-  "bin": "./bin/index.js",
+  "bin": {
+    "erb-gen": "./bin/index.js"
+  },
   "scripts": {
     "start": "NODE_ENV=production node -r dotenv-flow/config dist/index.js",
     "prestart": "npm run build",
