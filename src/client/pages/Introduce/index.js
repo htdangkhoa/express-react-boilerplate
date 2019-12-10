@@ -8,7 +8,7 @@ import source from './profile';
 const Introduce = ({ route: { title } }) => {
   return (
     <>
-      <Layout title={title}>
+      <Layout title={title} needLogin={false}>
         <MdViewer source={source} />
       </Layout>
     </>

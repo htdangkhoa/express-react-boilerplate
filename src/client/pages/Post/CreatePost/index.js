@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router';
 import ReactMde from 'react-mde';
 import { toast } from 'react-toastify';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import Layout from 'components/Layout';
 import TagsInput from 'components/TagsInput';
@@ -105,7 +106,7 @@ const CreatePost = ({
 
                 setTags([...tags]);
               }}>
-              <i className='fas fa-sm fa-times'></i>
+              <FontAwesomeIcon icon={['fas', 'times']} size='sm' />
             </button>
           </div>
         )}

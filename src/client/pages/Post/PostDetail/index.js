@@ -69,59 +69,61 @@ const PostDetail = ({
 
       <hr />
 
-      <div className='comment__container'>
-        <h5>Comments</h5>
+      {post && (
+        <div className='comment__container'>
+          <h5>Comments</h5>
 
-        {!accessToken && (
-          <>
-            <div className='card comment__login'>
-              <div className='card-body text-center'>
-                <Link to='/login'>Login to comment.</Link>
+          {!accessToken && (
+            <>
+              <div className='card comment__login'>
+                <div className='card-body text-center'>
+                  <Link to='/login'>Login to comment.</Link>
+                </div>
+              </div>
+            </>
+          )}
+
+          {accessToken && (
+            <>
+              <ReactMde
+                selectedTab={selectedTab}
+                onTabChange={setSelectedTab}
+                onChange={onInputChange}
+                value={source}
+                generateMarkdownPreview={async (markdown) => {
+                  const supportEmoji = shortnameToUnicode(markdown);
+
+                  const html = await converter.makeHtml(supportEmoji);
+
+                  return html;
+                }}
+              />
+
+              <button
+                className='btn btn-primary btn-block comment__submit'
+                onClick={onPostComment}>
+                Post Comment
+              </button>
+            </>
+          )}
+
+          {comments?.map((comment) => (
+            <div className='card comment__item' key={comment._id}>
+              <div className='card-body'>
+                <div>{comment.user?.name}</div>
+
+                <MdViewer key={comment?._id} source={comment?.comment} />
+
+                <div>
+                  {moment(comment.createAt || new Date())
+                    .format('MMM DD, YYYY')
+                    .toString()}
+                </div>
               </div>
             </div>
-          </>
-        )}
-
-        {accessToken && (
-          <>
-            <ReactMde
-              selectedTab={selectedTab}
-              onTabChange={setSelectedTab}
-              onChange={onInputChange}
-              value={source}
-              generateMarkdownPreview={async (markdown) => {
-                const supportEmoji = shortnameToUnicode(markdown);
-
-                const html = await converter.makeHtml(supportEmoji);
-
-                return html;
-              }}
-            />
-
-            <button
-              className='btn btn-primary btn-block comment__submit'
-              onClick={onPostComment}>
-              Post Comment
-            </button>
-          </>
-        )}
-
-        {comments?.map((comment) => (
-          <div className='card comment__item' key={comment._id}>
-            <div className='card-body'>
-              <div>{comment.user?.name}</div>
-
-              <MdViewer key={comment?._id} source={comment?.comment} />
-
-              <div>
-                {moment(comment.createAt || new Date())
-                  .format('MMM DD, YYYY')
-                  .toString()}
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      )}
     </Layout>
   );
 };

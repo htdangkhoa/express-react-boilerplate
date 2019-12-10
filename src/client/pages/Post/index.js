@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Paginate from 'react-paginate';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import Layout from 'components/Layout';
 
@@ -55,8 +56,8 @@ const Post = ({
         marginPagesDisplayed={3}
         pageRangeDisplayed={5}
         initialPage={page}
-        previousLabel={<i className='fa fa-angle-left' />}
-        nextLabel={<i className='fa fa-angle-right' />}
+        previousLabel={<FontAwesomeIcon icon={['fa', 'angle-left']} />}
+        nextLabel={<FontAwesomeIcon icon={['fa', 'angle-right']} />}
         onPageChange={onPageChange}
         containerClassName={'pagination row'}
         subContainerClassName={'pages pagination'}

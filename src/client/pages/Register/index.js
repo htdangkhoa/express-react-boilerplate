@@ -20,7 +20,7 @@ let Register = ({
   return registerSuccess ? (
     <RedirectWithoutLastLocation to='/login' />
   ) : (
-    <Layout title={title} showSidebar={false}>
+    <Layout title={title} showSidebar={false} needLogin={false}>
       <h2 className='text-center'>Register</h2>
       <div className='row'>
         <div className='col col-md-6 offset-md-3'>
