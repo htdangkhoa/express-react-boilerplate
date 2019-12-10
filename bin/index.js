@@ -35,8 +35,10 @@ const main = () => {
 
     rimraf.sync(`${dir}/static.json`);
 
+    rimraf.sync(`${dir}/.git/`);
+    rimraf.sync(`${dir}/yarn.lock`);
+
     const newPackage = omit(packageJson, [
-      '.git',
       'author',
       'contributors',
       'homepage',
@@ -44,8 +46,9 @@ const main = () => {
       'repository',
       'keywords',
       'bin',
-      'yarn.lock',
     ]);
+
+    Object.assign(newPackage, { version: '1.0.0' });
 
     writeFileSync(
       `${dir}/package.json`,
