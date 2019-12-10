@@ -16,6 +16,8 @@ commander
   .parse(process.argv);
 
 const main = () => {
+  console.log('Initializing project...');
+
   const dir = commander.args.shift() || '.';
 
   rimraf.sync(dir);
@@ -34,6 +36,7 @@ const main = () => {
     rimraf.sync(`${dir}/static.json`);
 
     const newPackage = omit(packageJson, [
+      '.git',
       'author',
       'contributors',
       'homepage',
@@ -41,6 +44,7 @@ const main = () => {
       'repository',
       'keywords',
       'bin',
+      'yarn.lock',
     ]);
 
     writeFileSync(
@@ -48,6 +52,8 @@ const main = () => {
       JSON.stringify(newPackage, null, 2),
       'utf8',
     );
+
+    console.log('Done!!!');
   });
 };
 
