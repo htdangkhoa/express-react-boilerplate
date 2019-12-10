@@ -85,7 +85,7 @@
 │   ├── routes.js               # Routes configuration for both client and server side
 │   └── server.js               # Express server
 ├── .env.development            # All of variables for development environment
-└── .env.development            # All of variables for production environment
+└── .env.production            # All of variables for production environment
 ```
 
 ## Getting Started
