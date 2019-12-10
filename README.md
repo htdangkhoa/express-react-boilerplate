@@ -52,6 +52,42 @@
 
 - [Node](https://nodejs.org/en/) >= 10.13.0
 
+## Structure
+```
+.
+├── src
+│   ├── api                     # All of restful API
+│   ├── client                  # Client scope
+│   │   ├── app                 # App root component
+│   │   ├── assets              # Assets (e.g. images, fonts etc.)
+│   │   ├── components          # Reusable components
+│   │   ├── pages               # Page components
+│   │   ├── stories             # UI components with Storybook
+│   │   ├── themes              # App-wide style
+│   │   ├── vendor              # 3rd libraries for client
+│   │   └── index.js            # App bootstrap and rendering (webpack entry)
+│   ├── middlewares             # All of express middleware
+│   ├── model                   # Data transfer object
+│   ├── mongo                   # MongoDB configuration
+│   ├── public                  # Express server static path
+│   │   ├── locales             # All of i18n resources
+│   │   └── favicon.ico         # Favicon is placed in the same path with the main HTML page
+│   ├── secure                  # All of security (e.g passport configuration, jsonwebtoken etc.)
+│   ├── store                   # Store configuration for both client and server side
+│   ├── tools                   # Project related configurations
+│   │   ├── hooks.js            # Assets require hooks
+│   │   └── webpack.config.js   # Webpack configuration
+│   ├── types                   # All of type for flow
+│   ├── utils                   # App-wide utils
+│   ├── config.js               # Configuration entry point loaded from .env file
+│   ├── i18n.js                 # I18next configuration
+│   ├── index.js                # App entry point
+│   ├── routes.js               # Routes configuration for both client and server side
+│   └── server.js               # Express server
+├── .env.development            # All of variables for development environment
+└── .env.development            # All of variables for production environment
+```
+
 ## Getting Started
 
 **1. Usage:**

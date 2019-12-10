@@ -18,7 +18,7 @@ Email: <a href="mailto:huynhtran.dangkhoa@gmail.com">huynhtran.dangkhoa@gmail.co
 `;
 
 const Contact = ({ route: { title } }) => (
-  <Layout title={title}>
+  <Layout title={title} needLogin={false}>
     <MdViewer source={source} />
   </Layout>
 );

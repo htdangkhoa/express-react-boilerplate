@@ -3,6 +3,8 @@ const webpack = require('webpack');
 const TerserWebpackPlugin = require('terser-webpack-plugin');
 const CompressionWebpackPlugin = require('compression-webpack-plugin');
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const OptimizeCSSAssetsWebpackPlugin = require('optimize-css-assets-webpack-plugin');
 const WebpackBar = require('webpackbar');
 const { NODE_ENV, isDev, PORT } = require('../config');
 
@@ -32,6 +34,10 @@ const getPlugins = () => {
       algorithm: 'gzip',
       test: /\.js(\?.*)?$/i,
       deleteOriginalAssets: !isDev,
+    }),
+    new MiniCssExtractPlugin({
+      filename: isDev ? 'styles.css' : 'styles.min.css',
+      ignoreOrder: false,
     }),
   ];
 
@@ -74,6 +80,13 @@ module.exports = {
         use: [
           { loader: 'style' },
           {
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              hmr: isDev,
+              reloadAll: true,
+            },
+          },
+          {
             loader: 'css',
             options: {
               importLoaders: 1,
@@ -90,6 +103,13 @@ module.exports = {
         test: /\.(scss|sass)$/,
         use: [
           { loader: 'style' },
+          {
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              hmr: isDev,
+              reloadAll: true,
+            },
+          },
           {
             loader: 'css',
             options: {
@@ -113,14 +133,8 @@ module.exports = {
         ],
       },
       {
-        test: /\.(woff2?|ttf|eot|svg)$/,
-        loader: 'url',
-        options: { limit: 10240, name: '[name].[hash:8].[ext]' },
-      },
-      {
-        test: /\.(gif|png|jpe?g|webp)$/,
-        loader: 'url',
-        options: { limit: 10240, name: '[name].[hash:8].[ext]' },
+        test: /\.(eot|woff|woff2|ttf|svg|png|jpe?g|gif|webp)(\?\S*)?$/,
+        loader: 'url?limit=10000&name=[name].[ext]',
       },
     ],
   },
@@ -151,6 +165,7 @@ module.exports = {
               mangle: true,
             },
           }),
+          new OptimizeCSSAssetsWebpackPlugin({}),
         ],
       },
   performance: { hints: false },

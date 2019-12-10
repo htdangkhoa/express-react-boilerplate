@@ -5,7 +5,7 @@ import Layout from 'components/Layout';
 import './styles.scss';
 
 const NotFound = ({ route: { title } }) => (
-  <Layout title={title} className='not__found__container'>
+  <Layout title={title} className='not__found__container' needLogin={false}>
     <div className='text-center'>
       <h1>404</h1>
       <p>The page you&apos;re looking for isn&apos;t here.</p>

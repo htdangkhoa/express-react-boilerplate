@@ -18,10 +18,8 @@ const App = (props) => {
   return (
     <>
       <Helmet {...head} />
-      <>
-        {renderRoutes(route.routes)}
-        {isLoading && <Loading />}
-      </>
+      {renderRoutes(route.routes)}
+      {isLoading && <Loading />}
       <ToastContainer />
     </>
   );
