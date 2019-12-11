@@ -10,6 +10,7 @@
   <a href='https://david-dm.org/htdangkhoa/erb?type=dev'>
     <img src='https://david-dm.org/htdangkhoa/erb/dev-status.svg' alt='devDependency status' />
   </a>
+<a href="https://app.fossa.io/projects/git%2Bgithub.com%2Fhtdangkhoa%2Ferb?ref=badge_shield" alt="FOSSA Status"><img src="https://app.fossa.io/api/projects/git%2Bgithub.com%2Fhtdangkhoa%2Ferb.svg?type=shield"/></a>
 
   <a href='https://github.com/prettier/prettier'>
     <img src='https://img.shields.io/badge/code_style-prettier-ff69b4.svg' alt='code style: prettier' />
@@ -29,6 +30,9 @@
     <img src='https://nodei.co/npm/express-react-boilerplate.png' alt='NPM' />
   </a>
 </p>
+
+
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fhtdangkhoa%2Ferb.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fhtdangkhoa%2Ferb?ref=badge_large)
 
 ## Features
 
