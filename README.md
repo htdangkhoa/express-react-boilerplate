@@ -90,17 +90,34 @@
 └── .env.production             # All of variables for production environment
 ```
 
-## Getting Started     
-**1. Usage:**
+## Installation
 ```bash
 $ yarn global add express-react-boilerplate
 # or (sudo) npm install -g express-react-boilerplate
+```
 
-$ erb-gen <dir>
+## Getting Started     
+**1. Usage:**
+```bash
+$ erb-gen --help
+
+  Usage: erb-gen [options]
+
+  Options:
+    -v, --version      output the version number
+    -d, --dir <type>   project's directory. (default: ".")
+    -n, --name <type>  project's name. (default: "express-react-boilerplate")
+    -h, --help         output usage information
+
+  Examples:
+    $ erb-gen
+    $ erb-gen --name example
 ```
 
 **2. Install dependencies:**
 ```bash
+$ cd <your_project>
+
 $ yarn
 # or npm install
 ```
