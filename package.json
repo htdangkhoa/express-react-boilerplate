@@ -41,12 +41,14 @@
     "dev": "NODE_ENV=development nodemon src/index.js --exec \"node -r dotenv-flow/config ./node_modules/.bin/babel-node\"",
     "predev": "flow stop && flow",
     "build": "BABEL_ENV=production babel --minified --no-comments src -D -d dist && npm run wp",
+    "postbuild": "rimraf dist/**/__tests__",
     "prebuild": "rimraf dist",
     "wp": "NODE_ENV=production node -r dotenv-flow/config ./node_modules/.bin/webpack --progress --colors --config src/tools/webpack.config.js --bail",
     "stats": "NODE_ENV=production node -r dotenv-flow/config ./node_modules/.bin/webpack --config src/tools/webpack.config.js --progress --profile --json > stats.json --bail",
     "analyze": "webpack-bundle-analyzer stats.json",
     "preanalyze": "npm run stats",
-    "storybook": "start-storybook --ci"
+    "storybook": "start-storybook --ci",
+    "test": "jest -u"
   },
   "engines": {
     "node": ">=10.13.0"
@@ -57,6 +59,15 @@
       "src/client",
       "src/store"
     ]
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "\\.(css|less|scss|sss|styl)$": "<rootDir>/src/tools/jest/styles-mock.js",
+      ".*\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/src/tools/jest/assets-mock.js"
+    },
+    "globals": {
+      "__DEV__": false
+    }
   },
   "devDependencies": {
     "@babel/cli": "^7.6.4",
@@ -83,15 +94,19 @@
     "eslint-import-resolver-babel-module": "^5.1.0",
     "eslint-plugin-flowtype": "^4.3.0",
     "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jest": "^23.1.1",
     "eslint-plugin-prettier": "^3.1.1",
     "eslint-plugin-react": "^7.16.0",
     "flow-bin": "^0.113.0",
     "friendly-errors-webpack-plugin": "^1.7.0",
+    "jest": "^24.9.0",
+    "jest-css-modules": "^2.1.0",
     "lodash-webpack-plugin": "^0.11.5",
     "mini-css-extract-plugin": "^0.8.0",
     "nodemon": "^2.0.1",
     "optimize-css-assets-webpack-plugin": "^5.0.3",
     "prettier": "^1.18.2",
+    "react-test-renderer": "^16.12.0",
     "sass-loader": "^8.0.0",
     "style-loader": "^1.0.0",
     "terser-webpack-plugin": "^2.2.1",
@@ -104,11 +119,7 @@
     "webpackbar": "^4.0.0"
   },
   "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "^1.2.25",
-    "@fortawesome/free-brands-svg-icons": "^5.11.2",
-    "@fortawesome/free-regular-svg-icons": "^5.11.2",
-    "@fortawesome/free-solid-svg-icons": "^5.11.2",
-    "@fortawesome/react-fontawesome": "^0.1.8",
+    "@fortawesome/fontawesome-free": "^5.12.0",
     "@hot-loader/react-dom": "^16.10.2",
     "asset-require-hook": "^1.2.0",
     "axios": "^0.19.0",

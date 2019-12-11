@@ -47,6 +47,7 @@
 - Flowtype.
 - ESlint.
 - Prettier.
+- Unit testing [(Jest)](https://github.com/facebook/jest).
 
 ## Requirements
 

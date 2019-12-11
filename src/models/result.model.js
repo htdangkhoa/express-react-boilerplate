@@ -31,6 +31,24 @@ export const unauthorized = ({
     error: { message, ...extras },
   });
 
+export const notFoundError = ({
+  message = 'Not found.',
+  extras,
+}: ResultModelErrorType = {}): ResultModelType =>
+  resultModel({
+    code: 404,
+    error: { message, ...extras },
+  });
+
+export const internalServerError = ({
+  message = 'Internal server error.',
+  extras,
+}: ResultModelErrorType = {}) =>
+  resultModel({
+    code: 500,
+    error: { message, ...extras },
+  });
+
 export const genericError = ({
   message = 'Something went wrong.',
   extras,

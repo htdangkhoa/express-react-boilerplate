@@ -15,7 +15,12 @@ import { Provider } from 'react-redux';
 import { Helmet } from 'react-helmet';
 import renderHtml from './utils/render-html';
 import routes from './routes';
-import { webpackMiddleware, passportMiddleware } from './middlewares';
+import {
+  webpackMiddleware,
+  passportMiddleware,
+  notFoundErrorMiddleware,
+  serverErrorMiddleware,
+} from './middlewares';
 import api from './api';
 import { isDev } from './config';
 import configureStore from './store';
@@ -52,6 +57,10 @@ app.use(
 );
 
 app.use('/api', api);
+
+app.use('/api', serverErrorMiddleware());
+
+app.use('/api', notFoundErrorMiddleware());
 
 app.get('/*', async (req: Request, res: Response) => {
   const { store } = configureStore({ url: req.url });

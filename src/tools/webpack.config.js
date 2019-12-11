@@ -32,8 +32,7 @@ const getPlugins = () => {
     }),
     new CompressionWebpackPlugin({
       algorithm: 'gzip',
-      test: /\.js(\?.*)?$/i,
-      deleteOriginalAssets: !isDev,
+      test: /\.(t|j)s?$/,
     }),
     new MiniCssExtractPlugin({
       filename: isDev ? 'styles.css' : 'styles.min.css',
@@ -64,14 +63,13 @@ module.exports = {
   output: {
     path: resolve(__dirname, '..', '..', 'dist/public'),
     filename: isDev ? 'bundle.js' : 'bundle.min.js',
-    publicPath: '/dist',
   },
   plugins: getPlugins(),
   module: {
     rules: [
       {
         test: /\.(t|j)s?$/,
-        exclude: /node_modules/,
+        exclude: /node_modules|__tests__/,
         loader: 'babel',
         options: { cacheDirectory: isDev },
       },
@@ -133,8 +131,14 @@ module.exports = {
         ],
       },
       {
-        test: /\.(eot|woff|woff2|ttf|svg|png|jpe?g|gif|webp)(\?\S*)?$/,
-        loader: 'url?limit=10000&name=[name].[ext]',
+        test: /\.(woff2?|ttf|eot|svg)$/,
+        loader: 'url',
+        options: { limit: 10240, name: '[name].[hash:8].[ext]' },
+      },
+      {
+        test: /\.(gif|png|jpe?g|webp)$/,
+        loader: 'url',
+        options: { limit: 10240, name: '[name].[hash:8].[ext]' },
       },
     ],
   },
