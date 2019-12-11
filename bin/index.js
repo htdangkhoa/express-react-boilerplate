@@ -12,19 +12,26 @@ const TEMPLATE_DIR = 'https://github.com/htdangkhoa/erb.git';
 commander
   .name('erb-gen')
   .version(packageJson.version, '-v, --version')
-  .usage('<dir>')
+  .option('-d, --dir <type>', `project's directory.`, '.')
+  .option('-n, --name <type>', `project's name.`, packageJson.name)
   .parse(process.argv);
 
 const main = () => {
-  console.log('Initializing project...');
+  const { dir, name } = commander.opts();
 
-  const dir = commander.args.shift() || '.';
-
-  rimraf.sync(dir);
+  console.info(`Initializing project ${name}...`);
 
   gitClone(TEMPLATE_DIR, dir, (error) => {
     if (error) {
-      console.error(error);
+      const dirExisted =
+        error.message.replace(`'git clone' failed with status`, '').trim() ===
+        '128';
+
+      if (dirExisted) {
+        console.error(new Error('directory already exists.'));
+      } else {
+        console.error(error);
+      }
 
       process.exit(1);
 
@@ -49,7 +56,11 @@ const main = () => {
       'bin',
     ]);
 
-    Object.assign(newPackage, { version: '1.0.0' });
+    Object.assign(newPackage, {
+      version: '1.0.0',
+      name,
+      description: '',
+    });
 
     writeFileSync(
       `${dir}/package.json`,
@@ -57,7 +68,7 @@ const main = () => {
       'utf8',
     );
 
-    console.log('Done!!!');
+    console.info('Done!!!');
   });
 };
 
