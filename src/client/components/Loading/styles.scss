@@ -1,3 +1,5 @@
+@import 'themes/variables';
+
 .app__loading {
   background-color: rgba(0, 0, 0, 0.7);
   position: fixed;
@@ -11,7 +13,7 @@
 
   div {
     div {
-      border: 6px solid var(--primary__text);
+      border: 6px solid $celestial__blue;
     }
   }
 }

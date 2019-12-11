@@ -31,7 +31,6 @@
 </p>
 
 ## Features
-
 - Server side [(Express)](https://expressjs.com).
 - Client side [(React)](https://reactjs.org).
 - Universal routing [(react-router)](https://github.com/ReactTraining/react-router).
@@ -41,16 +40,18 @@
 - SEO [(react-helmet)](https://github.com/nfl/react-helmet).
 - Promise based HTTP client for the browser and NodeJS [(axios)](https://github.com/axios/axios).
 - Internationalization [(i18next)](https://www.i18next.com/) & [(react-i18next)](https://github.com/i18next/react-i18next).
+- Developing UI components [(Storybook)](https://storybook.js.org/).
 - Light & Dark theme.
 - Data fetching from server-side.
-- ES6.
-- Flowtype.
-- ESlint.
-- Prettier.
 - Unit testing [(Jest)](https://github.com/facebook/jest).
+- ES6.
+- Type checker for javascript [(Flow)](https://flow.org/).
+- Find and fix problems in your javaScript code [(ESlint)](https://eslint.org/).
+- Code formatter [(Prettier)](https://prettier.io/).
+- Auto deploy [(Github Actions)](https://github.com/features/actions).
+- VSCode debugging.
 
 ## Requirements
-
 - [Node](https://nodejs.org/en/) >= 10.13.0
 
 ## Structure
@@ -86,36 +87,31 @@
 │   ├── routes.js               # Routes configuration for both client and server side
 │   └── server.js               # Express server
 ├── .env.development            # All of variables for development environment
-└── .env.production            # All of variables for production environment
+└── .env.production             # All of variables for production environment
 ```
 
-## Getting Started
-
+## Getting Started     
 **1. Usage:**
-
 ```bash
 $ yarn global add express-react-boilerplate
-# or npm install -g express-react-boilerplate
+# or (sudo) npm install -g express-react-boilerplate
 
 $ erb-gen <dir>
 ```
 
 **2. Install dependencies:**
-
 ```bash
 $ yarn
 # or npm install
 ```
 
 **3. Run it:**
-
 ```bash
 $ yarn dev
 # or npm run dev
 ```
 
 ## Build
-
 ```bash
 $ yarn build
 # or npm run build
@@ -126,7 +122,6 @@ $ yarn build
 > **NOTE**: You can change environment variables in `.env.development` for Development mode or `.env.production` for Production mode.
 
 ## Scripts
-
 | Script    | Description                                                                           |
 | --------- | ------------------------------------------------------------------------------------- |
 | dev       | Start the development server.                                                         |
@@ -135,6 +130,7 @@ $ yarn build
 | wp        | Bundle client to `dist/`.                                                             |
 | analyze   | Visualize the contents of all your bundles.                                           |
 | storybook | Start the storybook server.                                                           |
+| test      | Run testing.                                                                          |
 
 ## Contributors
 - [htdangkhoa](https://github.com/htdangkhoa)
