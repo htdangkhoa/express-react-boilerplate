@@ -10,8 +10,6 @@ import {
 import Switch from 'react-switch';
 import { Collapse } from 'reactstrap';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
 import PropTypes from 'prop-types';
 import * as globalAction from 'store/action';
 import './styles.scss';
@@ -47,7 +45,7 @@ const Child = ({
             <div className='col-lg-3 col-12 sidebar'>
               <div className='d-lg-none justify-content-end d-flex mb-lg-0 mb-2'>
                 <button className='btn btn-primary' onClick={toggleNavbar}>
-                  <FontAwesomeIcon icon={['fas', 'bars']} />
+                  <i className='fas fa-bars'></i>
                 </button>
               </div>
 
@@ -62,12 +60,12 @@ const Child = ({
                     onChange={onChangeTheme}
                     checkedIcon={
                       <div className='switch__icon'>
-                        <FontAwesomeIcon icon='sun' />
+                        <i className='fa fa-sm fa-sun'></i>
                       </div>
                     }
                     uncheckedIcon={
                       <div className='switch__icon'>
-                        <FontAwesomeIcon icon='moon' flip='horizontal' />
+                        <i className='fa fa-sm fa-moon fa-flip-horizontal'></i>
                       </div>
                     }
                     onColor='#fbfbff'
@@ -179,7 +177,7 @@ const Child = ({
                   <ul className='list-group list-group-horizontal'>
                     <a href='https://github.com/htdangkhoa' target='_'>
                       <li className='list-group-item p-0 rounded-circle sidebar__link'>
-                        <FontAwesomeIcon icon={['fab', 'github-alt']} />
+                        <i className='fab fa-github-alt'></i>
                       </li>
                     </a>
 
@@ -187,13 +185,13 @@ const Child = ({
                       href='https://www.linkedin.com/in/khoa-đăng-7575a6136'
                       target='_'>
                       <li className='list-group-item p-0 rounded-circle sidebar__link'>
-                        <FontAwesomeIcon icon={['fab', 'linkedin']} />
+                        <i className='fab fa-linkedin'></i>
                       </li>
                     </a>
 
                     <a href='mailto:huynhtran.dangkhoa@gmail.com' target='_'>
                       <li className='list-group-item p-0 rounded-circle sidebar__link'>
-                        <FontAwesomeIcon icon={['far', 'envelope']} />
+                        <i className='far fa-envelope'></i>
                       </li>
                     </a>
                   </ul>

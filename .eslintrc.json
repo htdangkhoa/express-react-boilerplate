@@ -2,7 +2,8 @@
   "env": {
     "browser": true,
     "es6": true,
-    "node": true
+    "node": true,
+    "jest/globals": true
   },
   "extends": [
     "airbnb-base",
@@ -11,7 +12,8 @@
     "plugin:import/recommended",
     "plugin:prettier/recommended",
     "prettier/flowtype",
-    "prettier/react"
+    "prettier/react",
+    "plugin:jest/recommended"
   ],
   "globals": {
     "Atomics": "readonly",
@@ -27,7 +29,7 @@
     "ecmaVersion": 2018,
     "sourceType": "module"
   },
-  "plugins": ["prettier", "flowtype", "react", "import"],
+  "plugins": ["prettier", "flowtype", "react", "import", "jest"],
   "settings": {
     "import/resolver": {
       "babel-module": {}

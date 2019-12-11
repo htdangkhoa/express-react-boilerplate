@@ -1,5 +1,5 @@
 .app__loading {
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.7);
   position: fixed;
   top: 0;
   left: 0;
@@ -8,4 +8,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
+
+  div {
+    div {
+      border: 6px solid var(--primary__text);
+    }
+  }
 }

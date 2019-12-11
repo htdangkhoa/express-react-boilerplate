@@ -18,7 +18,7 @@ const renderHtml = ({
       <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
       <link rel="stylesheet" type="text/css" href="${
-        isDev ? '/dist/styles.css' : '/styles.min.css'
+        isDev ? '/styles.css' : '/styles.min.css'
       }" />
       
       ${head.title.toString()}
@@ -33,7 +33,7 @@ const renderHtml = ({
       <script>window.__INITIAL_STATE__ = ${serialize(initialState)}</script>
 
       <script type="text/javascript" src="${
-        isDev ? '/dist/bundle.js' : '/bundle.min.js'
+        isDev ? '/bundle.js' : '/bundle.min.js'
       }"></script>
 
       ${head.script.toString()}
