@@ -4,6 +4,7 @@ const TerserWebpackPlugin = require('terser-webpack-plugin');
 const CompressionWebpackPlugin = require('compression-webpack-plugin');
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const ImageminWebpackPlugin = require('imagemin-webpack-plugin').default;
 const OptimizeCSSAssetsWebpackPlugin = require('optimize-css-assets-webpack-plugin');
 const WebpackBar = require('webpackbar');
 const { NODE_ENV, isDev, PORT } = require('../config');
@@ -38,6 +39,12 @@ const getPlugins = () => {
       filename: isDev ? 'styles.css' : 'styles.min.css',
       ignoreOrder: false,
     }),
+    new ImageminWebpackPlugin({
+      disable: !isDev,
+      minFileSize: 10240,
+      jpegtran: { progressive: true },
+      pngquant: { quality: '95-100' },
+    }),
   ];
 
   if (isDev) {
@@ -63,6 +70,7 @@ module.exports = {
   output: {
     path: resolve(__dirname, '..', '..', 'dist/public'),
     filename: isDev ? 'bundle.js' : 'bundle.min.js',
+    publicPath: '/',
   },
   plugins: getPlugins(),
   module: {

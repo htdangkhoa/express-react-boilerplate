@@ -19,14 +19,14 @@ const hooks = () => {
 
   assetRequireHook({
     extensions: ['gif', 'jpg', 'jpeg', 'png', 'webp'],
-    publicPath: resolve(__dirname, '..', 'client/assets'),
+    publicPath: '/',
     limit: 10240,
     name: '[name].[hash:8].[ext]',
   });
 
   assetRequireHook({
     extensions: ['woff', 'woff2', 'ttf', 'eot', 'svg'],
-    publicPath: resolve(__dirname, '..', 'client/assets'),
+    publicPath: '/',
     limit: 10240,
     name: '[name].[hash:8].[ext]',
   });

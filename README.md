@@ -35,7 +35,7 @@
 - Client side [(React)](https://reactjs.org).
 - Universal routing [(react-router)](https://github.com/ReactTraining/react-router).
 - State management [(Redux)](https://redux.js.org).
-- Easy debuging with [(redux-devtools)](https://github.com/reduxjs/redux-devtools).
+- Redux debugging tools [(redux-devtools)](https://github.com/reduxjs/redux-devtools).
 - Tweak React components in real time [(react-hot-loader)](https://github.com/gaearon/react-hot-loader).
 - SEO [(react-helmet)](https://github.com/nfl/react-helmet).
 - Promise based HTTP client for the browser and NodeJS [(axios)](https://github.com/axios/axios).
@@ -43,6 +43,7 @@
 - Developing UI components [(Storybook)](https://storybook.js.org/).
 - Light & Dark theme.
 - Data fetching from server-side.
+- Compressing images with imagemin [(imagemin-webpack-plugin)](https://github.com/Klathmon/imagemin-webpack-plugin).
 - Unit testing [(Jest)](https://github.com/facebook/jest).
 - ES6.
 - Type checker for javascript [(Flow)](https://flow.org/).
@@ -77,6 +78,7 @@
 │   ├── secure                  # All of security (e.g passport configuration, jsonwebtoken etc.)
 │   ├── store                   # Store configuration for both client and server side
 │   ├── tools                   # Project related configurations
+│   │   ├── jest                # Jest configurations
 │   │   ├── hooks.js            # Assets require hooks
 │   │   └── webpack.config.js   # Webpack configuration
 │   ├── types                   # All of type for flow
