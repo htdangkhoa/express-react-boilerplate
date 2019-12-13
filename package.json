@@ -18,6 +18,7 @@
   },
   "keywords": [
     "erb",
+    "erb-gen",
     "express",
     "expressjs",
     "rest",
@@ -30,7 +31,8 @@
     "redux",
     "template",
     "webpack",
-    "universal"
+    "universal",
+    "boilerplate"
   ],
   "bin": {
     "erb-gen": "./bin/index.js"
@@ -109,7 +111,6 @@
     "prettier": "^1.18.2",
     "react-test-renderer": "^16.12.0",
     "sass-loader": "^8.0.0",
-    "style-loader": "^1.0.0",
     "terser-webpack-plugin": "^2.2.1",
     "url-loader": "^3.0.0",
     "webpack": "^4.29.0",

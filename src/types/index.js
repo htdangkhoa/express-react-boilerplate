@@ -1,6 +1,6 @@
 /* @flow */
 import { type Express } from 'express';
-import { type MongoClient, type Db } from 'mongodb';
+import { type MongoClient, type Db, type Collection } from 'mongodb';
 import { type HelmetData } from 'react-helmet';
 
 export type MongoConnectionType = {
@@ -91,13 +91,36 @@ export type ThemeType = 'light' | 'dark';
 
 export type GlobalStateType = {
   loading?: boolean,
+
   accessToken: ?string,
+
   refreshToken: ?string,
+
   user?: Object,
+
   theme?: ThemeType,
 };
 
 export type PostCommentActionType = {
   _id: string,
+
   comment: string,
+};
+
+export type MongoPagingType = {
+  collection: Collection,
+
+  query?: Object | any,
+
+  options?: Object | any,
+
+  skip?: number,
+
+  limit?: number,
+};
+
+export type MongoPagingResultType = {
+  values: any[],
+
+  metaData: { index: number, total: number },
 };
