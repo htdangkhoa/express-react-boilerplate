@@ -1,7 +1,7 @@
 /* @flow */
 import { type Request, type Response } from 'express';
 import { ObjectId } from 'mongodb';
-import { paging } from 'utils';
+import { usePaging } from 'mongo/helper';
 import { resultModel, genericError, badRequest } from 'models/result.model';
 import { compact, head } from 'lodash';
 
@@ -11,25 +11,17 @@ export const getPostsController = () => async (req: Request, res: Response) => {
     query: { skip = 0 },
   } = req;
 
-  const { rawSkip, s, l } = paging(skip, 10);
-
   try {
-    const posts = await postsCollection
-      .find()
-      .skip(s)
-      .limit(l)
-      .toArray();
+    const { values: posts, metaData } = await usePaging({
+      collection: postsCollection,
+      skip,
+    });
 
-    const count = await postsCollection.countDocuments();
-
-    const total = Math.ceil(count / l);
-
-    const metaData = {
-      index: rawSkip,
-      total,
-    };
-
-    return res.json(resultModel({ data: { posts, metaData } }));
+    return res.json(
+      resultModel({
+        data: { posts, metaData },
+      }),
+    );
   } catch (error) {
     return res.json(genericError({ message: error.message }));
   }

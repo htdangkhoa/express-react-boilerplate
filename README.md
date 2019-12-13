@@ -40,6 +40,8 @@
 - SEO [(react-helmet)](https://github.com/nfl/react-helmet).
 - Promise based HTTP client for the browser and NodeJS [(axios)](https://github.com/axios/axios).
 - Internationalization [(i18next)](https://www.i18next.com/) & [(react-i18next)](https://github.com/i18next/react-i18next).
+- Compiles CSS Modules in runtime [(css-modules-require-hook)](https://github.com/css-modules/css-modules-require-hook).
+- Allows files required by node that match a given set of extensions to be returned as either a data URI, or a custom filename [(asset-require-hook)](https://github.com/aribouius/asset-require-hook).
 - Developing UI components [(Storybook)](https://storybook.js.org/).
 - Light & Dark theme.
 - Data fetching from server-side.

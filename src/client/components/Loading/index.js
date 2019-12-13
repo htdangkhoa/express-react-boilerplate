@@ -1,9 +1,9 @@
 import React from 'react';
 import { RingLoader } from 'react-spinners';
-import './styles.scss';
+import styles from './styles.scss';
 
 const Loading = () => (
-  <div className='app__loading'>
+  <div className={styles.app__loading}>
     <RingLoader />
   </div>
 );

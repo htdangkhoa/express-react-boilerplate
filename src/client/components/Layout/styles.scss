@@ -58,6 +58,10 @@
   .main_container {
     .sidebar {
       border-right: 2px solid var(--primary__text);
+
+      position: sticky;
+
+      top: 24px;
     }
   }
 }
