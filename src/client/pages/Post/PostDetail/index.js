@@ -6,7 +6,7 @@ import ReactMde from 'react-mde';
 import moment from 'moment-timezone';
 
 import Layout from 'components/Layout';
-import MdViewer, { shortnameToUnicode, converter } from 'components/MdViewer';
+import MdViewer, { makeEmojiHtml } from 'components/MdViewer';
 
 import * as action from './action';
 import '../styles.scss';
@@ -91,9 +91,7 @@ const PostDetail = ({
                 onChange={onInputChange}
                 value={source}
                 generateMarkdownPreview={async (markdown) => {
-                  const supportEmoji = shortnameToUnicode(markdown);
-
-                  const html = await converter.makeHtml(supportEmoji);
+                  const html = makeEmojiHtml(markdown);
 
                   return html;
                 }}

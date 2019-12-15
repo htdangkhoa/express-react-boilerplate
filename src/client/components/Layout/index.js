@@ -72,6 +72,7 @@ const Child = ({
                     offColor='#222725'
                     onHandleColor='#449dd1'
                     offHandleColor='#449dd1'
+                    handleDiameter={20}
                   />
                 </div>
 

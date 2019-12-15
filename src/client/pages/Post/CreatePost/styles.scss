@@ -32,6 +32,12 @@
         button:focus {
           outline: none;
         }
+
+        button.close {
+          .fa-times {
+            width: 0.5em;
+          }
+        }
       }
     }
 
