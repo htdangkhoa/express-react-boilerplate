@@ -7,7 +7,7 @@ import { toast } from 'react-toastify';
 
 import Layout from 'components/Layout';
 import TagsInput from 'components/TagsInput';
-import { shortnameToUnicode, converter } from 'components/MdViewer';
+import { makeEmojiHtml } from 'components/MdViewer';
 
 import * as action from './action';
 
@@ -117,9 +117,7 @@ const CreatePost = ({
         onChange={onInputChange}
         value={source}
         generateMarkdownPreview={async (markdown) => {
-          const supportEmoji = shortnameToUnicode(markdown);
-
-          const html = await converter.makeHtml(supportEmoji);
+          const html = makeEmojiHtml(markdown);
 
           return html;
         }}
