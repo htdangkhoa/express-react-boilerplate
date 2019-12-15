@@ -51,7 +51,7 @@
 - Type checker for javascript [(Flow)](https://flow.org/).
 - Find and fix problems in your javaScript code [(ESlint)](https://eslint.org/).
 - Code formatter [(Prettier)](https://prettier.io/).
-- Auto deploy [(Github Actions)](https://github.com/features/actions).
+- Automate your workflow from idea to production [(Github Actions)](https://github.com/features/actions).
 - VSCode debugging.
 
 ## Requirements
