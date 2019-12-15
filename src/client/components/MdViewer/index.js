@@ -37,7 +37,7 @@ const parseEmojis = (value) => {
   return newValue;
 };
 
-const makeEmojiHtml = (source) => converter.makeHtml(parseEmojis(source));
+const makeEmojiHtml = (source) => parseEmojis(converter.makeHtml(source));
 
 const MdViewer = ({ source = '' }) => {
   return (
