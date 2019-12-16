@@ -61,7 +61,7 @@ const PostDetail = ({
         <p>
           {`${formatDate(post?.publishAt)} - Published by `}
           <code>
-            <b>{post.user?.name}</b>
+            <b>{post?.user?.name}</b>
           </code>
         </p>
 
