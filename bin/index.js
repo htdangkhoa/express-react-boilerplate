@@ -38,13 +38,14 @@ const main = () => {
       return;
     }
 
-    rimraf.sync(`${dir}/bin`);
-
-    rimraf.sync(`${dir}/static.json`);
-
-    rimraf.sync(`${dir}/.git/`);
-
-    rimraf.sync(`${dir}/yarn.lock`);
+    [
+      `${dir}/bin`,
+      `${dir}/static.json`,
+      `${dir}/.git/`,
+      `${dir}/yarn.lock`,
+    ].forEach((p) => {
+      rimraf.sync(p);
+    });
 
     const newPackage = omit(packageJson, [
       'author',

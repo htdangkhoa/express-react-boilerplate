@@ -1,10 +1,10 @@
 /* @flow */
 import { type MongoPagingType, type MongoPagingResultType } from 'types';
+import { head } from 'lodash';
 
 export const usePaging = async ({
   collection,
-  query = {},
-  options = {},
+  aggregate = [],
   skip = 0,
   limit = 10,
 }: MongoPagingType): MongoPagingResultType => {
@@ -14,12 +14,27 @@ export const usePaging = async ({
 
   const realSkip = roundSkip * roundLimit;
 
-  const transaction = collection
-    .find(query, options)
-    .skip(realSkip)
-    .limit(roundLimit);
+  const list = await collection
+    .aggregate([
+      {
+        $facet: {
+          total: [{ $count: 'count' }],
+          data: [
+            ...aggregate,
+            { $skip: realSkip },
+            {
+              $limit: roundLimit,
+            },
+          ],
+        },
+      },
+      { $unwind: '$total' },
+    ])
+    .toArray();
 
-  const count = await transaction.count();
+  const result = head(list);
+
+  const { count = 0 } = result?.total;
 
   const total = Math.ceil(count / roundLimit);
 
@@ -28,10 +43,8 @@ export const usePaging = async ({
     total,
   };
 
-  const values = await transaction.toArray();
-
   return {
-    values,
+    values: result?.data || [],
     metaData,
   };
 };

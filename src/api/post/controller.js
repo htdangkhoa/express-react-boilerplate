@@ -5,6 +5,21 @@ import { usePaging } from 'mongo/helper';
 import { resultModel, genericError, badRequest } from 'models/result.model';
 import { compact, head } from 'lodash';
 
+const aggregateLookupUser = [
+  {
+    $lookup: {
+      let: { user: '$user_id' },
+      from: 'users',
+      pipeline: [
+        { $match: { $expr: { $eq: ['$$user', '$_id'] } } },
+        { $project: { _id: true, name: true } },
+      ],
+      as: 'user',
+    },
+  },
+  { $unwind: '$user' },
+];
+
 export const getPostsController = () => async (req: Request, res: Response) => {
   const {
     postsCollection,
@@ -14,6 +29,7 @@ export const getPostsController = () => async (req: Request, res: Response) => {
   try {
     const { values: posts, metaData } = await usePaging({
       collection: postsCollection,
+      aggregate: [...aggregateLookupUser, { $sort: { publishAt: -1 } }],
       skip,
     });
 
@@ -41,9 +57,11 @@ export const getPostDetailController = () => async (
   }
 
   try {
-    const post = await postsCollection.findOne({ _id: ObjectId(_id) });
+    const posts = await postsCollection
+      .aggregate([{ $match: { _id: ObjectId(_id) } }, ...aggregateLookupUser])
+      .toArray();
 
-    return res.json(resultModel({ data: post }));
+    return res.json(resultModel({ data: head(posts) }));
   } catch (error) {
     return res.json(genericError({ message: error.message }));
   }
@@ -55,12 +73,13 @@ export const createPostController = () => async (
 ) => {
   const {
     body: { title, description, content, tags = '' },
+    user,
     postsCollection,
   } = req;
 
-  const listTag = tags.split(',');
+  const listTag = compact(tags.split(',').map((tag) => tag.trim()));
 
-  if (!title || !description || !content || compact(listTag).length === 0) {
+  if (!title || !description || !content || listTag.length === 0) {
     return res.json(badRequest());
   }
 
@@ -74,6 +93,7 @@ export const createPostController = () => async (
         comments: [],
         viewers: [],
         publishAt: new Date(),
+        user_id: user._id,
       },
       { serializeFunction: true },
     );

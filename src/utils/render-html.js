@@ -17,9 +17,13 @@ const renderHtml = ({
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
+      <link rel="apple-touch-icon" href="/favicon.ico">
+      <link rel="shortcut icon" href="/favicon.ico">
+      <link rel="manifest" href="/manifest.json">
+
       <link rel="stylesheet" type="text/css" href="${
         isDev ? '/styles.css' : '/styles.min.css'
-      }" />
+      }">
       
       ${head.title.toString()}
       ${head.base.toString()}

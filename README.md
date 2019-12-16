@@ -32,6 +32,7 @@
 
 ## Features
 - Server side [(Express)](https://expressjs.com).
+- NoSQL database [(MongoDB)](mongodb.com).
 - Client side [(React)](https://reactjs.org).
 - Universal routing [(react-router)](https://github.com/ReactTraining/react-router).
 - State management [(Redux)](https://redux.js.org).
@@ -48,10 +49,11 @@
 - Compressing images with imagemin [(imagemin-webpack-plugin)](https://github.com/Klathmon/imagemin-webpack-plugin).
 - Unit testing [(Jest)](https://github.com/facebook/jest).
 - ES6.
+- The optional chaining operator provides a way to simplify accessing values through connected objects when it's possible that a reference or function may be undefined or null [(@babel/plugin-proposal-optional-chaining)](https://babeljs.io/docs/en/babel-plugin-proposal-optional-chaining).
 - Type checker for javascript [(Flow)](https://flow.org/).
-- Find and fix problems in your javaScript code [(ESlint)](https://eslint.org/).
+- Find and fix problems in your javascript code [(ESlint)](https://eslint.org/).
 - Code formatter [(Prettier)](https://prettier.io/).
-- Auto deploy [(Github Actions)](https://github.com/features/actions).
+- Automate your workflow from idea to production [(Github Actions)](https://github.com/features/actions).
 - VSCode debugging.
 
 ## Requirements

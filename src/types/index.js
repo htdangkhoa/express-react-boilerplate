@@ -110,9 +110,7 @@ export type PostCommentActionType = {
 export type MongoPagingType = {
   collection: Collection,
 
-  query?: Object | any,
-
-  options?: Object | any,
+  aggregate?: Object[] | any[],
 
   skip?: number,
 
