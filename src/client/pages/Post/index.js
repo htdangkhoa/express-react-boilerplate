@@ -32,7 +32,12 @@ const Post = ({
     <Layout title={title}>
       {posts.map((post) => (
         <div key={post._id} className='post__item'>
-          <div>{formatDate(post.publishAt)}</div>
+          <div>
+            {`${formatDate(post.publishAt)} - Published by `}
+            <code>
+              <b>{post.user?.name}</b>
+            </code>
+          </div>
 
           <Link to={`/p/${post._id}`} className='post__title'>
             <h3>{post.title}</h3>

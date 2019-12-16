@@ -8,6 +8,8 @@ import moment from 'moment-timezone';
 import Layout from 'components/Layout';
 import MdViewer, { makeEmojiHtml } from 'components/MdViewer';
 
+import { formatDate } from 'utils';
+
 import * as action from './action';
 import '../styles.scss';
 
@@ -55,6 +57,13 @@ const PostDetail = ({
     <Layout title={post?.title || ''}>
       <div className='post__item'>
         <h1 className='post__title'>{post?.title}</h1>
+
+        <p>
+          {`${formatDate(post?.publishAt)} - Published by `}
+          <code>
+            <b>{post.user?.name}</b>
+          </code>
+        </p>
 
         <div className='tag__group'>
           {post?.tags?.map((tag, i) => (
