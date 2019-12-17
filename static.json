@@ -2,9 +2,7 @@
   "root": "dist",
   "clean_urls": true,
   "routes": {
-    "/public/assets/*": "/assets/",
-    "/public/locales/*": "/locales/",
-    "/public/*": "/",
+    "/public/**/*": "/",
     "/*.js": "/",
     "/*.jsx": "/",
     "/*.json": "/",
@@ -23,5 +21,6 @@
     "/*.webp": "/",
     "/*.key": "/",
     "/*.ico": "/"
+    "/*.txt": "/"
   }
 }
