@@ -6,6 +6,7 @@ import { type RenderHtmlType } from '../types';
 
 const renderHtml = ({
   head,
+  extractor,
   htmlContent,
   initialState = {},
 }: RenderHtmlType) => {
@@ -20,15 +21,15 @@ const renderHtml = ({
       <link rel="apple-touch-icon" href="/favicon.ico">
       <link rel="shortcut icon" href="/favicon.ico">
       <link rel="manifest" href="/manifest.json">
-
-      <link rel="stylesheet" type="text/css" href="${
-        isDev ? '/styles.css' : '/styles.min.css'
-      }">
       
       ${head.title.toString()}
       ${head.base.toString()}
       ${head.meta.toString()}
       ${head.link.toString()}
+
+      <!-- Insert bundled styles into <link> tag -->
+      ${extractor.getLinkTags()}
+      ${extractor.getStyleTags()}
     </head>
     <body>
       <noscript>You need to enable JavaScript to run this app.</noscript>
@@ -36,9 +37,8 @@ const renderHtml = ({
 
       <script>window.__INITIAL_STATE__ = ${serialize(initialState)}</script>
 
-      <script type="text/javascript" src="${
-        isDev ? '/bundle.js' : '/bundle.min.js'
-      }"></script>
+      <!-- Insert bundled styles into <link> tag -->
+      ${extractor.getScriptTags()}
 
       ${head.script.toString()}
     </body>

@@ -46,6 +46,7 @@
     "postbuild": "rimraf dist/**/__tests__",
     "prebuild": "rimraf dist",
     "wp": "NODE_ENV=production node -r dotenv-flow/config ./node_modules/.bin/webpack --progress --colors --config src/tools/webpack.config.js --bail",
+    "prewp": "rimraf public/assets public/loadable-stats.json",
     "stats": "NODE_ENV=production node -r dotenv-flow/config ./node_modules/.bin/webpack --config src/tools/webpack.config.js --progress --profile --json > stats.json --bail",
     "analyze": "webpack-bundle-analyzer stats.json",
     "preanalyze": "npm run stats",
@@ -58,6 +59,7 @@
   "nodemonConfig": {
     "ignore": [
       "dist",
+      "public",
       "src/client",
       "src/store"
     ]
@@ -84,6 +86,8 @@
     "@babel/preset-flow": "^7.0.0",
     "@babel/preset-react": "^7.6.3",
     "@babel/runtime": "^7.6.3",
+    "@loadable/babel-plugin": "^5.11.0",
+    "@loadable/webpack-plugin": "^5.7.1",
     "@storybook/react": "^5.2.8",
     "babel-eslint": "^10.0.3",
     "babel-loader": "^8.0.6",
@@ -123,6 +127,8 @@
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.12.0",
     "@hot-loader/react-dom": "^16.10.2",
+    "@loadable/component": "^5.11.0",
+    "@loadable/server": "^5.11.0",
     "asset-require-hook": "^1.2.0",
     "axios": "^0.19.0",
     "bcrypt": "^3.0.6",

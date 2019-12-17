@@ -11,6 +11,7 @@
     ],
     "@babel/proposal-optional-chaining",
     "react-hot-loader/babel",
+    "@loadable/babel-plugin",
     [
       "module-resolver",
       {

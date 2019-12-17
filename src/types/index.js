@@ -2,6 +2,7 @@
 import { type Express } from 'express';
 import { type MongoClient, type Db, type Collection } from 'mongodb';
 import { type HelmetData } from 'react-helmet';
+import { type ChunkExtractor } from '@loadable/server';
 
 export type MongoConnectionType = {
   host: string,
@@ -37,6 +38,8 @@ export type ResultModelType = {
 
 export type RenderHtmlType = {
   head: HelmetData,
+
+  extractor: ChunkExtractor,
 
   htmlContent: string,
 

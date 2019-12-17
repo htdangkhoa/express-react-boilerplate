@@ -65,3 +65,6 @@ dist/
 stats.json
 
 __snapshots__/
+
+public/assets
+public/loadable-stats.json

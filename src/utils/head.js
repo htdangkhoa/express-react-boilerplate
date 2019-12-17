@@ -7,16 +7,21 @@ export default {
   meta: [
     {
       name: 'theme-color',
-      content: '#000000',
+      content: '#222725',
     },
     {
       name: 'description',
-      content: 'The best react universal starter boilerplate in the world.',
+      content:
+        '🔥 This is a tool that helps programmers create Express & React projects easily.',
     },
     {
       name: 'keywords',
       content:
         'kblog, erb, erb-gen, express, expressjs, rest, restful, router, app, api, react, react-router, redux, template, webpack, universal, boilerplate',
+    },
+    {
+      name: 'author',
+      content: 'htdangkhoa',
     },
   ],
 };

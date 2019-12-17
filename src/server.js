@@ -13,6 +13,7 @@ import { LastLocationProvider } from 'react-router-last-location';
 import { CookiesProvider } from 'react-cookie';
 import { Provider } from 'react-redux';
 import { Helmet } from 'react-helmet';
+import { ChunkExtractor, ChunkExtractorManager } from '@loadable/server';
 import renderHtml from './utils/render-html';
 import routes from './routes';
 import {
@@ -33,7 +34,7 @@ app.use('*.js', helmet({ noSniff: false }), (req, res, next) => {
   return next();
 });
 
-app.use(Express.static(resolve(__dirname, 'public')));
+app.use(Express.static(resolve(process.cwd(), 'public')));
 
 if (isDev) {
   app.use(webpackMiddleware());
@@ -86,21 +87,25 @@ app.get('/*', async (req: Request, res: Response) => {
   try {
     await loadBranchData();
 
+    const statsFile = resolve(process.cwd(), 'public/loadable-stats.json');
+
+    const extractor = new ChunkExtractor({ statsFile });
+
     const context = {};
 
     const App = (
-      <Provider store={store}>
-        <StaticRouter location={req.path} context={context}>
-          <LastLocationProvider>
-            <CookiesProvider cookies={req.universalCookies}>
-              {renderRoutes(routes)}
-            </CookiesProvider>
-          </LastLocationProvider>
-        </StaticRouter>
-      </Provider>
+      <ChunkExtractorManager extractor={extractor}>
+        <Provider store={store}>
+          <StaticRouter location={req.path} context={context}>
+            <LastLocationProvider>
+              <CookiesProvider cookies={req.universalCookies}>
+                {renderRoutes(routes)}
+              </CookiesProvider>
+            </LastLocationProvider>
+          </StaticRouter>
+        </Provider>
+      </ChunkExtractorManager>
     );
-
-    const head = Helmet.renderStatic();
 
     if (context.url) {
       res.status(301).setHeader('location', context.url);
@@ -124,9 +129,11 @@ app.get('/*', async (req: Request, res: Response) => {
       .on('end', () => {
         const htmlContent = body.join('');
 
+        const head = Helmet.renderStatic();
+
         return res
           .status(status)
-          .send(renderHtml({ head, htmlContent, initialState }));
+          .send(renderHtml({ head, extractor, htmlContent, initialState }));
       });
   } catch (error) {
     console.error(error);

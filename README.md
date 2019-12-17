@@ -39,6 +39,7 @@
 - Redux debugging tools [(redux-devtools)](https://github.com/reduxjs/redux-devtools).
 - Tweak React components in real time [(react-hot-loader)](https://github.com/gaearon/react-hot-loader).
 - SEO [(react-helmet)](https://github.com/nfl/react-helmet).
+- The recommended Code Splitting library for React [(loadable-components)](https://github.com/gregberge/loadable-components).
 - Promise based HTTP client for the browser and NodeJS [(axios)](https://github.com/axios/axios).
 - Internationalization [(i18next)](https://www.i18next.com/) & [(react-i18next)](https://github.com/i18next/react-i18next).
 - Compiles CSS Modules in runtime [(css-modules-require-hook)](https://github.com/css-modules/css-modules-require-hook).
@@ -62,7 +63,10 @@
 ## Structure
 ```
 .
-├── src
+├── public                      # Express server static path
+│   ├── locales                 # All of i18n resources
+│   └── favicon.ico             # Favicon is placed in the same path with the main HTML page
+├── src                         # App source code
 │   ├── api                     # All of restful API
 │   ├── client                  # Client scope
 │   │   ├── app                 # App root component
@@ -76,9 +80,6 @@
 │   ├── middlewares             # All of express middleware
 │   ├── model                   # Data transfer object
 │   ├── mongo                   # MongoDB configuration
-│   ├── public                  # Express server static path
-│   │   ├── locales             # All of i18n resources
-│   │   └── favicon.ico         # Favicon is placed in the same path with the main HTML page
 │   ├── secure                  # All of security (e.g passport configuration, jsonwebtoken etc.)
 │   ├── store                   # Store configuration for both client and server side
 │   ├── tools                   # Project related configurations
