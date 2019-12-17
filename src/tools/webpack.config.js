@@ -7,6 +7,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const ImageminWebpackPlugin = require('imagemin-webpack-plugin').default;
 const OptimizeCSSAssetsWebpackPlugin = require('optimize-css-assets-webpack-plugin');
 const WebpackBar = require('webpackbar');
+const LoadablePlugin = require('@loadable/webpack-plugin');
 const { NODE_ENV, isDev, PORT } = require('../config');
 
 const getEntries = () => {
@@ -33,17 +34,23 @@ const getPlugins = () => {
     }),
     new CompressionWebpackPlugin({
       algorithm: 'gzip',
-      test: /\.(t|j)s?$/,
+      test: /\.(ts|js|css|html)?$/,
+      threshold: 10240,
     }),
     new MiniCssExtractPlugin({
-      filename: isDev ? 'styles.css' : 'styles.min.css',
+      filename: isDev ? '[name].css' : '[name].[contenthash:8].css',
+      chunkFilename: isDev ? '[id].css' : '[id].[contenthash:8].css',
       ignoreOrder: false,
     }),
     new ImageminWebpackPlugin({
       disable: !isDev,
+      test: /\.(jpe?g|png|gif|svg)$/i,
       minFileSize: 10240,
-      jpegtran: { progressive: true },
       pngquant: { quality: '95-100' },
+    }),
+    new LoadablePlugin({
+      writeToDisk: true,
+      filename: '../loadable-stats.json',
     }),
   ];
 
@@ -68,16 +75,17 @@ module.exports = {
   devtool: isDev ? 'source-map' : 'hidden-source-map',
   entry: getEntries(),
   output: {
-    path: resolve(__dirname, '..', '..', 'dist/public'),
-    filename: isDev ? 'bundle.js' : 'bundle.min.js',
-    publicPath: '/',
+    path: resolve(process.cwd(), 'public/assets'),
+    filename: isDev ? '[name].js' : '[name].[chunkhash:8].js',
+    chunkFilename: isDev ? '[id].js' : '[id].[chunkhash:8].js',
+    publicPath: '/assets/',
   },
   plugins: getPlugins(),
   module: {
     rules: [
       {
         test: /\.(t|j)s?$/,
-        exclude: /node_modules|__tests__/,
+        exclude: /node_modules/,
         loader: 'babel',
         options: { cacheDirectory: isDev },
       },
@@ -157,26 +165,27 @@ module.exports = {
       'react-dom': '@hot-loader/react-dom',
     },
   },
-  optimization: isDev
-    ? {}
-    : {
-        minimizer: [
-          new TerserWebpackPlugin({
-            cache: true,
-            parallel: true,
-            sourceMap: false,
-            extractComments: false,
-            terserOptions: {
-              compress: {
-                booleans: true,
-                drop_console: true,
-              },
-              warnings: false,
-              mangle: true,
-            },
-          }),
-          new OptimizeCSSAssetsWebpackPlugin({}),
-        ],
-      },
+  optimization: {
+    minimizer: [
+      new TerserWebpackPlugin({
+        cache: true,
+        parallel: true,
+        sourceMap: false,
+        extractComments: false,
+        terserOptions: {
+          compress: {
+            booleans: true,
+            drop_console: true,
+          },
+          warnings: false,
+          mangle: true,
+        },
+      }),
+      new OptimizeCSSAssetsWebpackPlugin({}),
+    ],
+    splitChunks: {
+      chunks: isDev ? 'async' : 'all',
+    },
+  },
   performance: { hints: false },
 };

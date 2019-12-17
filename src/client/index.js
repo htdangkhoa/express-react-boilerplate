@@ -9,6 +9,7 @@ import { CookiesProvider } from 'react-cookie';
 import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'connected-react-router';
 import { LastLocationProvider } from 'react-router-last-location';
+import { loadableReady } from '@loadable/component';
 import Loading from 'components/Loading';
 import configureStore from '../store';
 import routes from '../routes';
@@ -38,7 +39,9 @@ const bootstrap = (routesConfig: Array<Object>) => {
   );
 };
 
-bootstrap(routes);
+loadableReady(() => {
+  bootstrap(routes);
+});
 
 if (module.hot) {
   module.hot.accept('../routes', async () => {
