@@ -40,6 +40,7 @@ const main = () => {
 
     [
       `${dir}/bin`,
+      `${dir}/public/googledb37d62693032295.html`,
       `${dir}/static.json`,
       `${dir}/.git/`,
       `${dir}/yarn.lock`,
