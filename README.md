@@ -161,6 +161,9 @@ $ yarn build
 ## Contributors
 - [htdangkhoa](https://github.com/htdangkhoa)
 
+## Special thanks
+- [(react-cool-starter) - wellyshen](https://github.com/wellyshen/react-cool-starter)
+
 ## License
     MIT License
 
