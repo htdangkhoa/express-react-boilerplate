@@ -42,7 +42,7 @@ const renderHtml = ({
 
       <script>window.__INITIAL_STATE__ = ${serialize(initialState)}</script>
 
-      <!-- Insert bundled styles into <link> tag -->
+      <!-- Insert bundled scripts into <script> tag -->
       ${extractor.getScriptTags()}
 
       ${head.script.toString()}
