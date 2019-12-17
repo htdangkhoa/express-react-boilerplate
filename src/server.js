@@ -34,7 +34,7 @@ app.use('*.js', helmet({ noSniff: false }), (req, res, next) => {
   return next();
 });
 
-app.use(Express.static(resolve(process.cwd(), 'public')));
+app.use(Express.static(resolve(__dirname, 'public')));
 
 if (isDev) {
   app.use(webpackMiddleware());
@@ -87,7 +87,7 @@ app.get('/*', async (req: Request, res: Response) => {
   try {
     await loadBranchData();
 
-    const statsFile = resolve(process.cwd(), 'public/loadable-stats.json');
+    const statsFile = resolve(__dirname, 'public/loadable-stats.json');
 
     const extractor = new ChunkExtractor({ statsFile });
 
