@@ -65,7 +65,9 @@
 .
 ├── public                      # Express server static path
 │   ├── locales                 # All of i18n resources
-│   └── favicon.ico             # Favicon is placed in the same path with the main HTML page
+│   ├── favicon.ico             # Favicon is placed in the same path with the main HTML page
+│   ├── manifest.json           # Provides metadata used when your web app is installed on a user's mobile device or desktop.
+│   └── robots.txt              # A robots.txt file tells search engine crawlers which pages or files the crawler can or can't request from your site.
 ├── src                         # App source code
 │   ├── api                     # All of restful API
 │   ├── client                  # Client scope

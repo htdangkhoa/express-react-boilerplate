@@ -20,6 +20,11 @@ const renderHtml = ({
 
       <link rel="apple-touch-icon" href="/favicon.ico">
       <link rel="shortcut icon" href="/favicon.ico">
+
+      <!--
+        manifest.json provides metadata used when your web app is installed on a
+        user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
+      -->
       <link rel="manifest" href="/manifest.json">
       
       ${head.title.toString()}
