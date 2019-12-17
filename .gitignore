@@ -66,5 +66,5 @@ stats.json
 
 __snapshots__/
 
-public/assets
-public/loadable-stats.json
+src/public/assets
+src/public/loadable-stats.json

@@ -59,7 +59,7 @@
   "nodemonConfig": {
     "ignore": [
       "dist",
-      "public",
+      "src/public",
       "src/client",
       "src/store"
     ]

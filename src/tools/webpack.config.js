@@ -75,7 +75,7 @@ module.exports = {
   devtool: isDev ? 'source-map' : 'hidden-source-map',
   entry: getEntries(),
   output: {
-    path: resolve(process.cwd(), 'public/assets'),
+    path: resolve(process.cwd(), `${isDev ? 'src' : 'dist'}/public/assets`),
     filename: isDev ? '[name].js' : '[name].[chunkhash:8].js',
     chunkFilename: isDev ? '[id].js' : '[id].[chunkhash:8].js',
     publicPath: '/assets/',
