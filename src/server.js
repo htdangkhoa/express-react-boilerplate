@@ -28,13 +28,7 @@ import configureStore from './store';
 
 const app = Express();
 
-app.use('*.js', helmet({ noSniff: false }), (req, res, next) => {
-  req.url += '.gz';
-  res.set('Content-Encoding', 'gzip');
-  return next();
-});
-
-app.use(Express.static(resolve(__dirname, 'public')));
+app.use(Express.static(resolve(process.cwd(), 'public')));
 
 if (isDev) {
   app.use(webpackMiddleware());
@@ -87,7 +81,7 @@ app.get('/*', async (req: Request, res: Response) => {
   try {
     await loadBranchData();
 
-    const statsFile = resolve(__dirname, 'public/loadable-stats.json');
+    const statsFile = resolve(process.cwd(), 'public/loadable-stats.json');
 
     const extractor = new ChunkExtractor({ statsFile });
 

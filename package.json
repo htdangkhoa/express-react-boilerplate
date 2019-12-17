@@ -44,7 +44,7 @@
     "predev": "flow stop && flow",
     "build": "BABEL_ENV=production babel --minified --no-comments src -D -d dist && npm run wp",
     "postbuild": "rimraf dist/**/__tests__",
-    "prebuild": "rimraf dist",
+    "prebuild": "rimraf dist public/assets",
     "wp": "NODE_ENV=production node -r dotenv-flow/config ./node_modules/.bin/webpack --progress --colors --config src/tools/webpack.config.js --bail",
     "prewp": "rimraf public/assets public/loadable-stats.json",
     "stats": "NODE_ENV=production node -r dotenv-flow/config ./node_modules/.bin/webpack --config src/tools/webpack.config.js --progress --profile --json > stats.json --bail",
@@ -59,7 +59,7 @@
   "nodemonConfig": {
     "ignore": [
       "dist",
-      "src/public",
+      "public",
       "src/client",
       "src/store"
     ]

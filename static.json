@@ -3,9 +3,8 @@
   "clean_urls": true,
   "routes": {
     "/*.js": "/assets/",
+    "/*.gz": "/assets/",
     "/*.css": "/assets/",
-    "/*.scss": "/assets/",
-    "/*.sass": "/assets/",
     "/*.woff": "/assets/",
     "/*.woff2": "/assets/",
     "/*.ttf": "/assets/",
@@ -17,6 +16,7 @@
     "/*.jpeg": "/assets/",
     "/*.webp": "/assets/",
     "/*.ico": "/",
-    "/*.json": "/",
+    "/*.txt": "/",
+    "/*.json": "/"
   }
 }

@@ -33,8 +33,7 @@ const getPlugins = () => {
       __DEV__: isDev,
     }),
     new CompressionWebpackPlugin({
-      algorithm: 'gzip',
-      test: /\.(ts|js|css|html)?$/,
+      test: /\.(js|css|html)?$/,
       threshold: 10240,
     }),
     new MiniCssExtractPlugin({
@@ -75,7 +74,7 @@ module.exports = {
   devtool: isDev ? 'source-map' : 'hidden-source-map',
   entry: getEntries(),
   output: {
-    path: resolve(process.cwd(), `${isDev ? 'src' : 'dist'}/public/assets`),
+    path: resolve(process.cwd(), 'public/assets'),
     filename: isDev ? '[name].js' : '[name].[chunkhash:8].js',
     chunkFilename: isDev ? '[id].js' : '[id].[chunkhash:8].js',
     publicPath: '/assets/',
@@ -84,7 +83,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(t|j)s?$/,
+        test: /\.js?$/,
         exclude: /node_modules/,
         loader: 'babel',
         options: { cacheDirectory: isDev },
