@@ -109,6 +109,7 @@ module.exports = {
               sourceMap: isDev,
             },
           },
+          { loader: 'postcss', options: { sourceMap: isDev } },
         ],
       },
       {
@@ -132,6 +133,7 @@ module.exports = {
               sourceMap: isDev,
             },
           },
+          { loader: 'postcss', options: { sourceMap: isDev } },
           {
             loader: 'sass',
             options: {

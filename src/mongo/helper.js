@@ -1,6 +1,6 @@
 /* @flow */
 import { type MongoPagingType, type MongoPagingResultType } from 'types';
-import { head } from 'lodash';
+import head from 'lodash/head';
 
 export const usePaging = async ({
   collection,

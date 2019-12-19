@@ -1,6 +1,6 @@
 /* @flow */
 import { type Request, type Response, type NextFunction } from 'express';
-import { isArray } from 'lodash';
+import isArray from 'lodash/isArray';
 import { internalServerError } from 'models/result.model';
 
 const serverErrorMiddleware = () => async (

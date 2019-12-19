@@ -1,7 +1,7 @@
 /* @flow */
 import { type Request, type Response } from 'express';
 import { genSaltSync, hashSync, compareSync } from 'bcrypt';
-import { head } from 'lodash';
+import head from 'lodash/head';
 import {
   badRequest,
   resultModel,

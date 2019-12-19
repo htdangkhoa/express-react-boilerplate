@@ -1,6 +1,6 @@
 /* @flow */
 import axios, { type AxiosError } from 'axios';
-import { omit } from 'lodash';
+import omit from 'lodash/omit';
 import { type Dispatch } from 'redux';
 import { type RequestType, type ApiActionType, type ApiDataType } from 'types';
 import { updateLoadingAction } from 'store/action';

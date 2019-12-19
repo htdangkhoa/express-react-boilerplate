@@ -26,11 +26,13 @@ export const updateTokenAction = (payload?: GlobalStateType) => (
   });
 };
 
-export const fetchTokenAction = () =>
-  updateTokenAction({
-    accessToken: cookies.get('accessToken'),
-    refreshToken: cookies.get('refreshToken'),
-  });
+export const fetchTokenAction = () => (dispatch: Dispatch) =>
+  dispatch(
+    updateTokenAction({
+      accessToken: cookies.get('accessToken'),
+      refreshToken: cookies.get('refreshToken'),
+    }),
+  );
 
 export const UPDATE_LOADING = '@@UPDATE_LOADING';
 export const updateLoadingAction = (isLoading: boolean) => (
@@ -66,8 +68,16 @@ export const renewTokenAction = (data: Object) => (dispatch: Dispatch) =>
   );
 
 export const GET_ME = actionGenerator('@@GET_ME');
-export const getMeAction = () => async (dispatch: Dispatch) =>
-  dispatch(
+export const getMeAction = () => async (dispatch: Dispatch, getState: void) => {
+  const {
+    global: { accessToken },
+  } = getState();
+
+  if (!accessToken) {
+    return dispatch({ type: GET_ME.ERROR, payload: null });
+  }
+
+  return dispatch(
     requestAction({
       url: '/me',
       label: GET_ME.NAME,
@@ -86,3 +96,4 @@ export const getMeAction = () => async (dispatch: Dispatch) =>
       },
     }),
   );
+};

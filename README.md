@@ -42,6 +42,8 @@
 - The recommended Code Splitting library for React [(loadable-components)](https://github.com/gregberge/loadable-components).
 - Promise based HTTP client for the browser and NodeJS [(axios)](https://github.com/axios/axios).
 - Internationalization [(i18next)](https://www.i18next.com/) & [(react-i18next)](https://github.com/i18next/react-i18next).
+- A tool for transforming CSS with JavaScript [(PostCSS)](https://postcss.org/).
+- PostCSS plugin to parse CSS and add vendor prefixes to CSS rules using values from Can I Use. It is recommended by Google and used in Twitter and Alibaba [(autoprefixer)](https://github.com/postcss/autoprefixer).
 - Compiles CSS Modules in runtime [(css-modules-require-hook)](https://github.com/css-modules/css-modules-require-hook).
 - Allows files required by node that match a given set of extensions to be returned as either a data URI, or a custom filename [(asset-require-hook)](https://github.com/aribouius/asset-require-hook).
 - Developing UI components [(Storybook)](https://storybook.js.org/).
@@ -95,6 +97,7 @@
 │   ├── index.js                # App entry point
 │   ├── routes.js               # Routes configuration for both client and server side
 │   └── server.js               # Express server
+├── postcss.config.js           # PostCSS configuration
 ├── .env.development            # All of variables for development environment
 └── .env.production             # All of variables for production environment
 ```
