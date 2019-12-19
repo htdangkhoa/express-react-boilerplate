@@ -2,7 +2,7 @@ import { resolve } from 'path';
 import cssModuleRequireHook from 'css-modules-require-hook';
 import sass from 'node-sass';
 import assetRequireHook from 'asset-require-hook';
-import postcssConfig from '../../postcss.config';
+import postcssConfig from './postcss.config';
 
 const hooks = () => {
   cssModuleRequireHook({
