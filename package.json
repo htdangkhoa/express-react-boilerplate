@@ -41,7 +41,6 @@
   },
   "scripts": {
     "start": "NODE_ENV=production node -r dotenv-flow/config dist/index.js",
-    "prestart": "npm run build",
     "dev": "NODE_ENV=development nodemon src/index.js --exec \"node -r dotenv-flow/config ./node_modules/.bin/babel-node\"",
     "predev": "flow stop && flow",
     "build": "BABEL_ENV=production babel --minified --no-comments src -D -d dist && npm run wp",
