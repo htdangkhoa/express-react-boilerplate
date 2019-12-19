@@ -27,9 +27,9 @@ const configureStore = ({ initialState, url }: ConfigureStoreType) => {
   if (module.hot) {
     module.hot.accept('./reducer', async () => {
       try {
-        const nextReducer = await import('./reducer');
+        const { default: nextReducer } = await import('./reducer');
 
-        store.replaceReducer(nextReducer.default);
+        store.replaceReducer(nextReducer(history));
       } catch (error) {
         console.error(`==> 😭  Reducer hot reloading error ${error}`);
       }

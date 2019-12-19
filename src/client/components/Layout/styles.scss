@@ -1,4 +1,4 @@
-.main_container {
+.main__container {
   margin-top: 24px;
   margin-bottom: 24px;
 
@@ -55,7 +55,7 @@
 }
 
 @media (min-width: 992px) {
-  .main_container {
+  .main__container {
     .sidebar {
       border-right: 2px solid var(--primary__text);
 

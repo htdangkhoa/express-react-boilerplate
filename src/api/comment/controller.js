@@ -1,7 +1,7 @@
 /* @flow */
 import { type Request, type Response } from 'express';
 import { ObjectId } from 'mongodb';
-import { head } from 'lodash';
+import head from 'lodash/head';
 import { genericError, resultModel } from 'models/result.model';
 
 export const getCommentsController = () => async (

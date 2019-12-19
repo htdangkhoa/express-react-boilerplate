@@ -40,7 +40,7 @@ const Child = ({
     <>
       <Helmet title={title} />
       <div className='container'>
-        <div className='row main_container'>
+        <div className='row main__container'>
           {showSidebar && (
             <div className='col-lg-3 col-12 sidebar'>
               <div className='d-lg-none justify-content-end d-flex mb-lg-0 mb-2'>
@@ -202,7 +202,7 @@ const Child = ({
           )}
 
           <div className={`${showSidebar ? 'col-lg-9 col-12' : 'col-12'}`}>
-            <div className={className}>{children}</div>
+            <div className={className && className}>{children}</div>
           </div>
         </div>
       </div>
@@ -233,6 +233,9 @@ const Layout = (props) => {
     if (!user) {
       getMeAction();
     }
+
+    // Reset scroll.
+    window.scrollTo(0, 0);
   }, []);
 
   if (needLogin && !accessToken) {
