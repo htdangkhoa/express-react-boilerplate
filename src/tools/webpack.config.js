@@ -109,7 +109,13 @@ module.exports = {
               sourceMap: isDev,
             },
           },
-          { loader: 'postcss', options: { sourceMap: isDev } },
+          {
+            loader: 'postcss',
+            options: {
+              sourceMap: isDev,
+              config: { path: __dirname },
+            },
+          },
         ],
       },
       {
@@ -133,7 +139,13 @@ module.exports = {
               sourceMap: isDev,
             },
           },
-          { loader: 'postcss', options: { sourceMap: isDev } },
+          {
+            loader: 'postcss',
+            options: {
+              sourceMap: isDev,
+              config: { path: __dirname },
+            },
+          },
           {
             loader: 'sass',
             options: {
