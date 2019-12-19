@@ -89,6 +89,7 @@
 │   ├── tools                   # Project related configurations
 │   │   ├── jest                # Jest configurations
 │   │   ├── hooks.js            # Assets require hooks
+│   │   ├── postcss.config.js   # PostCSS configuration
 │   │   └── webpack.config.js   # Webpack configuration
 │   ├── types                   # All of type for flow
 │   ├── utils                   # App-wide utils
@@ -97,7 +98,6 @@
 │   ├── index.js                # App entry point
 │   ├── routes.js               # Routes configuration for both client and server side
 │   └── server.js               # Express server
-├── postcss.config.js           # PostCSS configuration
 ├── .env.development            # All of variables for development environment
 └── .env.production             # All of variables for production environment
 ```
