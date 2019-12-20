@@ -9,6 +9,7 @@ import {
 } from 'pages/Post/PostDetail/action';
 import CreatePost from 'pages/Post/CreatePost';
 import Introduce from 'pages/Introduce';
+import Projects from 'pages/Introduce/Projects';
 import Contact from 'pages/Contact';
 import NotFound from 'pages/NotFound';
 import App from './client/app';
@@ -46,6 +47,11 @@ export default [
         path: '/register',
         component: Register,
         title: 'Register',
+      },
+      {
+        path: '/introduce/projects',
+        component: Projects,
+        title: 'Projects',
       },
       {
         path: '/introduce',
