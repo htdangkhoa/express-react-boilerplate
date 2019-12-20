@@ -63,6 +63,7 @@ const Post = ({
         previousLabel={<i className='fa fa-angle-left'></i>}
         nextLabel={<i className='fa fa-angle-right'></i>}
         onPageChange={onPageChange}
+        disableInitialCallback
         containerClassName={'pagination row'}
         subContainerClassName={'pages pagination'}
         activeClassName={'active'}
