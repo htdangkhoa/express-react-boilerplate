@@ -28,12 +28,6 @@ import configureStore from './store';
 
 const app = Express();
 
-app.use(Express.static(resolve(process.cwd(), 'public')));
-
-if (isDev) {
-  app.use(webpackMiddleware());
-}
-
 app.use([
   cors({ origin: true, credentials: false }),
   bodyParser.json(),
@@ -41,6 +35,12 @@ app.use([
   compression(),
   helmet(),
 ]);
+
+app.use(Express.static(resolve(process.cwd(), 'public')));
+
+if (isDev) {
+  app.use(webpackMiddleware());
+}
 
 app.use(
   passportMiddleware([
@@ -58,12 +58,20 @@ app.use('/api', serverErrorMiddleware());
 app.use('/api', notFoundErrorMiddleware());
 
 app.get('/*', async (req: Request, res: Response) => {
+  const context = {
+    status: 404,
+  };
+
   const { store } = configureStore({ url: req.url });
 
   const loadBranchData = (): Promise<any> => {
     const branches = matchRoutes(routes, req.path);
 
     const promises = branches.map(({ route, match }) => {
+      if (match.path === req.path && match.isExact) {
+        context.status = 200;
+      }
+
       if (route.loadData) {
         return Promise.all(
           route
@@ -85,8 +93,6 @@ app.get('/*', async (req: Request, res: Response) => {
 
     const extractor = new ChunkExtractor({ statsFile });
 
-    const context = {};
-
     const App = (
       <ChunkExtractorManager extractor={extractor}>
         <Provider store={store}>
@@ -107,7 +113,7 @@ app.get('/*', async (req: Request, res: Response) => {
       return res.end();
     }
 
-    const status = context.status === '404' ? 404 : 200;
+    const status = context.status === 404 ? 404 : 200;
 
     const initialState = store.getState();
 
