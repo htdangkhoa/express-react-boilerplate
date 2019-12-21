@@ -58,20 +58,12 @@ app.use('/api', serverErrorMiddleware());
 app.use('/api', notFoundErrorMiddleware());
 
 app.get('/*', async (req: Request, res: Response) => {
-  const context = {
-    status: 404,
-  };
-
   const { store } = configureStore({ url: req.url });
 
   const loadBranchData = (): Promise<any> => {
     const branches = matchRoutes(routes, req.path);
 
     const promises = branches.map(({ route, match }) => {
-      if (match.path === req.path && match.isExact) {
-        context.status = 200;
-      }
-
       if (route.loadData) {
         return Promise.all(
           route
@@ -88,6 +80,8 @@ app.get('/*', async (req: Request, res: Response) => {
 
   try {
     await loadBranchData();
+
+    const context = {};
 
     const statsFile = resolve(process.cwd(), 'public/loadable-stats.json');
 
@@ -107,19 +101,9 @@ app.get('/*', async (req: Request, res: Response) => {
       </ChunkExtractorManager>
     );
 
-    if (context.url) {
-      res.status(301).setHeader('location', context.url);
-
-      return res.end();
-    }
-
-    const status = context.status === 404 ? 404 : 200;
-
-    const initialState = store.getState();
-
     const body = [];
 
-    return ReactDOMServer.renderToNodeStream(App)
+    return ReactDOMServer.renderToStaticNodeStream(App)
       .on('data', (chunk) => {
         body.push(chunk.toString());
       })
@@ -128,6 +112,16 @@ app.get('/*', async (req: Request, res: Response) => {
       })
       .on('end', () => {
         const htmlContent = body.join('');
+
+        if (context.url) {
+          res.status(301).setHeader('location', context.url);
+
+          return res.end();
+        }
+
+        const status = context.status === '404' ? 404 : 200;
+
+        const initialState = store.getState();
 
         const head = Helmet.renderStatic();
 

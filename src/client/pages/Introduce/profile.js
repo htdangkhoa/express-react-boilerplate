@@ -137,9 +137,7 @@ export const projects = [
   {
     pinned: false,
     source: `
-    **8days | Jun, 2017 - Jul, 2018 | ${download(
-      'https://play.google.com/store/apps/details?id=co.vn.the8days&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1',
-    )}**
+    **8days | Jun, 2017 - Jul, 2018**
     \`Android\` / \`GraphQL\` / \`AES En-Decryption\` / \`AWS\`
     Application is a solution to help worker at factory can other food using QR Code technology.
     - Analysis
@@ -152,9 +150,7 @@ export const projects = [
   {
     pinned: false,
     source: `
-    **Recpic | Apr, 2016 - May, 2017 | ${download(
-      'https://play.google.com/store/apps/details?id=com.codeatnite.recpic',
-    )}**
+    **Recpic | Apr, 2016 - May, 2017**
     \`Ionic\` / \`Android\` / \`iOS\` / \`HTML\` / \`SCSS\` / \`Javascript\`
     This is the app that helps people to manage their spending.
     - Development
