@@ -5,7 +5,7 @@ import Layout from 'components/Layout';
 import './styles.scss';
 
 const NotFound = ({ route: { title }, staticContext = {} }) => {
-  staticContext.status = '404';
+  staticContext.status = 404;
 
   return (
     <Layout title={title} className='not__found__container' needLogin={false}>

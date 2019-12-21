@@ -24,10 +24,6 @@ const Child = ({
   updateThemeAction,
   updateTokenAction,
 }) => {
-  useEffect(() => {
-    updateThemeAction(localStorage.getItem('theme') || 'light');
-  }, []);
-
   const onChangeTheme = (checked) => {
     updateThemeAction(checked ? 'dark' : 'light');
   };

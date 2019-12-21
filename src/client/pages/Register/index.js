@@ -21,7 +21,8 @@ let Register = ({
     <RedirectWithoutLastLocation to='/login' />
   ) : (
     <Layout title={title} showSidebar={false} needLogin={false}>
-      <h2 className='text-center'>Register</h2>
+      <h1 className='text-center'>Register</h1>
+
       <div className='row'>
         <div className='col col-md-6 offset-md-3'>
           <form onSubmit={handleSubmit(onSubmit)}>

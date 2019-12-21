@@ -1,5 +1,5 @@
 /* @flow */
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Helmet } from 'react-helmet';
 import { connect } from 'react-redux';
 import { hot } from 'react-hot-loader';
@@ -9,11 +9,12 @@ import head from 'utils/head';
 
 import Loading from 'components/Loading';
 
-const App = (props) => {
-  const {
-    route,
-    global: { isLoading },
-  } = props;
+import * as globalAction from 'store/action';
+
+const App = ({ route, global: { isLoading }, updateThemeAction }) => {
+  useEffect(() => {
+    updateThemeAction(localStorage.getItem('theme') || 'light');
+  }, []);
 
   return (
     <>
@@ -27,4 +28,8 @@ const App = (props) => {
 
 const mapStateToProps = ({ global }) => ({ global });
 
-export default hot(module)(connect(mapStateToProps)(App));
+const mapDispatchToProps = {
+  updateThemeAction: globalAction.updateThemeAction,
+};
+
+export default hot(module)(connect(mapStateToProps, mapDispatchToProps)(App));

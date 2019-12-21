@@ -4,6 +4,14 @@ export default {
   },
   defaultTitle: 'Express React Boilerplate',
   titleTemplate: 'Express React Boilerplate | %s',
+  link: [
+    {
+      rel: 'canonical',
+      href: __DEV__
+        ? 'http://localhost:8080'
+        : 'https://htdangkhoa-erb.herokuapp.com/',
+    },
+  ],
   meta: [
     {
       name: 'theme-color',
