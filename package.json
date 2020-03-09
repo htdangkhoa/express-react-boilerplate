@@ -132,7 +132,7 @@
     "webpackbar": "^4.0.0"
   },
   "dependencies": {
-    "@fortawesome/fontawesome-free": "^5.12.0",
+    "@fortawesome/fontawesome-free": "^5.12.1",
     "@hot-loader/react-dom": "^16.10.2",
     "@loadable/component": "^5.11.0",
     "@loadable/server": "^5.11.0",
