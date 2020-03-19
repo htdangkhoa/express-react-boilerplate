@@ -10,6 +10,7 @@ import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'connected-react-router';
 import { LastLocationProvider } from 'react-router-last-location';
 import { loadableReady } from '@loadable/component';
+import OfflinePlugin from 'offline-plugin/runtime';
 import Loading from 'components/Loading';
 import configureStore from '../store';
 import routes from '../routes';
@@ -53,4 +54,8 @@ if (module.hot) {
       console.error(`==> 😭  Routes hot reloading error ${error}`);
     }
   });
+}
+
+if (!__DEV__) {
+  OfflinePlugin.install();
 }

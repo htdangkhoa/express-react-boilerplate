@@ -66,5 +66,8 @@ stats.json
 
 __snapshots__/
 
-public/assets
-public/loadable-stats.json
+public/*
+!public/assets
+!public/locales
+!public/robots.txt
+!public/googledb37d62693032295.html

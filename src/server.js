@@ -5,6 +5,7 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 import compression from 'compression';
 import helmet from 'helmet';
+import serveFavicon from 'serve-favicon';
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import { StaticRouter } from 'react-router';
@@ -32,6 +33,7 @@ app.use([
   cors({ origin: true, credentials: false }),
   bodyParser.json(),
   bodyParser.urlencoded({ extended: true }),
+  serveFavicon(resolve(process.cwd(), 'public/assets/favicon.ico')),
   compression(),
   helmet(),
 ]);

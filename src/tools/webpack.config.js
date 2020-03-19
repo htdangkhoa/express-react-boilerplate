@@ -8,6 +8,8 @@ const ImageminWebpackPlugin = require('imagemin-webpack-plugin').default;
 const OptimizeCSSAssetsWebpackPlugin = require('optimize-css-assets-webpack-plugin');
 const WebpackBar = require('webpackbar');
 const LoadablePlugin = require('@loadable/webpack-plugin');
+const WebpackPwaManifest = require('webpack-pwa-manifest');
+const OfflinePlugin = require('offline-plugin');
 const { NODE_ENV, isDev, PORT } = require('../config');
 
 const getEntries = () => {
@@ -32,10 +34,6 @@ const getPlugins = () => {
       __SERVER__: false,
       __DEV__: isDev,
     }),
-    new CompressionWebpackPlugin({
-      test: /\.(js|css|html)?$/,
-      threshold: 10240,
-    }),
     new MiniCssExtractPlugin({
       filename: isDev ? '[name].css' : '[name].[contenthash:8].css',
       chunkFilename: isDev ? '[id].css' : '[id].[contenthash:8].css',
@@ -49,7 +47,31 @@ const getPlugins = () => {
     }),
     new LoadablePlugin({
       writeToDisk: true,
-      filename: '../loadable-stats.json',
+      filename: 'loadable-stats.json',
+    }),
+    new WebpackPwaManifest({
+      name: 'Express React Boilerplate',
+      short_name: 'ERB',
+      description:
+        '🔥 This is a tool that helps programmers create Express & React projects easily.',
+      background_color: '#ffffff',
+      theme_color: '#33cccc',
+      inject: true,
+      ios: true,
+      icons: [
+        {
+          src: resolve(process.cwd(), 'public/assets/favicon-512x512.png'),
+          sizes: [72, 96, 128, 144, 192, 384, 512],
+        },
+        {
+          src: resolve(process.cwd(), 'public/assets/favicon-512x512.png'),
+          sizes: [120, 152, 167, 180],
+          ios: true,
+        },
+      ],
+      filename: 'site.webmanifest',
+      start_url: '.',
+      display: 'standalone',
     }),
   ];
 
@@ -64,6 +86,21 @@ const getPlugins = () => {
         },
       }),
     ];
+  } else {
+    plugins = [
+      ...plugins,
+      new CompressionWebpackPlugin({
+        test: /\.(js|css)?$/,
+        threshold: 10240,
+      }),
+      new OfflinePlugin({
+        autoUpdate: true,
+        appShell: '/',
+        relativePaths: false,
+        updateStrategy: 'all',
+        externals: ['/'],
+      }),
+    ];
   }
 
   return plugins;
@@ -74,10 +111,10 @@ module.exports = {
   devtool: isDev ? 'source-map' : 'hidden-source-map',
   entry: getEntries(),
   output: {
-    path: resolve(process.cwd(), 'public/assets'),
+    path: resolve(process.cwd(), 'public'),
     filename: isDev ? '[name].js' : '[name].[chunkhash:8].js',
     chunkFilename: isDev ? '[id].js' : '[id].[chunkhash:8].js',
-    publicPath: '/assets/',
+    publicPath: '/',
   },
   plugins: getPlugins(),
   module: {

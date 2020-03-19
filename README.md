@@ -31,6 +31,7 @@
 </p>
 
 ## Features
+
 - Server side [(Express)](https://expressjs.com).
 - NoSQL database [(MongoDB)](mongodb.com).
 - Client side [(React)](https://reactjs.org).
@@ -40,6 +41,7 @@
 - Tweak React components in real time [(react-hot-loader)](https://github.com/gaearon/react-hot-loader).
 - SEO [(react-helmet)](https://github.com/nfl/react-helmet).
 - The recommended Code Splitting library for React [(loadable-components)](https://github.com/gregberge/loadable-components).
+- Progressive web app [(offline-plugin)](https://github.com/NekR/offline-plugin).
 - Promise based HTTP client for the browser and NodeJS [(axios)](https://github.com/axios/axios).
 - Internationalization [(i18next)](https://www.i18next.com/) & [(react-i18next)](https://github.com/i18next/react-i18next).
 - A tool for transforming CSS with JavaScript [(PostCSS)](https://postcss.org/).
@@ -60,15 +62,16 @@
 - VSCode debugging.
 
 ## Requirements
+
 - [Node](https://nodejs.org/en/) >= 10.13.0
 
 ## Structure
+
 ```
 .
 ├── public                      # Express server static path
+│   ├── assets                  # All favicon resources
 │   ├── locales                 # All of i18n resources
-│   ├── favicon.ico             # Favicon is placed in the same path with the main HTML page
-│   ├── manifest.json           # Provides metadata used when your web app is installed on a user's mobile device or desktop.
 │   └── robots.txt              # A robots.txt file tells search engine crawlers which pages or files the crawler can or can't request from your site.
 ├── src                         # App source code
 │   ├── api                     # All of restful API
@@ -103,13 +106,16 @@
 ```
 
 ## Installation
+
 ```bash
 $ yarn global add express-react-boilerplate
 # or (sudo) npm install -g express-react-boilerplate
 ```
 
-## Getting Started     
+## Getting Started
+
 **1. Usage:**
+
 ```bash
 $ erb-gen --help
 
@@ -127,6 +133,7 @@ $ erb-gen --help
 ```
 
 **2. Install dependencies:**
+
 ```bash
 $ cd <your_project>
 
@@ -135,12 +142,14 @@ $ yarn
 ```
 
 **3. Run it:**
+
 ```bash
 $ yarn dev
 # or npm run dev
 ```
 
 ## Build
+
 ```bash
 $ yarn build
 # or npm run build
@@ -150,7 +159,38 @@ $ yarn build
 
 > **NOTE**: You can change environment variables in `.env.development` for Development mode or `.env.production` for Production mode.
 
+## Enable/Disable offline
+
+- In `src/tools/webpack.config.js`:
+
+  ```js
+  if (isDev) {
+    ...
+  } else {
+    plugins = [
+      ...,
+      // Comment this plugin if you want to disable offline.
+      new OfflinePlugin({
+        autoUpdate: true,
+        appShell: '/',
+        relativePaths: false,
+        updateStrategy: 'all',
+        externals: ['/'],
+      })
+    ]
+  }
+  ```
+
+- At the end of `src/client/index.js`:
+
+  ```js
+  if (!__DEV__) {
+    OfflinePlugin.install(); // Comment this line if you want to disable offline.
+  }
+  ```
+
 ## Scripts
+
 | Script    | Description                                                                           |
 | --------- | ------------------------------------------------------------------------------------- |
 | dev       | Start the development server.                                                         |
@@ -162,12 +202,15 @@ $ yarn build
 | test      | Run testing.                                                                          |
 
 ## Contributors
+
 - [htdangkhoa](https://github.com/htdangkhoa)
 
 ## Special thanks
+
 - [(react-cool-starter) - wellyshen](https://github.com/wellyshen/react-cool-starter)
 
 ## License
+
     MIT License
 
     Copyright (c) 2019 Huỳnh Trần Đăng Khoa
