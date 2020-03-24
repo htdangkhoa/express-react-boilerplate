@@ -153,6 +153,7 @@
     "connected-react-router": "^6.5.2",
     "cors": "^2.8.5",
     "css-modules-require-hook": "^4.2.3",
+    "del": "^5.1.0",
     "env-cmd": "^10.1.0",
     "express": "^4.17.1",
     "git-clone": "^0.1.0",

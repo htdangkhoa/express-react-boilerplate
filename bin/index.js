@@ -2,7 +2,7 @@
 
 const commander = require('commander');
 const gitClone = require('git-clone');
-const rimraf = require('rimraf');
+const del = require('del');
 const { writeFileSync } = require('fs');
 const { omit } = require('lodash');
 const packageJson = require('../package.json');
@@ -38,15 +38,17 @@ const main = () => {
       return;
     }
 
-    [
-      `${dir}/bin`,
-      `${dir}/public/googledb37d62693032295.html`,
-      `${dir}/static.json`,
-      `${dir}/.git/`,
-      `${dir}/yarn.lock`,
-    ].forEach((p) => {
-      rimraf.sync(p);
-    });
+    del.sync(
+      [
+        `${dir}/bin`,
+        `${dir}/public/googledb37d62693032295.html`,
+        `${dir}/static.json`,
+        `${dir}/.git/`,
+        `${dir}/yarn.lock`,
+        `${dir}/.github/FUNDING.yml`,
+      ],
+      { force: true },
+    );
 
     const newPackage = omit(packageJson, [
       'author',
