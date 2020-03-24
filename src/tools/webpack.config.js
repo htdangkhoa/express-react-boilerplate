@@ -1,16 +1,16 @@
-const { resolve } = require('path');
-const webpack = require('webpack');
-const TerserWebpackPlugin = require('terser-webpack-plugin');
-const CompressionWebpackPlugin = require('compression-webpack-plugin');
-const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const ImageminWebpackPlugin = require('imagemin-webpack-plugin').default;
-const OptimizeCSSAssetsWebpackPlugin = require('optimize-css-assets-webpack-plugin');
-const WebpackBar = require('webpackbar');
-const LoadablePlugin = require('@loadable/webpack-plugin');
-const WebpackPwaManifest = require('webpack-pwa-manifest');
-const OfflinePlugin = require('offline-plugin');
-const { NODE_ENV, isDev, PORT } = require('../config');
+import { resolve } from 'path';
+import webpack from 'webpack';
+import TerserWebpackPlugin from 'terser-webpack-plugin';
+import CompressionWebpackPlugin from 'compression-webpack-plugin';
+import FriendlyErrorsWebpackPlugin from 'friendly-errors-webpack-plugin';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import ImageminWebpackPlugin from 'imagemin-webpack-plugin';
+import OptimizeCSSAssetsWebpackPlugin from 'optimize-css-assets-webpack-plugin';
+import WebpackBar from 'webpackbar';
+import LoadablePlugin from '@loadable/webpack-plugin';
+import WebpackPwaManifest from 'webpack-pwa-manifest';
+import OfflinePlugin from 'offline-plugin';
+import { NODE_ENV, isDev, PORT } from '../config';
 
 const getEntries = () => {
   let entries = [resolve(__dirname, '..', 'client/index.js')];
@@ -40,7 +40,7 @@ const getPlugins = () => {
       ignoreOrder: false,
     }),
     new ImageminWebpackPlugin({
-      disable: !isDev,
+      disable: isDev,
       test: /\.(jpe?g|png|gif|svg)$/i,
       minFileSize: 10240,
       pngquant: { quality: '95-100' },

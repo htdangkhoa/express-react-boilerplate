@@ -34,26 +34,29 @@
     "universal",
     "boilerplate",
     "postcss",
-    "css-modules"
+    "css-modules",
+    "pwa",
+    "progressive web app",
+    "offline"
   ],
   "bin": {
     "erb-gen": "./bin/index.js"
   },
   "scripts": {
-    "start": "NODE_ENV=production node -r dotenv-flow/config dist/index.js",
-    "dev": "NODE_ENV=development nodemon src/index.js --exec \"node -r dotenv-flow/config ./node_modules/.bin/babel-node\"",
+    "start": "env-cmd -e production node dist/index.js",
+    "dev": "env-cmd -e development nodemon --inspect=0.0.0.0:58585 src/index.js --exec babel-node",
     "predev": "flow stop && flow",
     "build": "BABEL_ENV=production babel --minified --no-comments src -D -d dist && npm run wp",
     "prebuild": "del dist",
     "postbuild": "del dist/**/__tests__",
-    "wp": "NODE_ENV=production node -r dotenv-flow/config ./node_modules/.bin/webpack --progress --colors --config src/tools/webpack.config.js --bail",
+    "wp": "env-cmd -e production babel-node ./node_modules/.bin/webpack --config src/tools/webpack.config.js --progress --colors --bail",
     "prewp": "npm run clean",
-    "clean": "del \"public/*\" \"!public/assets\" \"!public/locales\" \"!public/robots.txt\" \"!public/googledb37d62693032295.html\"",
-    "stats": "NODE_ENV=production node -r dotenv-flow/config ./node_modules/.bin/webpack --config src/tools/webpack.config.js --progress --profile --json > stats.json --bail",
+    "stats": "env-cmd -e production babel-node ./node_modules/.bin/webpack --config src/tools/webpack.config.js --progress --colors --bail --json > stats.json",
     "analyze": "webpack-bundle-analyzer stats.json",
     "preanalyze": "npm run stats",
     "storybook": "start-storybook --ci",
-    "test": "jest -u"
+    "test": "jest -u",
+    "clean": "del \"public/*\" \"!public/assets\" \"!public/locales\" \"!public/robots.txt\" \"!public/googledb37d62693032295.html\""
   },
   "engines": {
     "node": ">=10.13.0"
@@ -150,7 +153,7 @@
     "connected-react-router": "^6.5.2",
     "cors": "^2.8.5",
     "css-modules-require-hook": "^4.2.3",
-    "dotenv-flow": "^3.1.0",
+    "env-cmd": "^10.1.0",
     "express": "^4.17.1",
     "git-clone": "^0.1.0",
     "helmet": "^3.21.1",
