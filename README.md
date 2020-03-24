@@ -101,8 +101,7 @@
 │   ├── index.js                # App entry point
 │   ├── routes.js               # Routes configuration for both client and server side
 │   └── server.js               # Express server
-├── .env.development            # All of variables for development environment
-└── .env.production             # All of variables for production environment
+└── .env-cmdrc.json             # All of environments configuration.
 ```
 
 ## Installation
