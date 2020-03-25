@@ -137,7 +137,7 @@
     "@loadable/component": "^5.11.0",
     "@loadable/server": "^5.11.0",
     "asset-require-hook": "^1.2.0",
-    "autoprefixer": "^9.7.3",
+    "autoprefixer": "^9.7.5",
     "axios": "^0.19.0",
     "bcrypt": "^4.0.0",
     "body-parser": "^1.19.0",
