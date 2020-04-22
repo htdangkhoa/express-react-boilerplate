@@ -1,4 +1,7 @@
 /* @flow */
+import 'react-app-polyfill/ie11';
+import 'react-app-polyfill/stable';
+import 'core-js/stable';
 import './vendor';
 import '../i18n';
 import React, { Suspense } from 'react';
