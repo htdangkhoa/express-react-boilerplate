@@ -45,7 +45,6 @@
   "scripts": {
     "start": "env-cmd -e production node dist/index.js",
     "dev": "env-cmd -e development nodemon --inspect=0.0.0.0:58585 src/index.js --exec babel-node",
-    "predev": "flow stop && flow",
     "build": "BABEL_ENV=production babel --minified --no-comments src -D -d dist && npm run wp",
     "prebuild": "del dist",
     "postbuild": "del dist/**/__tests__",
@@ -161,7 +160,6 @@
     "commander": "^5.0.0",
     "compression": "^1.7.4",
     "connected-react-router": "^6.5.2",
-    "core-js": "^3.6.5",
     "cors": "^2.8.5",
     "css-modules-require-hook": "^4.2.3",
     "del": "^5.1.0",
@@ -184,7 +182,6 @@
     "passport-jwt": "^4.0.0",
     "prop-types": "^15.7.2",
     "react": "^16.10.2",
-    "react-app-polyfill": "^1.0.6",
     "react-cookie": "^4.0.1",
     "react-dev-utils": "^10.0.0",
     "react-dom": "^16.11.0",

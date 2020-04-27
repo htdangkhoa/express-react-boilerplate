@@ -158,6 +158,18 @@ $ yarn build
 
 > **NOTE**: You can change environment variables in `.env.development` for Development mode or `.env.production` for Production mode.
 
+## Scripts
+
+| Script    | Description                                                                           |
+| --------- | ------------------------------------------------------------------------------------- |
+| dev       | Start the development server.                                                         |
+| start     | Start the production server.                                                          |
+| build     | Remove the previous bundled files and bundle it (include client & server) to `dist/`. |
+| wp        | Bundle client to `dist/`.                                                             |
+| analyze   | Visualize the contents of all your bundles.                                           |
+| storybook | Start the storybook server.                                                           |
+| test      | Run testing.                                                                          |
+
 ## Enable/Disable offline
 
 - In `src/tools/webpack.config.js`:
@@ -188,23 +200,80 @@ $ yarn build
   }
   ```
 
-## Scripts
+## Supported Browsers
 
-| Script    | Description                                                                           |
-| --------- | ------------------------------------------------------------------------------------- |
-| dev       | Start the development server.                                                         |
-| start     | Start the production server.                                                          |
-| build     | Remove the previous bundled files and bundle it (include client & server) to `dist/`. |
-| wp        | Bundle client to `dist/`.                                                             |
-| analyze   | Visualize the contents of all your bundles.                                           |
-| storybook | Start the storybook server.                                                           |
-| test      | Run testing.                                                                          |
+By default, the generated project supports all modern browsers. Support for Internet Explorer 9, 10, and 11 requires polyfills. For a set of polyfills to support older browsers, use [react-app-polyfill](https://github.com/facebook/create-react-app/tree/master/packages/react-app-polyfill).
+
+```bash
+$ yarn add react-app-polyfill core-js
+# or npm install --save react-app-polyfill core-js
+```
+
+You can import the entry point for the minimal version you intend to support to ensure that the minimum language features are present that are required to use in your project. For example, if you import the IE9 entry point, this will include IE10 and IE11 support.
+
+### **Internet Explorer 9**
+
+```js
+// This must be the first line in <PROJECT_ROOT>/src/client/app/index.js
+import 'react-app-polyfill/ie9';
+
+// ...
+```
+
+### **Internet Explorer 11**
+
+```js
+// This must be the first line in <PROJECT_ROOT>/src/client/app/index.js
+import 'react-app-polyfill/ie11';
+
+// ...
+```
+
+## Polyfilling Other Language Features
+
+You can also polyfill stable language features not available in your target browsers. If you're using this in Create React App, it will automatically use the browserslist you've defined to only include polyfills needed by your target browsers when importing the stable polyfill. **Make sure to follow the Internet Explorer steps above if you need to support Internet Explorer in your application.**
+
+```js
+// This must be the first line in <PROJECT_ROOT>/src/client/app/index.js
+import 'react-app-polyfill/stable';
+
+// ...
+```
+
+If you are supporting Internet Explorer 9 or Internet Explorer 11 you should include both the ie9 or ie11 and stable modules:
+
+### **Internet Explorer 9**
+
+```js
+// This must be the first line in <PROJECT_ROOT>/src/client/app/index.js
+import 'react-app-polyfill/ie9';
+import 'react-app-polyfill/stable';
+
+// ...
+```
+
+### **Internet Explorer 11**
+
+```js
+// This must be the first line in <PROJECT_ROOT>/src/client/app/index.js
+import 'react-app-polyfill/ie11';
+import 'react-app-polyfill/stable';
+
+// ...
+```
+
+## Type Checking For Editor
+
+- [Visual Studio Code](https://flow.org/en/docs/editors/vscode/)
+- [Atom](https://flow.org/en/docs/editors/atom/)
+- [Sublime Text](https://flow.org/en/docs/editors/sublime-text/)
+- [Etc.](https://flow.org/en/docs/editors/)
 
 ## Contributors
 
 - [htdangkhoa](https://github.com/htdangkhoa)
 
-## Special thanks
+## Special Thanks
 
 - [(react-cool-starter) - wellyshen](https://github.com/wellyshen/react-cool-starter)
 
