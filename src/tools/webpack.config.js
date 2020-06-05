@@ -10,7 +10,7 @@ import WebpackBar from 'webpackbar';
 import LoadablePlugin from '@loadable/webpack-plugin';
 import WebpackPwaManifest from 'webpack-pwa-manifest';
 import OfflinePlugin from 'offline-plugin';
-import { NODE_ENV, isDev, PORT } from '../config';
+import { NODE_ENV, isDev } from '../config';
 
 const getEntries = () => {
   let entries = [resolve(__dirname, '..', 'client/index.js')];
@@ -82,7 +82,9 @@ const getPlugins = () => {
       new webpack.HotModuleReplacementPlugin(),
       new FriendlyErrorsWebpackPlugin({
         compilationSuccessInfo: {
-          messages: [`=====> Listening at http://localhost:${PORT}`],
+          messages: [
+            `=====> Listening at http://localhost:${process.env.PORT}`,
+          ],
         },
       }),
     ];

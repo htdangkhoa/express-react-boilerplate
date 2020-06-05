@@ -49,6 +49,7 @@
     "no-underscore-dangle": "warn",
     "import/prefer-default-export": "off",
     "import/no-cycle": "off",
+    "import/no-unresolved": "off",
     "no-unused-vars": ["error", { "argsIgnorePattern": "^_" }]
   }
 }

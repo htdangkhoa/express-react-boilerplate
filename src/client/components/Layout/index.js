@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
-import { Redirect, withRouter } from 'react-router';
-import { NavLink, Link } from 'react-router-dom';
+import { Redirect, withRouter, NavLink, Link } from 'react-router-dom';
 import {
   useLastLocation,
   RedirectWithoutLastLocation,

@@ -1,7 +1,7 @@
 /* @flow */
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router';
+import { Redirect } from 'react-router-dom';
 import ReactMde from 'react-mde';
 import { toast } from 'react-toastify';
 

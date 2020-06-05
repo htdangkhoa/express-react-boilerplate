@@ -66,6 +66,8 @@ stats.json
 
 __snapshots__/
 
+.vscode/settings.json
+
 public/*
 !public/assets
 !public/locales

@@ -16,6 +16,20 @@ global.__CLIENT__ = false;
 global.__SERVER__ = true;
 
 (async () => {
+  let port = parseFloat(PORT);
+
+  if (__DEV__) {
+    const { default: portChecker } = await import('tcp-port-used');
+
+    const isUsed = await portChecker.check(port);
+
+    if (isUsed) {
+      port += 1;
+
+      process.env.PORT = port;
+    }
+  }
+
   hooks();
 
   try {
@@ -29,13 +43,13 @@ global.__SERVER__ = true;
       app: server,
     });
 
-    createServer(server).listen(PORT, () => {
+    createServer(server).listen(port, () => {
       console.clear();
 
       console.log(`Starting the ${NODE_ENV} server...`);
 
       if (isDev) {
-        openBrowser(`http://localhost:${PORT}/`);
+        openBrowser(`http://localhost:${port}/`);
       }
     });
   } catch (error) {

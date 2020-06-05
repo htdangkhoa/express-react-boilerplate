@@ -11,6 +11,10 @@
     <img src='https://david-dm.org/htdangkhoa/erb/dev-status.svg' alt='devDependency status' />
   </a>
 
+  <a href='https://github.com/airbnb/javascript/tree/master/packages/eslint-config-airbnb-base'>
+    <img src='https://img.shields.io/badge/ESLint-airbnb-4B32C3.svg' alt='ESLint: airbnb-base' />
+  </a>
+
   <a href='https://github.com/prettier/prettier'>
     <img src='https://img.shields.io/badge/code_style-prettier-ff69b4.svg' alt='code style: prettier' />
   </a>
@@ -156,7 +160,7 @@ $ yarn build
 
 ---
 
-> **NOTE**: You can change environment variables in `.env.development` for Development mode or `.env.production` for Production mode.
+> **NOTE**: You can change environment variables in `.env-cmdrc.json` file.
 
 ## Scripts
 

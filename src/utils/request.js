@@ -1,4 +1,5 @@
 /* @flow */
+import os from 'os';
 import axios, { type AxiosError } from 'axios';
 import omit from 'lodash/omit';
 import { type Dispatch } from 'redux';
@@ -7,9 +8,17 @@ import { updateLoadingAction } from 'store/action';
 import cookies from './cookies';
 import { actionGenerator } from './';
 
-const baseUrl = __DEV__
-  ? 'http://localhost:8080/api'
-  : 'https://htdangkhoa-erb.herokuapp.com/api';
+const getBaseUrl = () => {
+  if (!__DEV__) return 'https://htdangkhoa-erb.herokuapp.com/api';
+
+  if (typeof window !== 'undefined') {
+    return `${window.location.protocol}//${window.location.host}/api`;
+  }
+
+  return `http://${os.hostname()}:${String(process.env.PORT)}/api`;
+};
+
+const baseUrl = getBaseUrl();
 
 export const request = async ({
   host = baseUrl,
@@ -68,6 +77,7 @@ export const requestAction = (options: ApiActionType) => async (
 
     const result: ApiDataType = (res: ApiDataType);
 
+    // eslint-disable-next-line no-unused-vars
     const { code = 200, data, error } = result;
 
     if (code !== 200 && options.onError) {
@@ -95,6 +105,7 @@ export const requestAction = (options: ApiActionType) => async (
 
     const result: ApiDataType = (res: ApiDataType);
 
+    // eslint-disable-next-line no-unused-vars
     const { code = 200, data, error } = result;
 
     if (options.onError) {
