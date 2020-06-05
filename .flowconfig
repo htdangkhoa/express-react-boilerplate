@@ -1,4 +1,6 @@
 [ignore]
+tests
+node_modules
 
 [include]
 
@@ -8,15 +10,35 @@ src/types/globals.js
 [lints]
 
 [options]
+suppress_comment= \\(.\\|\n\\)*\\@flow-disabled
+
 esproposal.optional_chaining=enable
+esproposal.decorators=ignore
 module.system.node.resolve_dirname=node_modules
 module.system.node.resolve_dirname=src
-module.system.node.resolve_dirname=src/client
+
 module.file_ext=.js
 module.file_ext=.jsx
 module.file_ext=.json
+module.file_ext=.woff
+module.file_ext=.woff2
+module.file_ext=.ttf
+module.file_ext=.eot
+module.file_ext=.svg
+module.file_ext=.gif
+module.file_ext=.png
+module.file_ext=.jpg
+module.file_ext=.jpeg
+module.file_ext=.webp
 module.file_ext=.css
 module.file_ext=.scss
-module.file_ext=.sass
+
+module.name_mapper='^pages\/\(.*\)$' -> '<PROJECT_ROOT>/src/client/pages/\1'
+module.name_mapper='^components\/\(.*\)$' -> '<PROJECT_ROOT>/src/client/components/\1'
+module.name_mapper='^assets\/\(.*\)$' -> '<PROJECT_ROOT>/src/client/assets/\1'
+module.name_mapper='^utils\/\(.*\)$' -> '<PROJECT_ROOT>/src/utils/\1'
+module.name_mapper='^types\/\(.*\)$' -> '<PROJECT_ROOT>/src/types/\1'
+module.name_mapper='^models\/\(.*\)$' -> '<PROJECT_ROOT>/src/models/\1'
+module.name_mapper='^store\/\(.*\)$' -> '<PROJECT_ROOT>/src/store/\1'
 
 [strict]

@@ -8,7 +8,7 @@ import helmet from 'helmet';
 import serveFavicon from 'serve-favicon';
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
-import { StaticRouter } from 'react-router';
+import { StaticRouter } from 'react-router-dom';
 import { renderRoutes, matchRoutes } from 'react-router-config';
 import { LastLocationProvider } from 'react-router-last-location';
 import { CookiesProvider } from 'react-cookie';

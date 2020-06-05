@@ -1,6 +1,6 @@
 /* @flow */
 import { Dispatch } from 'redux';
-import { ApiDataType } from 'types';
+import type { ApiDataType } from 'types';
 import { actionGenerator } from 'utils';
 import { requestAction } from 'utils/request';
 

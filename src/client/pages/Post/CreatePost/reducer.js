@@ -1,5 +1,5 @@
 /* @flow */
-import { ActionType } from 'types';
+import type { ActionType } from 'types';
 import { CREATE_POST, DELETE_LOCAL_POST } from './action';
 
 const initialState = {
