@@ -108,6 +108,72 @@ const getPlugins = () => {
   return plugins;
 };
 
+const getOptimization = () => {
+  if (__DEV__) return {};
+
+  return {
+    namedModules: false,
+    namedChunks: false,
+    flagIncludedChunks: true,
+    occurrenceOrder: true,
+    usedExports: true,
+    concatenateModules: true,
+    noEmitOnErrors: true,
+    minimize: true,
+    removeAvailableModules: true,
+    removeEmptyChunks: true,
+    mergeDuplicateChunks: true,
+    sideEffects: true,
+    runtimeChunk: true,
+    minimizer: [
+      new TerserWebpackPlugin({
+        parallel: true,
+        sourceMap: false,
+        extractComments: false,
+        terserOptions: {
+          compress: {
+            booleans: true,
+            pure_funcs: [
+              'console.log',
+              'console.info',
+              'console.debug',
+              'console.warn',
+            ],
+          },
+          warnings: false,
+          mangle: true,
+        },
+      }),
+      new OptimizeCSSAssetsWebpackPlugin({
+        assetNameRegExp: /\.optimize\.css$/g,
+        cssProcessorPluginOptions: {
+          preset: ['default', { discardComments: { removeAll: true } }],
+        },
+      }),
+    ],
+    splitChunks: {
+      chunks: 'all',
+      cacheGroups: {
+        vendor: {
+          chunks: 'all',
+          test: /[\\/]node_modules[\\/]/,
+          enforce: true,
+          name(module) {
+            // get the name. E.g. node_modules/packageName/not/this/part.js
+            // or node_modules/packageName
+            const packageName = module.context.match(
+              /[\\/]node_modules[\\/](.*?)([\\/]|$)/,
+            )[1];
+
+            // npm package names are URL-safe, but some servers don't like @ symbols
+            return `npm.${packageName.replace('@', '')}`;
+          },
+        },
+      },
+    },
+  };
+};
+
 module.exports = {
   mode: NODE_ENV,
   devtool: isDev ? 'source-map' : 'hidden-source-map',
@@ -218,26 +284,7 @@ module.exports = {
     },
   },
   optimization: {
-    minimizer: [
-      new TerserWebpackPlugin({
-        cache: true,
-        parallel: true,
-        sourceMap: false,
-        extractComments: false,
-        terserOptions: {
-          compress: {
-            booleans: true,
-            drop_console: true,
-          },
-          warnings: false,
-          mangle: true,
-        },
-      }),
-      new OptimizeCSSAssetsWebpackPlugin({}),
-    ],
-    splitChunks: {
-      chunks: isDev ? 'async' : 'all',
-    },
+    ...getOptimization(),
   },
   performance: { hints: false },
 };

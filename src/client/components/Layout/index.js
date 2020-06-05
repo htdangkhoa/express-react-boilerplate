@@ -239,7 +239,7 @@ const Layout = (props) => {
 
   if (pathname === '/login' && accessToken) {
     return (
-      <RedirectWithoutLastLocation to={lastLocation.pathname || returnPath} />
+      <RedirectWithoutLastLocation to={lastLocation?.pathname || returnPath} />
     );
   }
 
