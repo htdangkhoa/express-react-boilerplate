@@ -22,6 +22,10 @@
   <a href='https://github.com/htdangkhoa/erb/actions'>
     <img src='https://github.com/htdangkhoa/erb/workflows/Github%20Actions/badge.svg?branch=develop' alt='github actions status' />
   </a>
+  
+  <a href="https://www.codefactor.io/repository/github/htdangkhoa/erb">
+		<img src="https://www.codefactor.io/repository/github/htdangkhoa/erb/badge" alt="CodeFactor" />
+	</a>
 
   <a href='https://raw.githubusercontent.com/htdangkhoa/erb/master/LICENSE'>
     <img src='https://img.shields.io/badge/license-MIT-blue.svg' alt='MIT licensed' />
