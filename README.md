@@ -214,7 +214,7 @@ By default, the generated project supports all modern browsers. Support for Inte
 
 ```bash
 $ yarn add react-app-polyfill core-js
-# or npm install --save react-app-polyfill core-js
+# or npm install --save react-app-polyfill
 ```
 
 You can import the entry point for the minimal version you intend to support to ensure that the minimum language features are present that are required to use in your project. For example, if you import the IE9 entry point, this will include IE10 and IE11 support.
