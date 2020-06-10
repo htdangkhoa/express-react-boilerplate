@@ -213,7 +213,7 @@ $ yarn build
 By default, the generated project supports all modern browsers. Support for Internet Explorer 9, 10, and 11 requires polyfills. For a set of polyfills to support older browsers, use [react-app-polyfill](https://github.com/facebook/create-react-app/tree/master/packages/react-app-polyfill).
 
 ```bash
-$ yarn add react-app-polyfill core-js
+$ yarn add react-app-polyfill
 # or npm install --save react-app-polyfill
 ```
 
@@ -224,37 +224,6 @@ You can import the entry point for the minimal version you intend to support to 
 ```js
 // This must be the first line in <PROJECT_ROOT>/src/client/app/index.js
 import 'react-app-polyfill/ie9';
-
-// ...
-```
-
-### **Internet Explorer 11**
-
-```js
-// This must be the first line in <PROJECT_ROOT>/src/client/app/index.js
-import 'react-app-polyfill/ie11';
-
-// ...
-```
-
-## Polyfilling Other Language Features
-
-You can also polyfill stable language features not available in your target browsers. If you're using this in Create React App, it will automatically use the browserslist you've defined to only include polyfills needed by your target browsers when importing the stable polyfill. **Make sure to follow the Internet Explorer steps above if you need to support Internet Explorer in your application.**
-
-```js
-// This must be the first line in <PROJECT_ROOT>/src/client/app/index.js
-import 'react-app-polyfill/stable';
-
-// ...
-```
-
-If you are supporting Internet Explorer 9 or Internet Explorer 11 you should include both the ie9 or ie11 and stable modules:
-
-### **Internet Explorer 9**
-
-```js
-// This must be the first line in <PROJECT_ROOT>/src/client/app/index.js
-import 'react-app-polyfill/ie9';
 import 'react-app-polyfill/stable';
 
 // ...
@@ -268,6 +237,20 @@ import 'react-app-polyfill/ie11';
 import 'react-app-polyfill/stable';
 
 // ...
+```
+
+## CSS variables
+
+By default, the generated project supports all modern browsers. Support for Internet Explorer 9, 10, and 11 requires polyfills. For a set of polyfills to support older browsers, use [css-vars-ponyfill](https://github.com/jhildenbiddle/css-vars-ponyfill).
+
+```js
+// In <PROJECT_ROOT>/src/client/vendor/index.js
+import cssVars 'css-vars-ponyfill';
+// ... your css/scss files.
+cssVars({
+  silent: !__DEV__,
+  // https://jhildenbiddle.github.io/css-vars-ponyfill/#/?id=options
+});
 ```
 
 ## Type Checking For Editor
