@@ -1,4 +1,3 @@
-import { hostname } from 'os';
 import { createServer } from 'http';
 import openBrowser from 'react-dev-utils/openBrowser';
 import {
