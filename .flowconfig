@@ -1,6 +1,8 @@
 [ignore]
 tests
 node_modules
+dist
+public
 
 [include]
 

@@ -1,5 +1,4 @@
 /* @flow */
-import os from 'os';
 import axios, { type AxiosError } from 'axios';
 import omit from 'lodash/omit';
 import { type Dispatch } from 'redux';
@@ -15,7 +14,7 @@ const getBaseUrl = () => {
     return `${window.location.protocol}//${window.location.host}/api`;
   }
 
-  return `http://${os.hostname()}:${String(process.env.PORT)}/api`;
+  return `http://localhost:${String(process.env.PORT)}/api`;
 };
 
 const baseUrl = getBaseUrl();

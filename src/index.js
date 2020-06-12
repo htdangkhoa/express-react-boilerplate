@@ -1,3 +1,4 @@
+import { hostname } from 'os';
 import { createServer } from 'http';
 import openBrowser from 'react-dev-utils/openBrowser';
 import {
@@ -25,10 +26,10 @@ global.__SERVER__ = true;
 
     if (isUsed) {
       port += 1;
-
-      process.env.PORT = port;
     }
   }
+
+  process.env.PORT = port;
 
   hooks();
 
@@ -43,12 +44,12 @@ global.__SERVER__ = true;
       app: server,
     });
 
-    createServer(server).listen(port, () => {
+    createServer(server).listen(port, async () => {
       console.clear();
 
       console.log(`Starting the ${NODE_ENV} server...`);
 
-      if (isDev) {
+      if (isDev && process.argv.includes('--serve')) {
         openBrowser(`http://localhost:${port}/`);
       }
     });

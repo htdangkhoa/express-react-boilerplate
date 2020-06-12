@@ -36,6 +36,7 @@
     }
   },
   "rules": {
+    "global-require": "off",
     "prettier/prettier": "error",
     "import/no-extraneous-dependencies": [
       "error",

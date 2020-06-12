@@ -18,7 +18,6 @@ import { ChunkExtractor, ChunkExtractorManager } from '@loadable/server';
 import renderHtml from './utils/render-html';
 import routes from './routes';
 import {
-  webpackMiddleware,
   passportMiddleware,
   notFoundErrorMiddleware,
   serverErrorMiddleware,
@@ -41,6 +40,8 @@ app.use([
 app.use(Express.static(resolve(process.cwd(), 'public')));
 
 if (isDev) {
+  const { webpackMiddleware } = require('./middlewares');
+
   app.use(webpackMiddleware());
 }
 

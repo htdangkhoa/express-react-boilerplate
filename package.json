@@ -49,13 +49,14 @@
     "build": "BABEL_ENV=production babel --minified --no-comments src -D -d dist && npm run wp",
     "postbuild": "del dist/**/__tests__",
     "clean": "del \"public/*\" \"!public/assets\" \"!public/locales\" \"!public/robots.txt\" \"!public/googledb37d62693032295.html\"",
+    "predev": "del dist && npm run clean",
     "dev": "env-cmd -e development nodemon --trace-warnings --inspect=0.0.0.0:58585 src/index.js --exec babel-node",
     "start": "env-cmd -e production node dist/index.js",
     "stats": "env-cmd -e production babel-node ./node_modules/.bin/webpack --config src/tools/webpack.config.js --progress --colors --bail --json > stats.json",
     "storybook": "start-storybook --ci",
     "test": "jest -u",
     "prewp": "npm run clean",
-    "wp": "env-cmd -e production babel-node ./node_modules/.bin/webpack --config src/tools/webpack.config.js --progress --colors --bail"
+    "wp": "env-cmd -e production babel-node ./node_modules/.bin/webpack --config src/tools/webpack/webpack.config.js --progress --colors --bail"
   },
   "nodemonConfig": {
     "ignore": [

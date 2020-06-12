@@ -1,7 +1,7 @@
 import webpack from 'webpack';
 import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
-import webpackConfig from '../tools/webpack.config';
+import webpackConfig from '../tools/webpack/webpack.config';
 
 const compiler = webpack(webpackConfig);
 
