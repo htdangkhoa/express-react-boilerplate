@@ -37,7 +37,20 @@
   },
   "rules": {
     "global-require": "off",
-    "prettier/prettier": ["error", { "singleQuote": true, "parser": "flow" }],
+    "prettier/prettier": [
+      "error",
+      {
+        "tabWidth": 2,
+        "trailingComma": "all",
+        "singleQuote": true,
+        "semi": true,
+        "bracketSpacing": true,
+        "jsxSingleQuote": true,
+        "jsxBracketSameLine": true,
+        "arrowParens": "always",
+        "parser": "flow"
+      }
+    ],
     "import/no-extraneous-dependencies": [
       "error",
       {
