@@ -7,10 +7,7 @@
   },
   "extends": [
     "airbnb-base",
-    "plugin:prettier/recommended",
-    "prettier/flowtype",
-    "prettier/react",
-    "prettier/standard",
+    "prettier",
     "plugin:flowtype/recommended",
     "plugin:react/recommended",
     "plugin:import/recommended",
@@ -30,7 +27,7 @@
     "ecmaVersion": 2018,
     "sourceType": "module"
   },
-  "plugins": ["prettier", "flowtype", "react", "import", "jest"],
+  "plugins": ["flowtype", "react", "import", "jest"],
   "settings": {
     "import/resolver": {
       "babel-module": {}
@@ -43,7 +40,6 @@
   },
   "rules": {
     "global-require": "off",
-    "prettier/prettier": ["error", {}, { "usePrettierrc": true }],
     "import/no-extraneous-dependencies": [
       "error",
       {
