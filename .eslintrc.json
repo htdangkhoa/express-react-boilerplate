@@ -34,11 +34,16 @@
   "settings": {
     "import/resolver": {
       "babel-module": {}
+    },
+    "react": {
+      "pragma": "React",
+      "version": "detect",
+      "flowVersion": "detect"
     }
   },
   "rules": {
     "global-require": "off",
-    "prettier/prettier": "error",
+    "prettier/prettier": ["error", {}, { "usePrettierrc": true }],
     "import/no-extraneous-dependencies": [
       "error",
       {
