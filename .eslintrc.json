@@ -7,12 +7,13 @@
   },
   "extends": [
     "airbnb-base",
-    "plugin:flowtype/recommended",
-    "plugin:react/recommended",
-    "plugin:import/recommended",
     "plugin:prettier/recommended",
     "prettier/flowtype",
     "prettier/react",
+    "prettier/standard",
+    "plugin:flowtype/recommended",
+    "plugin:react/recommended",
+    "plugin:import/recommended",
     "plugin:jest/recommended"
   ],
   "globals": {
@@ -37,20 +38,7 @@
   },
   "rules": {
     "global-require": "off",
-    "prettier/prettier": [
-      "error",
-      {
-        "tabWidth": 2,
-        "trailingComma": "all",
-        "singleQuote": true,
-        "semi": true,
-        "bracketSpacing": true,
-        "jsxSingleQuote": true,
-        "jsxBracketSameLine": true,
-        "arrowParens": "always",
-        "parser": "flow"
-      }
-    ],
+    "prettier/prettier": "error",
     "import/no-extraneous-dependencies": [
       "error",
       {

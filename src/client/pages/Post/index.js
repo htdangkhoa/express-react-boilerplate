@@ -5,7 +5,7 @@ import Paginate from 'react-paginate';
 
 import Layout from 'components/Layout';
 
-import image from 'assets/image.png';
+// import image from 'assets/image.png';
 import { formatDate } from 'utils';
 import * as action from './action';
 import './styles.scss';
