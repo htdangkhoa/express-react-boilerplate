@@ -45,7 +45,9 @@ export const updateThemeAction = (theme: ThemeType = 'light') => (
 ) => {
   localStorage.setItem('theme', theme);
 
-  document.documentElement.setAttribute('theme', theme);
+  if (document.documentElement) {
+    document.documentElement.setAttribute('theme', theme);
+  }
 
   return dispatch({ type: UPDATE_THEME, payload: theme });
 };
@@ -59,6 +61,7 @@ export const renewTokenAction = (data: Object) => (dispatch: Dispatch) =>
       method: 'POST',
       data,
       onSuccess: ({ data: res }: ApiDataType) => {
+        // $FlowFixMe
         dispatch(updateTokenAction({ ...res }));
       },
       onError: (_res: ApiDataType) => {
@@ -68,7 +71,10 @@ export const renewTokenAction = (data: Object) => (dispatch: Dispatch) =>
   );
 
 export const GET_ME = actionGenerator('@@GET_ME');
-export const getMeAction = () => async (dispatch: Dispatch, getState: void) => {
+export const getMeAction = () => async (
+  dispatch: Dispatch,
+  getState: () => Object,
+) => {
   const {
     global: { accessToken },
   } = getState();

@@ -1,7 +1,7 @@
 import webpack from 'webpack';
 import WebpackBar from 'webpackbar';
 import FriendlyErrorsWebpackPlugin from 'friendly-errors-webpack-plugin';
-import { PORT } from '../../config';
+
 import {
   getEntries,
   getOutPut,
@@ -21,7 +21,9 @@ export default {
     new webpack.HotModuleReplacementPlugin(),
     new FriendlyErrorsWebpackPlugin({
       compilationSuccessInfo: {
-        messages: [`Server is serving at: http://localhost:${PORT}`],
+        messages: [
+          `Server is serving at: http://localhost:${process.env.PORT}`,
+        ],
       },
     }),
   ],

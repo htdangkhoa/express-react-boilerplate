@@ -99,9 +99,9 @@
 │   ├── store                   # Store configuration for both client and server side
 │   ├── tools                   # Project related configurations
 │   │   ├── jest                # Jest configurations
+│   │   ├── webpack             # Webpack configurations
 │   │   ├── hooks.js            # Assets require hooks
-│   │   ├── postcss.config.js   # PostCSS configuration
-│   │   └── webpack.config.js   # Webpack configuration
+│   │   └── postcss.config.js   # PostCSS configuration
 │   ├── types                   # All of type for flow
 │   ├── utils                   # App-wide utils
 │   ├── config.js               # Configuration entry point loaded from .env file
@@ -109,7 +109,11 @@
 │   ├── index.js                # App entry point
 │   ├── routes.js               # Routes configuration for both client and server side
 │   └── server.js               # Express server
-└── .env-cmdrc.json             # All of environments configuration.
+│── .babelrc                    # Babel configuration.
+│── .env-cmdrc.json             # All of environments configuration.
+│── .eslintrc.json              # Eslint configuration.
+│── .flowconfig                 # Flow type configuration.
+└── .prettierrc.json            # Prettier configuration.
 ```
 
 ## Installation
@@ -181,7 +185,7 @@ $ yarn build
 
 ## Enable/Disable offline
 
-- In `src/tools/webpack.config.js`:
+- In `src/tools/webpack/webpack.config.prod.js`:
 
   ```js
   if (isDev) {
@@ -205,7 +209,7 @@ $ yarn build
 
   ```js
   if (!__DEV__) {
-    OfflinePlugin.install(); // Comment this line if you want to disable offline.
+    require('offline-plugin/runtime').install(); // Comment this line if you want to disable offline.
   }
   ```
 
@@ -250,7 +254,7 @@ import cssVars 'css-vars-ponyfill';
 // ... your css/scss files.
 cssVars({
   silent: !__DEV__,
-  // https://jhildenbiddle.github.io/css-vars-ponyfill/#/?id=options
+  ..., // https://jhildenbiddle.github.io/css-vars-ponyfill/#/?id=options
 });
 ```
 

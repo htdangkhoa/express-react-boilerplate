@@ -85,9 +85,9 @@ export type ApiDataType = {
 export type ApiActionType = {
   label?: string,
 
-  onSuccess?: (data: ApiDataType) => void,
+  onSuccess?: (data: ApiDataType) => void | Promise<void>,
 
-  onError?: (data: ApiDataType) => void,
+  onError?: (data: ApiDataType) => void | Promise<void>,
 } & RequestType;
 
 export type ThemeType = 'light' | 'dark';

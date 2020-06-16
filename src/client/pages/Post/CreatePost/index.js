@@ -101,7 +101,7 @@ const CreatePost = ({
               className='ml-1 close'
               aria-label='Close'
               onClick={() => {
-                tags.shift(i, 1);
+                tags.splice(i, 1);
 
                 setTags([...tags]);
               }}>
