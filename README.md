@@ -175,13 +175,14 @@ $ yarn build
 | Script        | Description                                                                           |
 | ------------- | ------------------------------------------------------------------------------------- |
 | dev           | Start the development server.                                                         |
-| dev `--serve` | Start the development server and open browser .                                       |
+| dev `--serve` | Start the development server and open browser.                                        |
 | start         | Start the production server.                                                          |
 | build         | Remove the previous bundled files and bundle it (include client & server) to `dist/`. |
 | wp            | Bundle client to `dist/`.                                                             |
 | analyze       | Visualize the contents of all your bundles.                                           |
 | storybook     | Start the storybook server.                                                           |
 | test          | Run testing.                                                                          |
+| eslint        | Find problems in your JavaScript code.                                                |
 
 ## Enable/Disable offline
 

@@ -45,7 +45,7 @@ const main = () => {
         `${dir}/static.json`,
         `${dir}/.git/`,
         `${dir}/yarn.lock`,
-        `${dir}/.github/FUNDING.yml`,
+        `${dir}/.github/funding.yml`,
       ],
       { force: true },
     );
