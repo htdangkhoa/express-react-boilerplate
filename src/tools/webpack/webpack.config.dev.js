@@ -19,13 +19,7 @@ export default {
     ...getPlugins(),
     new WebpackBar(),
     new webpack.HotModuleReplacementPlugin(),
-    new FriendlyErrorsWebpackPlugin({
-      compilationSuccessInfo: {
-        messages: [
-          `Server is serving at: http://localhost:${process.env.PORT}`,
-        ],
-      },
-    }),
+    new FriendlyErrorsWebpackPlugin(),
   ],
   module: {
     rules: getRules(),

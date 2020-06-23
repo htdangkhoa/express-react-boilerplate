@@ -39,9 +39,9 @@ export const getEntries = () => {
 
   if (isDev) {
     entries = [
-      ...entries,
       'react-hot-loader/patch',
-      'webpack-hot-middleware/client',
+      'webpack-hot-middleware/client?reload=true',
+      ...entries,
     ];
   }
 
