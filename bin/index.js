@@ -9,11 +9,13 @@ const packageJson = require('../package.json');
 
 const TEMPLATE_DIR = 'https://github.com/htdangkhoa/erb.git';
 
+const NAME = packageJson.name;
+
 commander
   .name('erb-gen')
   .version(packageJson.version, '-v, --version')
-  .option('-d, --dir <type>', `project's directory.`, '.')
-  .option('-n, --name <type>', `project's name.`, packageJson.name)
+  .option('-d, --dir <type>', `project's directory.`, NAME)
+  .option('-n, --name <type>', `project's name.`, NAME)
   .parse(process.argv);
 
 const main = () => {
