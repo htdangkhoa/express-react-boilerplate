@@ -109,10 +109,10 @@
 │   ├── index.js                # App entry point
 │   ├── routes.js               # Routes configuration for both client and server side
 │   └── server.js               # Express server
-│── .babelrc                    # Babel configuration.
-│── .env-cmdrc.json             # All of environments configuration.
-│── .eslintrc.json              # Eslint configuration.
-│── .flowconfig                 # Flow type configuration.
+├── .babelrc                    # Babel configuration.
+├── .env-cmdrc.json             # All of environments configuration.
+├── .eslintrc.json              # Eslint configuration.
+├── .flowconfig                 # Flow type configuration.
 └── .prettierrc.json            # Prettier configuration.
 ```
 

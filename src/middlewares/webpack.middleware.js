@@ -5,6 +5,7 @@ import openBrowser from 'react-dev-utils/openBrowser';
 import { ip } from 'address';
 import { PORT } from 'config';
 import webpackConfig from '../tools/webpack/webpack.config';
+import packageJson from '../../package.json';
 
 const compiler = webpack(webpackConfig);
 
@@ -19,10 +20,32 @@ const webpackMiddleware = () => {
     serverSideRender: true,
   });
 
-  instance.waitUntilValid(() => {
-    const host = `http://${ip()}:${PORT}/`;
+  instance.waitUntilValid(async () => {
+    console.clear();
 
-    console.log(`Server is serving at: ${host}`);
+    const MAX = 60;
+
+    const renderValue = (v = '', c = ' ') =>
+      `│ ${v}${''.padEnd(MAX - v.length - 2, c)} │`;
+
+    const host = `http://${ip()}:${PORT}`;
+
+    console.log(`┌${''.padEnd(MAX, '─')}┐`);
+
+    console.log(renderValue(`PID:         ${process.pid}`));
+    console.log(renderValue(`Node.js:     ${process.version}`));
+    console.log(renderValue(`OS:          ${process.platform}`));
+    console.log(renderValue());
+
+    console.log(renderValue(`Application: ${packageJson.name}`));
+    console.log(renderValue(`Version:     ${packageJson.version}`));
+    console.log(renderValue(`Host:        ${host}`));
+    console.log(renderValue(`Profile:     ${process.env.NODE_ENV}`));
+    console.log(renderValue());
+
+    console.log(renderValue(`👉 Enter 'r' to restart application.`));
+
+    console.log(`└${''.padEnd(MAX, '─')}┘`);
 
     if (process.argv.includes('--serve')) {
       openBrowser(host);

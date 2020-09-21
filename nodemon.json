@@ -1,0 +1,15 @@
+{
+  "restartable": "r",
+  "verbose": false,
+  "ignore": [
+    ".git",
+    "node_modules/**/node_modules",
+    "dist",
+    "public",
+    "src/client",
+    "src/store"
+  ],
+  "events": {
+    "start": "cls || clear"
+  }
+}
