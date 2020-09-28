@@ -1,3 +1,5 @@
+import './logger';
+
 const {
   NODE_ENV = 'development',
   PORT = 8080,

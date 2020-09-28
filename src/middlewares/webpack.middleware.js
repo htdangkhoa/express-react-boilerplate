@@ -1,8 +1,9 @@
+import os from 'os';
+import last from 'lodash/last';
 import webpack from 'webpack';
 import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
 import openBrowser from 'react-dev-utils/openBrowser';
-import { ip } from 'address';
 import { PORT } from 'config';
 import webpackConfig from '../tools/webpack/webpack.config';
 import packageJson from '../../package.json';
@@ -28,7 +29,11 @@ const webpackMiddleware = () => {
     const renderValue = (v = '', c = ' ') =>
       `│ ${v}${''.padEnd(MAX - v.length - 2, c)} │`;
 
-    const host = `http://${ip()}:${PORT}`;
+    const { en0 } = os.networkInterfaces();
+
+    const lastEn0 = last(en0.filter(({ family }) => family === 'IPv4'));
+
+    const host = !lastEn0 ? '0.0.0.0' : `http://${lastEn0.address}:${PORT}`;
 
     console.log(`┌${''.padEnd(MAX, '─')}┐`);
 

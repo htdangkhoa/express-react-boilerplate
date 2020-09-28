@@ -12,9 +12,9 @@
 
       port += 1;
     }
-  }
 
-  process.env.PORT = port;
+    process.env.PORT = port;
+  }
 
   await import('./ready');
 })();

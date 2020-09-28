@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import ReactMde from 'react-mde';
-import moment from 'moment-timezone';
+import dayjs from 'dayjs';
 
 import Layout from 'components/Layout';
 import MdViewer, { makeEmojiHtml } from 'components/MdViewer';
@@ -122,7 +122,7 @@ const PostDetail = ({
                 <MdViewer key={comment?._id} source={comment?.comment} />
 
                 <div>
-                  {moment(comment.createAt || new Date())
+                  {dayjs(comment.createAt || new Date())
                     .format('MMM DD, YYYY')
                     .toString()}
                 </div>

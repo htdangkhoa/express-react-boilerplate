@@ -1,5 +1,5 @@
 /* @flow */
-import moment from 'moment-timezone';
+import dayjs from 'dayjs';
 
 export const actionGenerator = (actionName: string) => ({
   NAME: actionName,
@@ -8,4 +8,4 @@ export const actionGenerator = (actionName: string) => ({
 });
 
 export const formatDate = (date: Date | string) =>
-  moment(date).format('MMM DD, YYYY');
+  dayjs(date).format('MMM DD, YYYY');
