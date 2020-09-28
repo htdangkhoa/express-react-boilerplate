@@ -1,3 +1,5 @@
+import 'utils/logger';
+
 (async () => {
   let port = parseFloat(process.env.PORT || 8080);
 

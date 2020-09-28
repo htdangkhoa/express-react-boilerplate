@@ -1,6 +1,11 @@
+import { readFileSync } from 'fs';
+import { resolve } from 'path';
 import dayjs from 'dayjs';
 import color from 'cli-color';
-import pkg from '../package.json';
+
+const pkg = JSON.parse(
+  readFileSync(resolve(process.cwd(), 'package.json'), 'utf-8').toString(),
+);
 
 const mapping = {
   assert: color.magenta,
