@@ -38,11 +38,7 @@ export const getEntries = () => {
   let entries = [resolve(cwd, 'src/client/index.js')];
 
   if (isDev) {
-    entries = [
-      'react-hot-loader/patch',
-      'webpack-hot-middleware/client?reload=true',
-      ...entries,
-    ];
+    entries = ['webpack-hot-middleware/client?reload=true', ...entries];
   }
 
   return entries;
@@ -125,8 +121,5 @@ export const getResolver = () => ({
   },
   resolve: {
     extensions: ['.json', '.js', '.jsx'],
-    alias: {
-      'react-dom': '@hot-loader/react-dom',
-    },
   },
 });

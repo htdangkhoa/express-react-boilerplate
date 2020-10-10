@@ -2,7 +2,6 @@
 import './vendor';
 import '../i18n';
 import React, { Suspense } from 'react';
-import { AppContainer } from 'react-hot-loader';
 import { render, hydrate } from 'react-dom';
 import { renderRoutes } from 'react-router-config';
 import { CookiesProvider } from 'react-cookie';
@@ -25,15 +24,13 @@ const bootstrap = (routesConfig: Array<Object>) => {
 
   renderMethod(
     <Suspense fallback={<Loading />}>
-      <AppContainer>
-        <Provider store={store}>
-          <ConnectedRouter history={history}>
-            <LastLocationProvider>
-              <CookiesProvider>{renderRoutes(routesConfig)}</CookiesProvider>
-            </LastLocationProvider>
-          </ConnectedRouter>
-        </Provider>
-      </AppContainer>
+      <Provider store={store}>
+        <ConnectedRouter history={history}>
+          <LastLocationProvider>
+            <CookiesProvider>{renderRoutes(routesConfig)}</CookiesProvider>
+          </LastLocationProvider>
+        </ConnectedRouter>
+      </Provider>
     </Suspense>,
     document.getElementById('react-view'),
   );

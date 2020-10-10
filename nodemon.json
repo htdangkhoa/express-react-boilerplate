@@ -1,5 +1,5 @@
 {
-  "restartable": "r",
+  "restartable": "rs",
   "verbose": false,
   "ignore": [
     ".git",

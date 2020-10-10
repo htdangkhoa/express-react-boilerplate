@@ -1,5 +1,7 @@
 const autoprefixer = require('autoprefixer');
 
-module.exports = {
-  plugins: [autoprefixer({ grid: true })],
-};
+const configurationPostcss = () => ({
+  plugins: [autoprefixer()],
+});
+
+module.exports = configurationPostcss;

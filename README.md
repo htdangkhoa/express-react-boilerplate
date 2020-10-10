@@ -46,7 +46,7 @@
 - Universal routing [(react-router)](https://github.com/ReactTraining/react-router).
 - State management [(Redux)](https://redux.js.org).
 - Redux debugging tools [(redux-devtools)](https://github.com/reduxjs/redux-devtools).
-- Tweak React components in real time [(react-hot-loader)](https://github.com/gaearon/react-hot-loader).
+- Tweak React components in real time [(react-refresh)](https://github.com/facebook/react/tree/master/packages/react-refresh).
 - SEO [(react-helmet)](https://github.com/nfl/react-helmet).
 - The recommended Code Splitting library for React [(loadable-components)](https://github.com/gregberge/loadable-components).
 - Progressive web app [(offline-plugin)](https://github.com/NekR/offline-plugin).

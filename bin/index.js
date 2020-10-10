@@ -13,6 +13,9 @@ const NAME = packageJson.name;
 
 commander
   .name('erb-gen')
+  .description(
+    `Examples:\n  $ erb-gen\n  $ erb-gen --dir .\n  $ erb-gen --name example`,
+  )
   .version(packageJson.version, '-v, --version')
   .option('-d, --dir <type>', `project's directory.`, NAME)
   .option('-n, --name <type>', `project's name.`, NAME)

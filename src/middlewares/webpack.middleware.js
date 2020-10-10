@@ -48,7 +48,7 @@ const webpackMiddleware = () => {
     console.log(renderValue(`Profile:     ${process.env.NODE_ENV}`));
     console.log(renderValue());
 
-    console.log(renderValue(`👉 Enter 'r' to restart application.`));
+    console.log(renderValue(`👇 Enter 'rs' to restart application.`));
 
     console.log(`└${''.padEnd(MAX, '─')}┘`);
 

@@ -10,8 +10,45 @@
       }
     ],
     "@babel/proposal-optional-chaining",
-    "react-hot-loader/babel",
     "@loadable/babel-plugin",
+    [
+      "css-modules-transform",
+      {
+        "extensions": [".css", ".scss", ".sass", ".less"],
+        "generateScopedName": "[local]",
+        "prepend": ["./src/tools/postcss.config.js"]
+      }
+    ],
+    [
+      "transform-assets",
+      {
+        "extensions": [
+          "gif",
+          "jpg",
+          "jpeg",
+          "png",
+          "webp",
+          "woff",
+          "woff2",
+          "ttf",
+          "eot",
+          "svg"
+        ],
+        "name": "[name].[hash:8].[ext]"
+      }
+    ],
+    [
+      "inline-react-svg",
+      {
+        "svgo": {
+          "plugins": [
+            {
+              "removeAttrs": { "attrs": "(data-name|white-space)" }
+            }
+          ]
+        }
+      }
+    ],
     [
       "module-resolver",
       {

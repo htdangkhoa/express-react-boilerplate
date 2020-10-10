@@ -2,7 +2,6 @@
 import React, { useEffect } from 'react';
 import { Helmet } from 'react-helmet';
 import { connect } from 'react-redux';
-import { hot } from 'react-hot-loader';
 import { renderRoutes } from 'react-router-config';
 import { ToastContainer } from 'react-toastify';
 import head from 'utils/head';
@@ -32,4 +31,4 @@ const mapDispatchToProps = {
   updateThemeAction: globalAction.updateThemeAction,
 };
 
-export default hot(module)(connect(mapStateToProps, mapDispatchToProps)(App));
+export default connect(mapStateToProps, mapDispatchToProps)(App);
