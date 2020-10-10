@@ -7,7 +7,7 @@ import { toast } from 'react-toastify';
 
 import Layout from 'components/Layout';
 import TagsInput from 'components/TagsInput';
-import { makeEmojiHtml } from 'components/MdViewer';
+import { MdPreview } from 'components/MdViewer';
 
 import * as action from './action';
 
@@ -116,11 +116,9 @@ const CreatePost = ({
         onTabChange={setSelectedTab}
         onChange={onInputChange}
         value={source}
-        generateMarkdownPreview={async (markdown) => {
-          const html = makeEmojiHtml(markdown);
-
-          return html;
-        }}
+        generateMarkdownPreview={async (markdown) => (
+          <MdPreview source={markdown} />
+        )}
       />
 
       <button

@@ -34,7 +34,7 @@ app.use([
   bodyParser.urlencoded({ extended: true }),
   serveFavicon(resolve(process.cwd(), 'public/assets/favicon.ico')),
   compression(),
-  helmet(),
+  helmet({ contentSecurityPolicy: false }),
 ]);
 
 app.use(Express.static(resolve(process.cwd(), 'public')));

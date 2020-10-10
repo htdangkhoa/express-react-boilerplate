@@ -12,7 +12,9 @@ import 'utils/logger';
       /* eslint-disable no-await-in-loop */
       isUsed = await portChecker.check(port);
 
-      port += 1;
+      if (isUsed) {
+        port += 1;
+      }
     }
 
     process.env.PORT = port;

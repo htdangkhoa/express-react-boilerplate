@@ -1,28 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ReactHTMLParser from 'react-html-parser';
 import { toArray } from 'react-emoji-render';
-import { Converter } from 'showdown';
-
-const converter = new Converter({
-  omitExtraWLInCodeBlocks: true,
-  noHeaderId: false,
-  parseImgDimensions: true,
-  simplifiedAutoLink: true,
-  literalMidWordUnderscores: true,
-  strikethrough: true,
-  tables: true,
-  tablesHeaderId: false,
-  ghCodeBlocks: true,
-  tasklists: true,
-  smoothLivePreview: true,
-  prefixHeaderId: false,
-  disableForced4SpacesIndentedSublists: false,
-  ghCompatibleHeaderId: true,
-  smartIndentationFix: false,
-});
-
-converter.setFlavor('github');
+import ReactMarkdown from 'react-markdown';
 
 const parseEmojis = (value) => {
   const emojisArray = toArray(value);
@@ -37,13 +16,19 @@ const parseEmojis = (value) => {
   return newValue;
 };
 
-const makeEmojiHtml = (source) => parseEmojis(converter.makeHtml(source));
+export const MdPreview = ({ source }) => (
+  <ReactMarkdown
+    source={source}
+    escapeHtml={false}
+    renderers={{ text: ({ value }) => parseEmojis(value) }}
+  />
+);
 
 const MdViewer = ({ source = '' }) => {
   return (
     <div className='mde-preview'>
       <div className='mde-preview-content'>
-        <>{ReactHTMLParser(makeEmojiHtml(source))}</>
+        <MdPreview source={source} />
       </div>
     </div>
   );
@@ -52,7 +37,5 @@ const MdViewer = ({ source = '' }) => {
 MdViewer.propTypes = {
   source: PropTypes.string,
 };
-
-export { converter, makeEmojiHtml };
 
 export default MdViewer;

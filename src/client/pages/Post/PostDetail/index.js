@@ -6,7 +6,7 @@ import ReactMde from 'react-mde';
 import dayjs from 'dayjs';
 
 import Layout from 'components/Layout';
-import MdViewer, { makeEmojiHtml } from 'components/MdViewer';
+import MdViewer, { MdPreview } from 'components/MdViewer';
 
 import { formatDate } from 'utils';
 
@@ -99,11 +99,9 @@ const PostDetail = ({
                 onTabChange={setSelectedTab}
                 onChange={onInputChange}
                 value={source}
-                generateMarkdownPreview={async (markdown) => {
-                  const html = makeEmojiHtml(markdown);
-
-                  return html;
-                }}
+                generateMarkdownPreview={async (markdown) => (
+                  <MdPreview source={markdown} />
+                )}
               />
 
               <button
