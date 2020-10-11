@@ -58,6 +58,7 @@
           "components": "./src/client/components",
           "assets": "./src/client/assets",
           "utils": "./src/utils",
+          "themes": "./src/client/themes",
           "types": "./src/types",
           "models": "./src/models",
           "store": "./src/store"

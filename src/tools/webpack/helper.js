@@ -20,7 +20,7 @@ const rulesOfCss = [
       importLoaders: 1,
       modules: {
         localIdentName: '[local]',
-        context: resolve(cwd, 'src/client'),
+        localIdentContext: resolve(cwd, 'src/client'),
       },
       sourceMap: isDev,
     },
@@ -29,7 +29,9 @@ const rulesOfCss = [
     loader: 'postcss',
     options: {
       sourceMap: isDev,
-      config: { path: __dirname },
+      postcssOptions: {
+        config: __dirname,
+      },
     },
   },
 ];
@@ -95,10 +97,12 @@ export const getRules = () => {
             sourceMap: isDev,
             sassOptions: {
               includePaths: [resolve(cwd, 'src/client')],
+              javascriptEnabled: true,
             },
           },
         },
       ],
+      include: resolve(cwd, 'src/client'),
     },
     {
       test: /\.(woff2?|ttf|eot|svg)$/,

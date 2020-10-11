@@ -54,9 +54,10 @@
 - Internationalization [(i18next)](https://www.i18next.com/) & [(react-i18next)](https://github.com/i18next/react-i18next).
 - A tool for transforming CSS with JavaScript [(PostCSS)](https://postcss.org/).
 - PostCSS plugin to parse CSS and add vendor prefixes to CSS rules using values from Can I Use. It is recommended by Google and used in Twitter and Alibaba [(autoprefixer)](https://github.com/postcss/autoprefixer).
-- Compiles CSS Modules in runtime [(css-modules-require-hook)](https://github.com/css-modules/css-modules-require-hook).
-- Allows files required by node that match a given set of extensions to be returned as either a data URI, or a custom filename [(asset-require-hook)](https://github.com/aribouius/asset-require-hook).
-- Developing UI components [(Storybook)](https://storybook.js.org/).
+- A modular minifier, built on top of the PostCSS ecosystem [(cssnano)](https://github.com/cssnano/cssnano).
+- Extract css class names from required css module files, so we can render it on server [(babel-plugin-css-modules-transform)](https://github.com/michalkvasnicak/babel-plugin-css-modules-transform).
+- Transforms asset imports at compile time using Babel [(babel-plugin-transform-assets)](https://github.com/jmurzy/babel-plugin-transform-assets).
+- A babel plugin that optimizes and inlines SVGs for your React Components [(babel-plugin-inline-react-svg)](https://github.com/airbnb/babel-plugin-inline-react-svg).
 - Light & Dark theme.
 - Data fetching from server-side.
 - Compressing images with imagemin [(imagemin-webpack-plugin)](https://github.com/Klathmon/imagemin-webpack-plugin).

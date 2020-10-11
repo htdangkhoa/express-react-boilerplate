@@ -16,6 +16,8 @@
       "assets/*": ["client/assets/*"],
       "utils": ["utils"],
       "utils/*": ["utils/*"],
+      "themes": ["client/themes"],
+      "themes/*": ["client/themes/*"],
       "types": ["types"],
       "types/*": ["types/*"],
       "models": ["models"],

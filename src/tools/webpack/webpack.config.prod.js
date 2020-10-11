@@ -20,6 +20,7 @@ export default {
   mode: 'production',
   entry: getEntries(),
   output: getOutPut(),
+  stats: 'minimal',
   plugins: [
     ...getPlugins(),
     new webpack.optimize.OccurrenceOrderPlugin(true),

@@ -1,7 +1,8 @@
 const autoprefixer = require('autoprefixer');
+const cssnano = require('cssnano');
 
 const configurationPostcss = () => ({
-  plugins: [autoprefixer()],
+  plugins: [autoprefixer(), cssnano({ preset: 'default' })],
 });
 
 module.exports = configurationPostcss;
