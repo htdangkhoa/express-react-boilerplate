@@ -89,7 +89,6 @@
 │   │   ├── assets              # Assets (e.g. images, fonts etc.)
 │   │   ├── components          # Reusable components
 │   │   ├── pages               # Page components
-│   │   ├── stories             # UI components with Storybook
 │   │   ├── themes              # App-wide style
 │   │   ├── vendor              # 3rd libraries for client
 │   │   └── index.js            # App bootstrap and rendering (webpack entry)
@@ -181,7 +180,6 @@ $ yarn build
 | build         | Remove the previous bundled files and bundle it (include client & server) to `dist/`. |
 | wp            | Bundle client to `dist/`.                                                             |
 | analyze       | Visualize the contents of all your bundles.                                           |
-| storybook     | Start the storybook server.                                                           |
 | test          | Run testing.                                                                          |
 | eslint        | Find problems in your JavaScript code.                                                |
 
