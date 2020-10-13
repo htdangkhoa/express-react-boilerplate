@@ -2,6 +2,8 @@ import { resolve } from 'path';
 import webpack from 'webpack';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import LoadablePlugin from '@loadable/webpack-plugin';
+import autoprefixer from 'autoprefixer';
+import cssnano from 'cssnano';
 import { isDev } from '../../config';
 
 const cwd = process.cwd();
@@ -30,7 +32,10 @@ const rulesOfCss = [
     options: {
       sourceMap: isDev,
       postcssOptions: {
-        config: __dirname,
+        plugins: [
+          autoprefixer({ grid: true }),
+          cssnano({ preset: 'advanced' }),
+        ],
       },
     },
   },

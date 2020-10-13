@@ -5,7 +5,6 @@ import CompressionWebpackPlugin from 'compression-webpack-plugin';
 import WebpackPwaManifest from 'webpack-pwa-manifest';
 import TerserWebpackPlugin from 'terser-webpack-plugin';
 import OfflinePlugin from 'offline-plugin';
-import OptimizeCSSAssetsWebpackPlugin from 'optimize-css-assets-webpack-plugin';
 import {
   getEntries,
   getOutPut,
@@ -20,7 +19,6 @@ export default {
   mode: 'production',
   entry: getEntries(),
   output: getOutPut(),
-  stats: 'minimal',
   plugins: [
     ...getPlugins(),
     new webpack.optimize.OccurrenceOrderPlugin(true),
@@ -74,19 +72,6 @@ export default {
   },
   ...getResolver(),
   optimization: {
-    namedModules: false,
-    namedChunks: false,
-    flagIncludedChunks: true,
-    occurrenceOrder: true,
-    usedExports: true,
-    concatenateModules: true,
-    noEmitOnErrors: true,
-    minimize: true,
-    removeAvailableModules: true,
-    removeEmptyChunks: true,
-    mergeDuplicateChunks: true,
-    sideEffects: true,
-    runtimeChunk: true,
     minimizer: [
       new TerserWebpackPlugin({
         parallel: true,
@@ -104,12 +89,6 @@ export default {
           },
           warnings: false,
           mangle: true,
-        },
-      }),
-      new OptimizeCSSAssetsWebpackPlugin({
-        assetNameRegExp: /\.optimize\.css$/g,
-        cssProcessorPluginOptions: {
-          preset: ['default', { discardComments: { removeAll: true } }],
         },
       }),
     ],
