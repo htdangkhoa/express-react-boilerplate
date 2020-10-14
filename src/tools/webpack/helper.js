@@ -8,39 +8,6 @@ import { isDev } from '../../config';
 
 const cwd = process.cwd();
 
-const rulesOfCss = [
-  {
-    loader: MiniCssExtractPlugin.loader,
-    options: {
-      hmr: isDev,
-      reloadAll: true,
-    },
-  },
-  {
-    loader: 'css',
-    options: {
-      importLoaders: 1,
-      modules: {
-        localIdentName: '[local]',
-        localIdentContext: resolve(cwd, 'src/client'),
-      },
-      sourceMap: isDev,
-    },
-  },
-  {
-    loader: 'postcss',
-    options: {
-      sourceMap: isDev,
-      postcssOptions: {
-        plugins: [
-          autoprefixer({ grid: true }),
-          cssnano({ preset: 'advanced' }),
-        ],
-      },
-    },
-  },
-];
-
 export const getEntries = () => {
   let entries = [resolve(cwd, 'src/client/index.js')];
 
@@ -89,13 +56,37 @@ export const getRules = () => {
       options: { cacheDirectory: isDev },
     },
     {
-      test: /\.css$/,
-      use: [...rulesOfCss],
-    },
-    {
-      test: /\.(scss|sass)$/,
+      test: /\.(sa|sc|c)ss$/,
       use: [
-        ...rulesOfCss,
+        {
+          loader: MiniCssExtractPlugin.loader,
+          options: {
+            hmr: isDev,
+          },
+        },
+        {
+          loader: 'css',
+          options: {
+            importLoaders: 1,
+            modules: {
+              localIdentName: '[local]',
+              localIdentContext: resolve(cwd, 'src/client'),
+            },
+            sourceMap: isDev,
+          },
+        },
+        {
+          loader: 'postcss',
+          options: {
+            sourceMap: isDev,
+            postcssOptions: {
+              plugins: [
+                autoprefixer({ grid: true }),
+                cssnano({ preset: 'advanced' }),
+              ],
+            },
+          },
+        },
         {
           loader: 'sass',
           options: {
@@ -107,7 +98,6 @@ export const getRules = () => {
           },
         },
       ],
-      include: resolve(cwd, 'src/client'),
     },
     {
       test: /\.(woff2?|ttf|eot|svg)$/,
