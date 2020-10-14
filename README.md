@@ -159,6 +159,12 @@ $ yarn dev
 # or npm run dev
 ```
 
+<p align='center'>
+  <a href='https://www.npmjs.com/package/express-react-boilerplate'>
+    <img src='https://raw.githubusercontent.com/htdangkhoa/erb/master/art/terminal.png' alt='terminal' />
+  </a>
+</p>
+
 ## Build
 
 ```bash
