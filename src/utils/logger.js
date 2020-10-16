@@ -40,12 +40,13 @@ const mapping = {
     oldMethod.apply(console, [
       color,
       prefix,
-      ...args.map(
-        (arg) =>
-          `${colors.white}${
-            typeof arg === 'string' ? arg : JSON.stringify(arg)
-          }`,
-      ),
+      ...args.map((arg) => {
+        if (arg instanceof Error) throw arg;
+
+        return `${colors.white}${
+          typeof arg === 'string' ? arg : JSON.stringify(arg)
+        }`;
+      }),
     ]);
   };
 });
