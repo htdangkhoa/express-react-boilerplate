@@ -1,6 +1,8 @@
-<h1 align='center'>erb</h1>
+<h1 align='center'>🔥 🔥 🔥 express-react-boilerplate 🔥 🔥 🔥</h1>
 
-<p align='center'>🔥 🔥 🔥 Express react boilerplate 🔥 🔥 🔥</p>
+<p align='center'>
+  <img src='https://raw.githubusercontent.com/htdangkhoa/erb/master/art/cover.png' alt='cover' />
+</p>
 
 <p align='center'>
   <a href='https://david-dm.org/htdangkhoa/erb'>
@@ -160,9 +162,7 @@ $ yarn dev
 ```
 
 <p align='center'>
-  <a href='https://www.npmjs.com/package/express-react-boilerplate'>
-    <img src='https://raw.githubusercontent.com/htdangkhoa/erb/master/art/terminal.png' alt='terminal' />
-  </a>
+  <img src='https://raw.githubusercontent.com/htdangkhoa/erb/master/art/terminal.png' alt='terminal' />
 </p>
 
 ## Build
