@@ -31,7 +31,7 @@ const webpackMiddleware = () => {
 
     const { en0 } = os.networkInterfaces();
 
-    const lastEn0 = last(en0.filter(({ family }) => family === 'IPv4'));
+    const lastEn0 = last(en0?.filter(({ family }) => family === 'IPv4'));
 
     const host = !lastEn0 ? '0.0.0.0' : `http://${lastEn0.address}:${PORT}`;
 
