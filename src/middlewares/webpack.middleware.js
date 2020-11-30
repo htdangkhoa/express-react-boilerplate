@@ -14,10 +14,6 @@ const webpackMiddleware = () => {
   const instance = webpackDevMiddleware(compiler, {
     headers: { 'Access-Control-Allow-Origin': '*' },
     publicPath: webpackConfig.output.publicPath,
-    hot: true,
-    quiet: true, // Turn it on for friendly-errors-webpack-plugin
-    noInfo: true,
-    stats: 'minimal',
     serverSideRender: true,
   });
 

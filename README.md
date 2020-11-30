@@ -1,7 +1,7 @@
 <h1 align='center'>🔥 🔥 🔥 express-react-boilerplate 🔥 🔥 🔥</h1>
 
 <p align='center'>
-  <img src='https://raw.githubusercontent.com/htdangkhoa/erb/master/art/cover.png' alt='cover' />
+  <img src='./art/cover.png' alt='cover' />
 </p>
 
 <p align='center'>
@@ -29,7 +29,7 @@
 		<img src="https://www.codefactor.io/repository/github/htdangkhoa/erb/badge" alt="CodeFactor" />
 	</a>
 
-  <a href='https://raw.githubusercontent.com/htdangkhoa/erb/master/LICENSE'>
+  <a href='./LICENSE'>
     <img src='https://img.shields.io/badge/license-MIT-blue.svg' alt='MIT licensed' />
   </a>
 </p>
@@ -51,7 +51,6 @@
 - Tweak React components in real time [(react-refresh)](https://github.com/facebook/react/tree/master/packages/react-refresh).
 - SEO [(react-helmet)](https://github.com/nfl/react-helmet).
 - The recommended Code Splitting library for React [(loadable-components)](https://github.com/gregberge/loadable-components).
-- Progressive web app [(offline-plugin)](https://github.com/NekR/offline-plugin).
 - Promise based HTTP client for the browser and NodeJS [(axios)](https://github.com/axios/axios).
 - Internationalization [(i18next)](https://www.i18next.com/) & [(react-i18next)](https://github.com/i18next/react-i18next).
 - A tool for transforming CSS with JavaScript [(PostCSS)](https://postcss.org/).
@@ -162,7 +161,7 @@ $ yarn dev
 ```
 
 <p align='center'>
-  <img src='https://raw.githubusercontent.com/htdangkhoa/erb/master/art/terminal.png' alt='terminal' />
+  <img src='./art/terminal.png' alt='terminal' />
 </p>
 
 ## Build
@@ -189,35 +188,6 @@ $ yarn build
 | test          | Run testing.                                                                          |
 | eslint        | Find problems in your JavaScript code.                                                |
 
-## Enable/Disable offline
-
-- In `src/tools/webpack/webpack.config.prod.js`:
-
-  ```js
-  if (isDev) {
-    ...
-  } else {
-    plugins = [
-      ...,
-      // Comment this plugin if you want to disable offline.
-      new OfflinePlugin({
-        autoUpdate: true,
-        appShell: '/',
-        relativePaths: false,
-        updateStrategy: 'all',
-        externals: ['/'],
-      })
-    ]
-  }
-  ```
-
-- At the end of `src/client/index.js`:
-
-  ```js
-  if (!__DEV__) {
-    require('offline-plugin/runtime').install(); // Comment this line if you want to disable offline.
-  }
-  ```
 
 ## Supported Browsers
 

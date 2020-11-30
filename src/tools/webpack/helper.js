@@ -27,7 +27,9 @@ export const getOutPut = () => ({
 
 export const getPlugins = () => {
   const plugins = [
-    new webpack.NamedModulesPlugin(),
+    new webpack.ProvidePlugin({
+      process: 'process/browser',
+    }),
     new webpack.DefinePlugin({
       __CLIENT__: true,
       __SERVER__: false,
@@ -52,7 +54,7 @@ export const getRules = () => {
     {
       test: /\.jsx?$/,
       exclude: /node_modules/,
-      loader: 'babel',
+      loader: 'babel-loader',
       options: { cacheDirectory: isDev },
     },
     {
@@ -60,12 +62,9 @@ export const getRules = () => {
       use: [
         {
           loader: MiniCssExtractPlugin.loader,
-          options: {
-            hmr: isDev,
-          },
         },
         {
-          loader: 'css',
+          loader: 'css-loader',
           options: {
             importLoaders: 1,
             modules: {
@@ -76,7 +75,7 @@ export const getRules = () => {
           },
         },
         {
-          loader: 'postcss',
+          loader: 'postcss-loader',
           options: {
             sourceMap: isDev,
             postcssOptions: {
@@ -88,7 +87,7 @@ export const getRules = () => {
           },
         },
         {
-          loader: 'sass',
+          loader: 'sass-loader',
           options: {
             sourceMap: isDev,
             sassOptions: {
@@ -101,12 +100,12 @@ export const getRules = () => {
     },
     {
       test: /\.(woff2?|ttf|eot|svg)$/,
-      loader: 'file',
+      loader: 'file-loader',
       options: { limit: 10240, name: '[name].[hash:8].[ext]' },
     },
     {
       test: /\.(gif|png|jpe?g|webp)$/,
-      loader: 'file',
+      loader: 'file-loader',
       options: { limit: 10240, name: '[name].[hash:8].[ext]' },
     },
   ];
@@ -115,10 +114,8 @@ export const getRules = () => {
 };
 
 export const getResolver = () => ({
-  resolveLoader: {
-    moduleExtensions: ['-loader'],
-  },
   resolve: {
     extensions: ['.json', '.js', '.jsx'],
+    fallback: { path: require.resolve('path-browserify') },
   },
 });

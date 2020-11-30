@@ -41,4 +41,5 @@ export default {
     ],
   },
   ...getResolver(),
+  stats: 'minimal',
 };

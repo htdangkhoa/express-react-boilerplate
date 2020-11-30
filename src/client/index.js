@@ -26,9 +26,9 @@ const bootstrap = (routesConfig: Array<Object>) => {
     <Suspense fallback={<Loading />}>
       <Provider store={store}>
         <ConnectedRouter history={history}>
-          <LastLocationProvider>
-            <CookiesProvider>{renderRoutes(routesConfig)}</CookiesProvider>
-          </LastLocationProvider>
+          {/* <LastLocationProvider> */}
+          <CookiesProvider>{renderRoutes(routesConfig)}</CookiesProvider>
+          {/* </LastLocationProvider> */}
         </ConnectedRouter>
       </Provider>
     </Suspense>,
@@ -41,7 +41,7 @@ loadableReady(() => {
 });
 
 if (module.hot) {
-  module.hot.accept('../routes', async () => {
+  module.hot.accept(async () => {
     try {
       const nextRoutes = await import('../routes');
 

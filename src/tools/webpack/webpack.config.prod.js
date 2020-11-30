@@ -21,9 +21,7 @@ export default {
   output: getOutPut(),
   plugins: [
     ...getPlugins(),
-    new webpack.optimize.OccurrenceOrderPlugin(true),
     new webpack.optimize.ModuleConcatenationPlugin(),
-    new webpack.HashedModuleIdsPlugin(),
     new ImageminWebpackPlugin({
       test: /\.(jpe?g|png|gif|svg)$/i,
       minFileSize: 1024,
@@ -58,14 +56,14 @@ export default {
       start_url: '.',
       display: 'standalone',
     }),
-    new OfflinePlugin({
-      autoUpdate: true,
-      appShell: '/',
-      relativePaths: false,
-      updateStrategy: 'all',
-      externals: ['/'],
-      responseStrategy: 'network-first',
-    }),
+    // new OfflinePlugin({
+    //   autoUpdate: true,
+    //   appShell: '/',
+    //   relativePaths: false,
+    //   updateStrategy: 'all',
+    //   externals: ['/'],
+    //   responseStrategy: 'network-first',
+    // }),
   ],
   module: {
     rules: getRules(),
@@ -75,7 +73,6 @@ export default {
     minimizer: [
       new TerserWebpackPlugin({
         parallel: true,
-        sourceMap: false,
         extractComments: false,
         terserOptions: {
           compress: {

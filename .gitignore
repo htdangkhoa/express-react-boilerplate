@@ -73,3 +73,5 @@ public/*
 !public/locales
 !public/robots.txt
 !public/googledb37d62693032295.html
+
+.DS_Store

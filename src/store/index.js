@@ -25,7 +25,7 @@ const configureStore = ({ initialState, url }: ConfigureStoreType) => {
   );
 
   if (module.hot) {
-    module.hot.accept('./reducer', async () => {
+    module.hot.accept(async () => {
       try {
         const { default: nextReducer } = await import('./reducer');
 
